@@ -1,0 +1,47 @@
+﻿
+a. 課程管理與作業繳交子系統(Course Managent and Homework Submit System,CMHSS)
+b. 使用者管理子系統(User Account Management Subsystem, UMS)
+The system shall provide a user authentication and authorization mechanism.
+系統應提供用戶認證授權機制。
+The system shall provide a course management mechanism.
+系統應提供課程管理機制。
+The system shall provide a programming assignment management mechanism.
+系統應提供編程分配管理機制。
+The system shall allow students to submit (i.e., upload) an assignment.
+系統應允許學生提交（即上傳）作業。
+The system shall allow instructors and TAs to track the submission status of each assignment.
+該系統應允許教師和協調員跟踪每項任務的提交情況。
+The system shall be able to generate statistical reports regarding the assignment submission.
+該系統應能夠生成關於作業提交的統計報告。
+The system shall be able to support the grading of the assignments manually or automatically. (optional)
+系統應能夠手動或自動地支持作業的分級。 （可選的）
+The system shall provide an interactive user interface (UI).
+系統應提供交互式用戶界面（UI）。
+Other desired functionality (optional)
+其他所需功能 （可選）
+Non-functional Requirements
+非功能性要求
+
+R2 系統應提供課程管理機制。
+R2.1系統應提供老師可管理課程，管理包括課程的CRUD。
+R2.2老師建立的每個課程，都可以指派TA進入管理。
+R2.3每個課程的老師及TA可以知道學生的資訊 像是 座號、姓名還有信箱，學生能繳交有修的課程作業。
+
+
+R3 系統應提供作業管理機制。
+R3.1 老師及TA可以在他們管理的課程CRUD學生的作業。
+R3.2 老師及TA可以制定繳交期限還有遲交策略機制。 
+
+R4 系統應允許學生提交（即上傳）作業。
+R4.1選課的學生可以在規定時間內上傳作業。
+R4.2系統可以處理多次上傳的狀況。
+R4.3系統會在學生繳交作業後寄信給該學生。
+R4.4系統可以接受壓縮檔案，並可以解壓縮。
+
+R5該系統允許老師和TA查看每項作業的繳交情況。
+R5.1老師及TA可以下載學生繳交的作業
+R5.2系統可以自動顯示 每個作業裡所有學生繳交的狀況及上傳時間。
+R5.3系統可以自動顯示 學生繳交所有作業情況及上傳時間。
+R5.4學生可以查看自己有沒有繳交作業情況及上傳時間。
+
+R6
