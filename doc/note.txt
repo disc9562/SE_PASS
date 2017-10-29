@@ -45,3 +45,20 @@ R5.3系統可以自動顯示 學生繳交所有作業情況及上傳時間。
 R5.4學生可以查看自己有沒有繳交作業情況及上傳時間。
 
 R6
+
+		<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							 <div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div> 
+						</div>
+------------
+ $('#register-form-link').click(function (e) {
+        $('#register-form').delay(100).fadeIn(100)
+        $('#login-form').fadeOut(100)
+        $('#login-form-link').removeClass('active')
+        $(this).addClass('active')
+        e.preventDefault()
+      })
