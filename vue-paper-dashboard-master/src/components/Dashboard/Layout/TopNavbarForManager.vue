@@ -18,13 +18,9 @@
               <p>新增作業</p>
             </a>
           </li>
-             <!-- <drop-down title="5 Notifications" icon="ti-bell">
-               <li><a href="#">Notification 1</a></li>
-               <li><a href="#">Notification 2</a></li>
-               <li><a href="#">Notification 3</a></li>
-               <li><a href="#">Notification 4</a></li>
-               <li><a href="#">Another notification</a></li>
-             </drop-down> -->
+             <drop-down title="設定" icon="ti-bell">
+               <li><a href="#" v-on:click="setting()">個人檔案</a></li>
+             </drop-down>
         </ul>
       </div>
     </div>
@@ -58,6 +54,11 @@
       },
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
+      },
+      setting () {
+        this.$router.push({
+          path: '/setting'
+        })
       }
     }
   }

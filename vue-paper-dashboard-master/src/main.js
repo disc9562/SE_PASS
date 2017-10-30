@@ -7,6 +7,9 @@ import GlobalDirectives from './globalDirectives'
 import Notifications from './components/UIComponents/NotificationPlugin'
 import SideBar from './components/UIComponents/SidebarPlugin'
 import SideBarForManagers from './components/UIComponents/SidebarPluginForManagers'
+import SideBarForStudent from './components/UIComponents/SidebarPluginForStudent'
+import SideBarForAdmin from './components/UIComponents/SideBarForAdmin'
+
 import App from './App'
 
 // router setup
@@ -25,7 +28,9 @@ Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
 Vue.use(Notifications)
 Vue.use(SideBar)
+Vue.use(SideBarForStudent)
 Vue.use(SideBarForManagers)
+Vue.use(SideBarForAdmin)
 
 // configure router
 const router = new VueRouter({

@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <side-bar-for-manager type="sidebar" :sidebar-links="$sidebar.sidebarLinks">
+    <side-bar-for-student type="sidebar" :sidebar-links="$sidebarforstudent.sidebarLinks">
 
-    </side-bar-for-manager>
+    </side-bar-for-student>
     <notifications>
 
     </notifications>
@@ -32,8 +32,8 @@
     },
     methods: {
       toggleSidebar () {
-        if (this.$sidebarformanager.showSidebar) {
-          this.$sidebarformanager.displaySidebar(false)
+        if (this.$sidebarforstudent.showSidebar) {
+          this.$sidebarforstudent.displaySidebar(false)
         }
       }
     }

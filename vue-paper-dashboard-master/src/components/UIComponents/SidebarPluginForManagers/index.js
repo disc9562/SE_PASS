@@ -1,7 +1,7 @@
 import Sidebar from './SideBar.vue'
 
 const SidebarStore = {
-  showSidebar: false,
+  showSidebar: true,
   sidebarLinks: [
     // {
     //   name: 'Dashboard',

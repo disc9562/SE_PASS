@@ -14,6 +14,15 @@ import AssignmentList from 'src/components/Dashboard/Views/AssignmentList.vue'
 import gradeList from 'src/components/Dashboard/Views/gradeList'
 import Login from 'src/components/Login/Login.vue'
 import DashboardLayoutForManager from '../components/Dashboard/Layout/DashboardLayoutForManager.vue'
+import DashboardLayoutForStudent from '../components/Dashboard/Layout/DashboardLayoutForStudent'
+import CorrectAssignmentList from 'src/components/Dashboard/Views/CorrectAssignmentList'
+import AssignmentListForStudent from 'src/components/Dashboard/Views/AssignmentListForStudent'
+import gradeListForStudent from 'src/components/Dashboard/Views/gradeListForStudent'
+import AccountList from 'src/components/Dashboard/Views/AccountList'
+import SignUp from 'src/components/Dashboard/Views/SignUp'
+import DashboardLayoutForAdmin from '../components/Dashboard/Layout/DashboardLayoutForAdmin'
+import Setting from 'src/components/Dashboard/Views/Setting'
+import Correct from 'src/components/Dashboard/Views/Correct'
 
 const routes = [
   {
@@ -86,9 +95,53 @@ const routes = [
 
       {
         path: 'correctAssignment',
-        name: 'correctAssignment'
+        name: 'correctAssignment',
+        component: CorrectAssignmentList
+      },
+      {
+        path: 'correct',
+        name: 'correct',
+        component: Correct
       }
     ]
+  },
+  {
+    path: '/homework',
+    component: DashboardLayoutForStudent,
+    redirect: '/homework/assignment',
+    children: [
+      {
+        path: 'assignment',
+        name: 'assignment',
+        component: AssignmentListForStudent
+      },
+      {
+        path: 'grade',
+        name: 'grade',
+        component: gradeListForStudent
+      }
+    ]
+  },
+  {
+    path: '/account',
+    component: DashboardLayoutForAdmin,
+    redirect: '/account/accountList',
+    children: [
+      {
+        path: 'accountList',
+        name: 'accountList',
+        component: AccountList
+      },
+      {
+        path: 'signUp',
+        name: 'signUp',
+        component: SignUp
+      }
+    ]
+  },
+  {
+    path: '/setting',
+    component: Setting
   },
   { path: '*', component: NotFound }
 ]

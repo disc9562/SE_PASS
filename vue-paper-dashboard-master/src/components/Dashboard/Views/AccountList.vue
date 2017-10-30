@@ -1,17 +1,17 @@
 <template>
     <div class="row">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#HW1">HW1</a></li>
-        <li><a data-toggle="tab" href="#HW2">HW2</a></li>
+        <li class="active"><a data-toggle="tab" href="#teacher">teacher</a></li>
+        <li><a data-toggle="tab" href="#student">student</a></li>
       </ul>
     <div class="tab-content">
-      <div  id="HW1" class="tab-pane fade in active">
+      <div  id="teacher" class="tab-pane fade in active">
       <div  class="card">
           <paper-table :title="table1.title"  :sub-title="table1.subTitle" :data="table1.data" :columns="table1.columns">
           </paper-table>
       </div>
       </div>
-      <div id="HW2" class="tab-pane fade">
+      <div id="student" class="tab-pane fade">
           <div class="card">
           <paper-table :title="table2.title"    :sub-title="table2.subTitle" :data="table2.data" :columns="table2.columns">
           </paper-table>
@@ -22,20 +22,23 @@
 </template>
 <script>
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-  const tableColumns = ['學號', '姓名', '上傳情況', '成績']
+  const tableColumns = ['姓名', '信箱', '帳號', '刪除']
+  const tableColumns1 = ['姓名', '信箱', '帳號', '助教', '刪除']
+
   const tableData = [{
-    學號: '105598054',
-    姓名: '阿發',
-    上傳情況: '補交',
-    成績: '87'
+    姓名: 'Andy',
+    信箱: 'AndyDog@gmail.com',
+    帳號: 'T105598054',
+    刪除: '刪除'
   }
   ]
 
   const tableData1 = [{
-    學號: '105598054',
-    姓名: '阿發',
-    上傳情況: '已交',
-    成績: '78'
+    姓名: 'Hank',
+    信箱: 'Hank@gmail.com',
+    帳號: '105598054',
+    助教: 'Y',
+    刪除: '刪除'
   }
   ]
 
@@ -55,7 +58,7 @@
         table2: {
           title: 'Table on Plain Background',
           subTitle: 'Here is a subtitle for this table',
-          columns: [...tableColumns],
+          columns: [...tableColumns1],
           data: [...tableData1]
         }
       }

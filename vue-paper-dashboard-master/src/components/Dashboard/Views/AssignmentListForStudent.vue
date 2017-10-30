@@ -20,13 +20,12 @@
 </template>
 <script>
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-  const tableColumns = ['作業名稱', '繳交期限', '繳交人數', '報表', '編輯']
+  const tableColumns = ['作業名稱', '上傳情況', '繳交期限', '上傳/補交']
   const tableData = [{
     作業名稱: 'HW1',
+    上傳情況: '已交',
     繳交期限: '11/08 23:59:59',
-    繳交人數: '14 / 78',
-    報表: '',
-    編輯: 'edit'
+    '上傳/補交': ''
   }
   ]
 

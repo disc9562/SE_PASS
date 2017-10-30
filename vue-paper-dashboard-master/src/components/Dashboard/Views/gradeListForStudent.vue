@@ -22,20 +22,22 @@
 </template>
 <script>
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-  const tableColumns = ['學號', '姓名', '上傳情況', '成績']
+  const tableColumns = ['作業名稱', '滿分', '分數', '評語', '報表']
   const tableData = [{
-    學號: '105598054',
-    姓名: '阿發',
-    上傳情況: '補交',
-    成績: '87'
+    作業名稱: 'hw1',
+    滿分: '100',
+    分數: '60',
+    評語: '讓你畢業',
+    報表: ''
   }
   ]
 
   const tableData1 = [{
-    學號: '105598054',
-    姓名: '阿發',
-    上傳情況: '已交',
-    成績: '78'
+    作業名稱: 'hw2',
+    滿分: '100',
+    分數: '78',
+    評語: '87',
+    報表: ''
   }
   ]
 

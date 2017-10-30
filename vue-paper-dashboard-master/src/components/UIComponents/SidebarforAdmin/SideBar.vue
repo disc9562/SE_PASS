@@ -32,11 +32,6 @@
       </ul>
       <moving-arrow :move-y="arrowMovePx">
     </moving-arrow>
-    <div id = "TA">
-    <p>指派TA</p>
-    <input></input>
-    <p>TA: Hank</p>
-    </div>
     </div>
   </div>
 </template>
@@ -70,21 +65,17 @@
       },
       sidebarLinks: {
         type: Array,
-        default: () => [{
-          name: '作業區',
-          icon: 'ti-view-list-alt',
-          path: '/Course/assignment'
-        },
-        {
-          name: '查詢成績',
-          icon: 'ti-text',
-          path: '/Course/grade'
-        },
-        {
-          name: '作業批改',
-          icon: 'ti-pencil-alt2',
-          path: '/Course/correctAssignment'
-        }
+        default: () => [
+          {
+            name: 'Account List',
+            icon: 'ti-text',
+            path: '/account/AccountList'
+          },
+          {
+            name: 'Sign Up',
+            icon: 'ti-view-list-alt',
+            path: '/account/signUp'
+          }
         ]
       }
     },
@@ -136,7 +127,7 @@
       }
     },
     mounted () {
-      // this.findActiveLink()
+      this.findActiveLink()
     },
     watch: {
       $route: function (newRoute, oldRoute) {
