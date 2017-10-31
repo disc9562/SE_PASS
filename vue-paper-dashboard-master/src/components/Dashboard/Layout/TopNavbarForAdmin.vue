@@ -14,9 +14,8 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="open">
             <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
-                <drop-down title="課程" icon="glyphicon glyphicon-plus">
-               <li><a href="#" v-on:click="addcourse()">新增課程</a></li>
-             </drop-down>
+              <i class="glyphicon glyphicon-plus"></i>
+              <p>新增帳戶</p>
             </a>
           </li>
              <drop-down title="設定" icon="ti-bell">
@@ -59,11 +58,6 @@
       setting () {
         this.$router.push({
           path: '/setting'
-        })
-      },
-      addcourse () {
-        this.$router.push({
-          path: '/addcourse'
         })
       }
     }

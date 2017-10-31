@@ -61,6 +61,13 @@
                 <option value="Admin">Admin</option>
               </select>
               </div>
+						<div>
+							<form>
+								課程<br>
+								<input type="checkbox" value="1" name="Product_1" checked>SE<br>
+								<input type="checkbox" value="2" name="Product_2">軟體測試與驗證<br>
+								</form>
+						</div>
 						<div class="form-group ">
 							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
 						</div>

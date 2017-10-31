@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <side-bar-for-admin type="sidebar" :sidebar-links="$sidebarforadmin.sidebarLinks">
+    <side-bar-for-admin type="sidebar" :sidebar-links="$sidebarforadmin.sidebarLinks2">
 
     </side-bar-for-admin>
     <notifications>
@@ -21,7 +21,7 @@
 
 </style>
 <script>
-  import TopNavbar from './TopNavbarForManager.vue'
+  import TopNavbar from './TopNavbarForAdmin.vue'
   import ContentFooter from './ContentFooter.vue'
   import DashboardContent from './Content.vue'
   export default {

@@ -2,7 +2,7 @@ import Sidebar from './SideBar.vue'
 
 const SidebarStore = {
   showSidebar: true,
-  sidebarLinks: [
+  sidebarLinks4: [
     {
       name: '作業區',
       icon: 'ti-view-list-alt',

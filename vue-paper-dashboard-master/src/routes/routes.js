@@ -23,6 +23,8 @@ import SignUp from 'src/components/Dashboard/Views/SignUp'
 import DashboardLayoutForAdmin from '../components/Dashboard/Layout/DashboardLayoutForAdmin'
 import Setting from 'src/components/Dashboard/Views/Setting'
 import Correct from 'src/components/Dashboard/Views/Correct'
+import Assignment from 'src/components/Dashboard/Views/Assignment'
+import addCourse from 'src/components/Dashboard/Views/addCourse'
 
 const routes = [
   {
@@ -142,6 +144,14 @@ const routes = [
   {
     path: '/setting',
     component: Setting
+  },
+  {
+    path: '/assignment',
+    component: Assignment
+  },
+  {
+    path: '/addcourse',
+    component: addCourse
   },
   { path: '*', component: NotFound }
 ]

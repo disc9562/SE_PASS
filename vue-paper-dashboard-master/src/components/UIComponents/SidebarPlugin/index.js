@@ -17,27 +17,8 @@ const SidebarStore = {
       name: 'Course',
       icon: 'ti-view-list-alt',
       path: '/admin/Course'
-    },
-    {
-      name: 'Typography',
-      icon: 'ti-text',
-      path: '/admin/typography'
-    },
-    {
-      name: 'Icons',
-      icon: 'ti-pencil-alt2',
-      path: '/admin/icons'
-    },
-    {
-      name: 'Maps',
-      icon: 'ti-map',
-      path: '/admin/maps'
-    },
-    {
-      name: 'Notifications',
-      icon: 'ti-bell',
-      path: '/admin/notifications'
     }
+
   ],
   displaySidebar (value) {
     this.showSidebar = value

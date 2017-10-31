@@ -14,8 +14,9 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="open">
             <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
-              <i class="glyphicon glyphicon-plus"></i>
-              <p>新增作業</p>
+                <drop-down title="作業" icon="glyphicon glyphicon-plus">
+               <li><a href="#" v-on:click="assignment()">新增作業</a></li>
+             </drop-down>
             </a>
           </li>
              <drop-down title="設定" icon="ti-bell">
@@ -58,6 +59,11 @@
       setting () {
         this.$router.push({
           path: '/setting'
+        })
+      },
+      assignment () {
+        this.$router.push({
+          path: '/assignment'
         })
       }
     }

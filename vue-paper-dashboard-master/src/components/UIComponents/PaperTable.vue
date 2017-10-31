@@ -52,12 +52,9 @@ export default {
       return item[column.toLowerCase()]
     },
     direct () {
-      // this.$router.push({
-      //   path: '/Course'
-      // })
-      // this.$router.push({
-      //   path: '/Course/correct'
-      // })
+      this.$router.push({
+        path: '/Course'
+      })
     }
   }
 }

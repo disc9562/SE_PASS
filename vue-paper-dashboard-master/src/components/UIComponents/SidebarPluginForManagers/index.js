@@ -2,7 +2,7 @@ import Sidebar from './SideBar.vue'
 
 const SidebarStore = {
   showSidebar: true,
-  sidebarLinks: [
+  sidebarLinks3: [
     // {
     //   name: 'Dashboard',
     //   icon: 'ti-panel',

@@ -2,7 +2,7 @@ import Sidebar from './SideBar.vue'
 
 const SidebarStore = {
   showSidebar: false,
-  sidebarLinks: [
+  sidebarLinks2: [
     {
       name: 'Account List',
       icon: 'ti-text',
@@ -19,7 +19,7 @@ const SidebarStore = {
   }
 }
 
-const SidebarPluginForAdmin = {
+const SidebarPlugin = {
 
   install (Vue) {
     Vue.mixin({
@@ -39,4 +39,4 @@ const SidebarPluginForAdmin = {
   }
 }
 
-export default SidebarPluginForAdmin
+export default SidebarPlugin

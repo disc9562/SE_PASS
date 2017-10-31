@@ -20,12 +20,19 @@
 </template>
 <script>
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-  const tableColumns = ['課程名稱', '教師', '上課時間', '人數', '編輯']
+  const tableColumns = ['課程名稱', '助教', '上課時間', '人數', '編輯']
   const tableData = [{
     課程名稱: 'SE',
-    教師: 'Dr.劉',
+    助教: 'Hank',
     上課時間: '週二 14:00~15:00; 週三 16:00~18:00',
     人數: '78',
+    編輯: 'Edit'
+  },
+  {
+    課程名稱: '軟體測試與驗證',
+    助教: 'Andy',
+    上課時間: '週三 14:00~15:00; 週四 16:00~18:00',
+    人數: '87',
     編輯: 'Edit'
   }
   ]

@@ -29,8 +29,8 @@ Vue.use(GlobalDirectives)
 Vue.use(Notifications)
 Vue.use(SideBar)
 Vue.use(SideBarForStudent)
-Vue.use(SideBarForManagers)
 Vue.use(SideBarForAdmin)
+Vue.use(SideBarForManagers)
 
 // configure router
 const router = new VueRouter({

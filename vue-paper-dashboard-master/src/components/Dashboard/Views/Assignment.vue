@@ -5,64 +5,26 @@
 					<form class="form-horizontal" method="post" action="#">
 						
 						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Name</label>
+							<label for="name" class="cols-sm-2 control-label">作業名稱</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<label for="name" class="cols-sm-2 control-label">阿發</label>
+									<label for="name" class="cols-sm-2 control-label">WH3</label>
 								</div>
 							</div>
 						</div>
-
 						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="email" id="email" value="AFA@gmail.com"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="username" class="cols-sm-2 control-label">ID</label>
+							<label for="username" class="cols-sm-2 control-label">繳交期限</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-										<label for="name" class="cols-sm-2 control-label">105598054</label>
+										<label for="name" class="cols-sm-2 control-label">11/18 23:59:59</label>
 								</div>
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
-								</div>
-							</div>
-						</div>
-            <div class="form-group">
-              <label for="confirm" class="cols-sm-2 control-label">role</label>
-							<div class="cols-sm-10">
-              <select disabled>
-                <option value="Instructor">Instructor</option>
-                <option value="Student">Student</option>
-                <option value="TA" selected>TA</option>
-                <option value="Admin">Admin</option>
-              </select>
-              </div>
+              <div class="form-group">
+              <label for="exampleTextarea">作業描述</label>
+              <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
             </div>
 						<div class="form-group ">
 							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
@@ -72,6 +34,7 @@
 				</div>
 			</div>
 		</div>
+    
 </template>
 <style>
 /*

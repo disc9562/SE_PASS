@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <side-bar-for-student type="sidebar" :sidebar-links="$sidebarforstudent.sidebarLinks">
+    <side-bar-for-student type="sidebar" :sidebar-links="$sidebarforstudent.sidebarLinks4">
 
     </side-bar-for-student>
     <notifications>
@@ -21,7 +21,7 @@
 
 </style>
 <script>
-  import TopNavbar from './TopNavbarForManager.vue'
+  import TopNavbar from './TopNavbarForStudent.vue'
   import ContentFooter from './ContentFooter.vue'
   import DashboardContent from './Content.vue'
   export default {

@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <side-bar-for-manager type="sidebar" :sidebar-links="$sidebar.sidebarLinks">
+    <side-bar-for-manager type="sidebar" :sidebar-links="$sidebar.sidebarLinks3">
 
     </side-bar-for-manager>
     <notifications>
