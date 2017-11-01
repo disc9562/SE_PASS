@@ -12,12 +12,6 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="open">
-            <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
-              <i class="glyphicon glyphicon-plus"></i>
-              <p>新增帳戶</p>
-            </a>
-          </li>
              <drop-down title="設定" icon="ti-bell">
                <li><a href="#" v-on:click="setting()">個人檔案</a></li>
              </drop-down>

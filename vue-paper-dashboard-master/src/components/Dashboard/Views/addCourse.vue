@@ -9,7 +9,8 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<label for="name" class="cols-sm-2 control-label">軟體需求</label>
+									<!-- <label for="name" class="cols-sm-2 control-label">軟體需求</label> -->
+								  <input type="text" class="form-control" name="name" id="name" value="軟體需求" placeholder="Enter your Course Name"/>
 								</div>
 							</div>
 						</div>
@@ -18,7 +19,8 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-										<label for="name" class="cols-sm-2 control-label">週二 14:00~15:00; 週三 16:00~18:00</label>
+										<!-- <label for="name" class="cols-sm-2 control-label">週二 14:00~15:00; 週三 16:00~18:00</label> -->
+							      <input type="text" class="form-control" name="name" id="name" value="週五 14:00~17:00" placeholder="Enter your Course time"/>
 								</div>
 							</div>
 						</div>

@@ -9,7 +9,8 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<label for="name" class="cols-sm-2 control-label">WH3</label>
+									<input type="text" class="form-control" name="name" id="name" value="HW3" placeholder="Enter your Assignment Name"/>
+									<!-- <label for="name" class="cols-sm-2 control-label">WH3</label> -->
 								</div>
 							</div>
 						</div>
@@ -18,7 +19,8 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-										<label for="name" class="cols-sm-2 control-label">11/18 23:59:59</label>
+										<!-- <label for="name" class="cols-sm-2 control-label">11/18 23:59:59</label> -->
+										<input type="text" class="form-control" name="name" id="name" value="11/18 23:59:59" placeholder="Enter your Assignment dead line"/>
 								</div>
 							</div>
 						</div>
