@@ -1,42 +1,41 @@
 <template>
-    <div class="row">
-      <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#teacher">teacher</a></li>
-        <li><a data-toggle="tab" href="#student">student</a></li>
-      </ul>
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#teacher">teacher</a></li>
+      <li><a data-toggle="tab" href="#student">student</a></li>
+    </ul>
     <div class="tab-content">
       <div  id="teacher" class="tab-pane fade in active">
-      <!-- <div  class="card">
-          <paper-table :title="table1.title"  :sub-title="table1.subTitle" :data="table1.data" :columns="table1.columns">
-          </paper-table>
-      </div> -->
+      <!-- TODO -->
       </div>
       <div id="student" class="tab-pane fade">
-        <vuetable :fields="fields"
+        <vuetable ref="vuetable"
+                  :fields="fields"
+                  :sort-order="sortOrder"
+                  pagination-path=""
                   :css="css.table"
-                  :per-page="10"
+                  :per-page="5"
                   @vuetable:pagination-data="onPaginationData"
                   @vuetable:loading="onLoading"
                   @vuetable:loaded="onLoaded" 
                   api-url="https://vuetable.ratiw.net/api/users"
-                   >
-                  <template slot="action" scope="props">
-                  <div class="table-button-container">
+                  >
+                   <template slot="actions" scope="props">
+                    <div class="table-button-container">
                       <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
                         <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
                       <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
                         <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
-                  </div>
-                  </template>
+                    </div>
+                   </template>
         </vuetable>
         <vuetable-pagination ref="pagination"
-          :css="css.pagination"
-          @vuetable-pagination:change-page="onChangePage" >
+                             :css="css.pagination"
+                             @vuetable-pagination:change-page="onChangePage">
         </vuetable-pagination>
       </div>
     </div>
-
-    </div>
+  </div>
 </template>
 <script>
 export default {

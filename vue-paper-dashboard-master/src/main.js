@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Vuetable from '../node_modules/vuetable-2/src/components/Vuetable'
+import VueTablePagination from '../node_modules/vuetable-2/src/components/VueTablePagination'
 
 // Plugins
 import GlobalComponents from './globalComponents'
@@ -9,8 +11,6 @@ import SideBar from './components/UIComponents/SidebarPlugin'
 import SideBarForManagers from './components/UIComponents/SidebarPluginForManagers'
 import SideBarForStudent from './components/UIComponents/SidebarPluginForStudent'
 import SideBarForAdmin from './components/UIComponents/SideBarForAdmin'
-import Vuetable from '../node_modules/vuetable-2/src/components/Vuetable'
-import VueTablePagination from '../node_modules/vuetable-2/src/components/VueTablePagination'
 
 import App from './App'
 
@@ -26,6 +26,9 @@ import 'es6-promise/auto'
 
 // plugin setup
 Vue.use(VueRouter)
+Vue.component('vuetable', Vuetable)
+Vue.component('vuetable-pagination', VueTablePagination)
+
 Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
 Vue.use(Notifications)
@@ -33,8 +36,6 @@ Vue.use(SideBar)
 Vue.use(SideBarForStudent)
 Vue.use(SideBarForAdmin)
 Vue.use(SideBarForManagers)
-Vue.use(Vuetable)
-Vue.use(VueTablePagination)
 
 // configure router
 const router = new VueRouter({
@@ -56,5 +57,9 @@ new Vue({
   router,
   data: {
     Chartist: Chartist
+  },
+  comments: {
+    VueTable: Vuetable,
+    VueTablePagination: VueTablePagination
   }
 })
