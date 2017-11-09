@@ -30,7 +30,7 @@
             </div>
 						<div class="form-group ">
 							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
-              <button type="button" class="btn btn-primary btn-lg btn-block login-button">Cancel</button>
+              <button type="button"  v-on:click="cancelAssignment()" class="btn btn-primary btn-lg btn-block login-button">Cancel</button>
 						</div>
 					</form>
 				</div>
@@ -38,6 +38,20 @@
 		</div>
     
 </template>
+
+<script>
+export default{
+  methods: {
+    cancelAssignment () {
+      this.$router.push({
+        path: '/Course/assignment'
+      })
+    }
+
+  }
+}
+</script>
+
 <style>
 /*
 /* Created by Filipe Pina

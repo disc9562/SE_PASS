@@ -6,94 +6,113 @@
       </ul>
     <div class="tab-content">
       <div  id="teacher" class="tab-pane fade in active">
-      <div  class="card">
+      <!-- <div  class="card">
           <paper-table :title="table1.title"  :sub-title="table1.subTitle" :data="table1.data" :columns="table1.columns">
           </paper-table>
-      </div>
+      </div> -->
       </div>
       <div id="student" class="tab-pane fade">
-          <div class="card">
-          <paper-table :title="table2.title"    :sub-title="table2.subTitle" :data="table2.data" :columns="table2.columns">
-          </paper-table>
-          </div>
+        <vuetable :fields="fields"
+                  :css="css.table"
+                  :per-page="10"
+                  @vuetable:pagination-data="onPaginationData"
+                  @vuetable:loading="onLoading"
+                  @vuetable:loaded="onLoaded" 
+                  api-url="https://vuetable.ratiw.net/api/users"
+                   >
+                  <template slot="action" scope="props">
+                  <div class="table-button-container">
+                      <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
+                      <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
+                        <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
+                  </div>
+                  </template>
+        </vuetable>
+        <vuetable-pagination ref="pagination"
+          :css="css.pagination"
+          @vuetable-pagination:change-page="onChangePage" >
+        </vuetable-pagination>
       </div>
     </div>
 
     </div>
 </template>
 <script>
-  import PaperTable from 'components/UIComponents/PaperTable.vue'
-  const tableColumns = ['姓名', '信箱', '帳號', '刪除']
-  const tableColumns1 = ['姓名', '信箱', '帳號', '助教', '刪除']
-
-  const tableData = [{
-    姓名: 'Andy',
-    信箱: 'AndyDog@gmail.com',
-    帳號: 'T105598054',
-    刪除: '刪除'
-  },
-  {
-    姓名: 'Monkey',
-    信箱: 'Monkey@gmail.com',
-    帳號: 'T105598055',
-    刪除: '刪除'
-  }
-  ]
-
-  const tableData1 = [{
-    姓名: 'Hank',
-    信箱: 'Hank@gmail.com',
-    帳號: '105598054',
-    助教: 'Y',
-    刪除: '刪除'
-  },
-  {
-    姓名: 'Johnson',
-    信箱: 'Johnson@gmail.com',
-    帳號: '105598060',
-    助教: 'N',
-    刪除: '刪除'
-  },
-  {
-    姓名: 'Jay',
-    信箱: 'Jay@gmail.com',
-    帳號: '105598057',
-    助教: 'N',
-    刪除: '刪除'
-  },
-  {
-    姓名: 'Wayne',
-    信箱: 'Wayne@gmail.com',
-    帳號: '105598059',
-    助教: 'N',
-    刪除: '刪除'
-  }
-  ]
-
-  export default {
-    components: {
-      PaperTable
-    },
-  
-    data () {
-      return {
-        table1: {
-          title: 'Stripped Table',
-          subTitle: 'Here is a subtitle for this table',
-          columns: [...tableColumns],
-          data: [...tableData]
+export default {
+  data () {
+    return {
+      fields: [
+        {
+          name: 'name',
+          title: '<span class="orange glyphicon glyphicon-user"></span> Full Name',
+          sortField: 'name'
         },
-        table2: {
-          title: 'Table on Plain Background',
-          subTitle: 'Here is a subtitle for this table',
-          columns: [...tableColumns1],
-          data: [...tableData1]
+        {
+          name: 'email',
+          title: 'Email',
+          sortField: 'email'
+        },
+        'birthdate', 'nickname',
+        {
+          name: 'gender',
+          title: 'Gender',
+          sortField: 'gender'
+        },
+        '__slot:actions'
+      ],
+      sortOrder: [
+      { field: 'name', direction: 'asc' }
+      ],
+      css: {
+        table: {
+          tableClass: 'table table-striped table-bordered table-hovered',
+          loadingClass: 'loading',
+          ascendingIcon: 'glyphicon glyphicon-chevron-up',
+          descendingIcon: 'glyphicon glyphicon-chevron-down',
+          handleIcon: 'glyphicon glyphicon-menu-hamburger'
+        },
+        pagination: {
+          infoClass: 'pull-left',
+          wrapperClass: 'vuetable-pagination pull-right',
+          activeClass: 'btn-primary',
+          disabledClass: 'disabled',
+          pageClass: 'btn btn-border',
+          linkClass: 'btn btn-border',
+          icons: {
+            first: '',
+            prev: '',
+            next: '',
+            last: ''
+          }
         }
       }
     }
+  },
+  computed: {
+  /* httpOptions(){
+    return {headers: {'Authorization': "my-token"}} //table props -> :http-options="httpOptions"
+  }, */
+  },
+  methods: {
+    onPaginationData (paginationData) {
+      this.$refs.pagination.setPaginationData(paginationData)
+    },
+    onChangePage (page) {
+      this.$refs.vuetable.changePage(page)
+    },
+    editRow (rowData) {
+      alert('You clicked edit on' + JSON.stringify(rowData))
+    },
+    deleteRow (rowData) {
+      alert('You clicked delete on' + JSON.stringify(rowData))
+    },
+    onLoading () {
+      console.log('loading... show your spinner here')
+    },
+    onLoaded () {
+      console.log('loaded! .. hide your spinner here')
+    }
   }
-
+}
 </script>
-<style>
-
-</style>

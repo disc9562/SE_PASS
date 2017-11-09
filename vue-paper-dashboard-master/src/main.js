@@ -9,6 +9,8 @@ import SideBar from './components/UIComponents/SidebarPlugin'
 import SideBarForManagers from './components/UIComponents/SidebarPluginForManagers'
 import SideBarForStudent from './components/UIComponents/SidebarPluginForStudent'
 import SideBarForAdmin from './components/UIComponents/SideBarForAdmin'
+import Vuetable from '../node_modules/vuetable-2/src/components/Vuetable'
+import VueTablePagination from '../node_modules/vuetable-2/src/components/VueTablePagination'
 
 import App from './App'
 
@@ -31,6 +33,8 @@ Vue.use(SideBar)
 Vue.use(SideBarForStudent)
 Vue.use(SideBarForAdmin)
 Vue.use(SideBarForManagers)
+Vue.use(Vuetable)
+Vue.use(VueTablePagination)
 
 // configure router
 const router = new VueRouter({
