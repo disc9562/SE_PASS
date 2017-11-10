@@ -9,30 +9,32 @@
       <!-- TODO -->
       </div>
       <div id="student" class="tab-pane fade">
-        <vuetable ref="vuetable"
-                  :fields="fields"
-                  :sort-order="sortOrder"
-                  pagination-path=""
-                  :css="css.table"
-                  :per-page="5"
-                  @vuetable:pagination-data="onPaginationData"
-                  @vuetable:loading="onLoading"
-                  @vuetable:loaded="onLoaded" 
-                  api-url="https://vuetable.ratiw.net/api/users"
-                  >
-                   <template slot="actions" scope="props">
-                    <div class="table-button-container">
-                      <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
-                        <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
-                      <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
-                        <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
-                    </div>
-                   </template>
-        </vuetable>
-        <vuetable-pagination ref="pagination"
-                             :css="css.pagination"
-                             @vuetable-pagination:change-page="onChangePage">
-        </vuetable-pagination>
+        <div class="card">
+  <vuetable ref="vuetable"
+            :fields="fields"
+            :sort-order="sortOrder"
+            pagination-path=""
+            :css="css.table"
+            :per-page="5"
+            @vuetable:pagination-data="onPaginationData"
+            @vuetable:loading="onLoading"
+            @vuetable:loaded="onLoaded" 
+            api-url="https://vuetable.ratiw.net/api/users"
+            >
+              <template slot="actions" scope="props">
+              <div class="table-button-container">
+                <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
+                  <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
+                <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
+                  <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
+              </div>
+              </template>
+  </vuetable>
+  <vuetable-pagination ref="pagination"
+                        :css="css.pagination"
+                        @vuetable-pagination:change-page="onChangePage">
+  </vuetable-pagination>
+        </div>
       </div>
     </div>
   </div>
