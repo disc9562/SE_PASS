@@ -8,11 +8,12 @@ import GlobalComponents from './globalComponents'
 import GlobalDirectives from './globalDirectives'
 import Notifications from './components/UIComponents/NotificationPlugin'
 import SideBar from './components/UIComponents/SidebarPlugin'
-import SideBarForManagers from './components/UIComponents/SidebarPluginForManagers'
-import SideBarForStudent from './components/UIComponents/SidebarPluginForStudent'
-import SideBarForAdmin from './components/UIComponents/SideBarForAdmin'
-
 import App from './App'
+
+import SideBarOfCourse from './components/UIComponents/SidebarPluginOfCourse'
+import SideBarOfAssignment from './components/UIComponents/SidebarPluginOfAssignment'
+import SideBarOfStudent from './components/UIComponents/SidebarPluginOfStudent'
+import SideBarOfAccount from './components/UIComponents/SidebarPluginOfAccount'
 
 // router setup
 import routes from './routes/routes'
@@ -29,13 +30,15 @@ Vue.use(VueRouter)
 Vue.component('vuetable', Vuetable)
 Vue.component('vuetable-pagination', VueTablePagination)
 
+Vue.use(SideBar)
 Vue.use(GlobalComponents)
 Vue.use(GlobalDirectives)
 Vue.use(Notifications)
-Vue.use(SideBar)
-Vue.use(SideBarForStudent)
-Vue.use(SideBarForAdmin)
-Vue.use(SideBarForManagers)
+
+Vue.use(SideBarOfCourse)
+Vue.use(SideBarOfStudent)
+Vue.use(SideBarOfAccount)
+Vue.use(SideBarOfAssignment)
 
 // configure router
 const router = new VueRouter({

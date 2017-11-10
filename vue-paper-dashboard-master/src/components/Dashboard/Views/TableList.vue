@@ -8,34 +8,54 @@
         </div>
       </div>
 
-      <!-- <div class="col-md-12">
+      <div class="col-md-12">
         <div class="card card-plain">
-          <paper-table type="hover" :title="table2.title" :sub-title="table2.subTitle" :data="table2.data" :columns="table2.columns">
+          <paper-table type="hover" :title="table1.title" :sub-title="table1.subTitle" :data="table1.data" :columns="table1.columns">
 
           </paper-table>
         </div>
-      </div> -->
+      </div>
 
     </div>
 </template>
 <script>
   import PaperTable from 'components/UIComponents/PaperTable.vue'
-  const tableColumns = ['課程名稱', '助教', '上課時間', '人數', '編輯']
+  const tableColumns = ['Id', 'Name', 'Salary', 'Country', 'City']
   const tableData = [{
-    課程名稱: 'SE',
-    助教: 'Hank',
-    上課時間: '週二 14:00~15:00; 週三 16:00~18:00',
-    人數: '78',
-    編輯: 'Edit'
+    id: 1,
+    name: 'Dakota Rice',
+    salary: '$36.738',
+    country: 'Niger',
+    city: 'Oud-Turnhout'
   },
   {
-    課程名稱: '軟體測試與驗證',
-    助教: 'Andy',
-    上課時間: '週三 14:00~15:00; 週四 16:00~18:00',
-    人數: '87',
-    編輯: 'Edit'
-  }
-  ]
+    id: 2,
+    name: 'Minerva Hooper',
+    salary: '$23,789',
+    country: 'Curaçao',
+    city: 'Sinaai-Waas'
+  },
+  {
+    id: 3,
+    name: 'Sage Rodriguez',
+    salary: '$56,142',
+    country: 'Netherlands',
+    city: 'Baileux'
+  },
+  {
+    id: 4,
+    name: 'Philip Chaney',
+    salary: '$38,735',
+    country: 'Korea, South',
+    city: 'Overland Park'
+  },
+  {
+    id: 5,
+    name: 'Doris Greene',
+    salary: '$63,542',
+    country: 'Malawi',
+    city: 'Feldkirchen in Kärnten'
+  }]
 
   export default {
     components: {
@@ -48,14 +68,13 @@
           subTitle: 'Here is a subtitle for this table',
           columns: [...tableColumns],
           data: [...tableData]
+        },
+        table2: {
+          title: 'Table on Plain Background',
+          subTitle: 'Here is a subtitle for this table',
+          columns: [...tableColumns],
+          data: [...tableData]
         }
-        // },
-        // table2: {
-        //   title: 'Table on Plain Background',
-        //   subTitle: 'Here is a subtitle for this table',
-        //   columns: [...tableColumns],
-        //   data: [...tableData]
-        // }
       }
     }
   }

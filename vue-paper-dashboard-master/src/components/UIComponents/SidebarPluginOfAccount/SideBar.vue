@@ -32,9 +32,6 @@
       </ul>
       <moving-arrow :move-y="arrowMovePx">
     </moving-arrow>
-    <div id="TA">
-    <p>TA: Hank</p>
-    </div>
     </div>
   </div>
 </template>
@@ -68,7 +65,18 @@
       },
       sidebarLinks: {
         type: Array,
-        default: () => []
+        default: () => [
+          {
+            name: 'Account List',
+            icon: 'ti-text',
+            path: '/account/AccountList'
+          },
+          {
+            name: 'Sign Up',
+            icon: 'ti-view-list-alt',
+            path: '/account/signUp'
+          }
+        ]
       }
     },
     components: {
@@ -101,7 +109,6 @@
       return {
         linkHeight: 60,
         activeLinkIndex: 0,
-
         windowWidth: 0,
         isWindows: false,
         hasAutoHeight: false

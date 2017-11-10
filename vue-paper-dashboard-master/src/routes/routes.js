@@ -10,17 +10,21 @@ import Icons from 'src/components/Dashboard/Views/Icons.vue'
 import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Typography from 'src/components/Dashboard/Views/Typography.vue'
 import TableList from 'src/components/Dashboard/Views/TableList.vue'
+
+import Login from 'src/components/Login/Login.vue'
+import DashboardLayoutOfCourseManager from '../components/Dashboard/Layout/DashboardLayoutOfCourseManager'
+import DashboardLayoutOfAccountManager from '../components/Dashboard/Layout/DashboardLayoutOfAccountManager'
+import DashboardLayoutOfAssignmentManager from '../components/Dashboard/Layout/DashboardLayoutOfAssignmentManager.vue'
+import DashboardLayoutOfStudent from '../components/Dashboard/Layout/DashboardLayoutOfStudent'
+
+import CourseList from 'src/components/Dashboard/Views/CourseList.vue'
 import AssignmentList from 'src/components/Dashboard/Views/AssignmentList.vue'
 import gradeList from 'src/components/Dashboard/Views/gradeList'
-import Login from 'src/components/Login/Login.vue'
-import DashboardLayoutForManager from '../components/Dashboard/Layout/DashboardLayoutForManager.vue'
-import DashboardLayoutForStudent from '../components/Dashboard/Layout/DashboardLayoutForStudent'
 import CorrectAssignmentList from 'src/components/Dashboard/Views/CorrectAssignmentList'
 import AssignmentListForStudent from 'src/components/Dashboard/Views/AssignmentListForStudent'
 import gradeListForStudent from 'src/components/Dashboard/Views/gradeListForStudent'
 import AccountList from 'src/components/Dashboard/Views/AccountList'
 import SignUp from 'src/components/Dashboard/Views/SignUp'
-import DashboardLayoutForAdmin from '../components/Dashboard/Layout/DashboardLayoutForAdmin'
 import Setting from 'src/components/Dashboard/Views/Setting'
 import Correct from 'src/components/Dashboard/Views/Correct'
 import Assignment from 'src/components/Dashboard/Views/Assignment'
@@ -33,7 +37,7 @@ const routes = [
     component: Login
   },
   {
-    path: '/home',
+    path: '/default',
     component: DashboardLayout,
     redirect: '/admin/overview'
   },
@@ -73,15 +77,27 @@ const routes = [
         component: Typography
       },
       {
-        path: 'Course',
-        name: 'Course',
+        path: 'table-list',
+        name: 'table-list',
         component: TableList
       }
     ]
   },
   {
+    path: '/app',
+    component: DashboardLayoutOfCourseManager,
+    redirect: '/app/Course',
+    children: [
+      {
+        path: 'Course',
+        name: 'Course',
+        component: CourseList
+      }
+    ]
+  },
+  {
     path: '/Course',
-    component: DashboardLayoutForManager,
+    component: DashboardLayoutOfAssignmentManager,
     redirect: '/Course/assignment',
     children: [
       {
@@ -109,7 +125,7 @@ const routes = [
   },
   {
     path: '/homework',
-    component: DashboardLayoutForStudent,
+    component: DashboardLayoutOfStudent,
     redirect: '/homework/assignment',
     children: [
       {
@@ -126,7 +142,7 @@ const routes = [
   },
   {
     path: '/account',
-    component: DashboardLayoutForAdmin,
+    component: DashboardLayoutOfAccountManager,
     redirect: '/account/accountList',
     children: [
       {

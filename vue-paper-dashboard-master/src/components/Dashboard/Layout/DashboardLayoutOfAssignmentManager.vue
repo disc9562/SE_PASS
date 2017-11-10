@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <side-bar-for-admin type="sidebar" :sidebar-links="$sidebarforadmin.sidebarLinks2">
+    <side-bar-of-assignment type="sidebar" :sidebar-links="$sidebarofassignment.sidebarLinksOfAssignment">
 
-    </side-bar-for-admin>
+    </side-bar-of-assignment>
     <notifications>
 
     </notifications>
@@ -21,7 +21,7 @@
 
 </style>
 <script>
-  import TopNavbar from './TopNavbarForAdmin.vue'
+  import TopNavbar from './TopNavbarOfAssignmentManager.vue'
   import ContentFooter from './ContentFooter.vue'
   import DashboardContent from './Content.vue'
   export default {
@@ -32,8 +32,8 @@
     },
     methods: {
       toggleSidebar () {
-        if (this.$sidebarforadmin.showSidebar) {
-          this.$sidebarforadmin.displaySidebar(false)
+        if (this.$sidebarofassignment.showSidebar) {
+          this.$sidebarofassignment.displaySidebar(false)
         }
       }
     }

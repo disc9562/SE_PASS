@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <side-bar-for-manager type="sidebar" :sidebar-links="$sidebar.sidebarLinks3">
+    <side-bar-for-account type="sidebar" :sidebar-links="$sidebarofaccount.sidebarLinksOfAccount">
 
-    </side-bar-for-manager>
+    </side-bar-for-account>
     <notifications>
 
     </notifications>
@@ -21,7 +21,7 @@
 
 </style>
 <script>
-  import TopNavbar from './TopNavbarForManager.vue'
+  import TopNavbar from './TopNavbarOfAccountManager.vue'
   import ContentFooter from './ContentFooter.vue'
   import DashboardContent from './Content.vue'
   export default {
@@ -32,8 +32,8 @@
     },
     methods: {
       toggleSidebar () {
-        if (this.$sidebarformanager.showSidebar) {
-          this.$sidebarformanager.displaySidebar(false)
+        if (this.$sidebarofaccount.showSidebar) {
+          this.$sidebarofaccount.displaySidebar(false)
         }
       }
     }

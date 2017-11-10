@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <side-bar-for-student type="sidebar" :sidebar-links="$sidebarforstudent.sidebarLinks4">
+    <side-bar-of-course type="sidebar" :sidebar-links="$sidebarofcourse.sidebarLinksOfCourse">
 
-    </side-bar-for-student>
+    </side-bar-of-course>
     <notifications>
 
     </notifications>
@@ -21,7 +21,7 @@
 
 </style>
 <script>
-  import TopNavbar from './TopNavbarForStudent.vue'
+  import TopNavbar from './TopNavbarOfCourseManager.vue'
   import ContentFooter from './ContentFooter.vue'
   import DashboardContent from './Content.vue'
   export default {
@@ -32,8 +32,8 @@
     },
     methods: {
       toggleSidebar () {
-        if (this.$sidebarforstudent.showSidebar) {
-          this.$sidebarforstudent.displaySidebar(false)
+        if (this.$sidebarofcourse.showSidebar) {
+          this.$sidebarofcourse.displaySidebar(false)
         }
       }
     }

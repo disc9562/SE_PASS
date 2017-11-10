@@ -2,16 +2,21 @@ import Sidebar from './SideBar.vue'
 
 const SidebarStore = {
   showSidebar: true,
-  sidebarLinks4: [
+  sidebarLinksOfAssignment: [
     {
       name: '作業區',
       icon: 'ti-view-list-alt',
-      path: '/homework/assignment'
+      path: '/Course/assignment'
     },
     {
       name: '查詢成績',
       icon: 'ti-text',
-      path: '/homework/grade'
+      path: '/Course/grade'
+    },
+    {
+      name: '作業批改',
+      icon: 'ti-pencil-alt2',
+      path: '/Course/correctAssignment'
     }
   ],
   displaySidebar (value) {
@@ -19,7 +24,7 @@ const SidebarStore = {
   }
 }
 
-const SidebarPluginForStudent = {
+const SidebarPluginOfAssignment = {
 
   install (Vue) {
     Vue.mixin({
@@ -30,13 +35,13 @@ const SidebarPluginForStudent = {
       }
     })
 
-    Object.defineProperty(Vue.prototype, '$sidebarforstudent', {
+    Object.defineProperty(Vue.prototype, '$sidebarofassignment', {
       get () {
         return this.$root.sidebarStore
       }
     })
-    Vue.component('side-bar-for-student', Sidebar)
+    Vue.component('side-bar-of-assignment', Sidebar)
   }
 }
 
-export default SidebarPluginForStudent
+export default SidebarPluginOfAssignment
