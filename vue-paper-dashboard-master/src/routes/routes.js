@@ -32,11 +32,6 @@ import addCourse from 'src/components/Dashboard/Views/addCourse'
 
 const routes = [
   {
-    path: '/',
-    name: 'Login',
-    component: Login
-  },
-  {
     path: '/default',
     component: DashboardLayout,
     redirect: '/admin/overview'
@@ -82,6 +77,11 @@ const routes = [
         component: TableList
       }
     ]
+  },
+  {
+    path: '/',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/app',
