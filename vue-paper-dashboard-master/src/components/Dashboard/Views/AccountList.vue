@@ -5,9 +5,9 @@
       <li class="active"><a data-toggle="tab" href="#student">student</a></li>
     </ul>
     <div class="tab-content">
-      <div id="teacher" class="tab-pane fade">
+      <div id="teacher" class="tab-pane fade in active">
         <div class="card">
-           <vuetable ref="vuetable" :fields="fields"  pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.149:9000/api/getAccountListByRole?role=admin">
+           <vuetable ref="vuetableForTeacher" :fields="fields"  pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForTeacher" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.149:9000/api/getAccountListByRole?role=teacher">
               <template slot="actions" scope="props">
                 <div class="table-button-container">
                   <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
@@ -17,12 +17,12 @@
                 </div>
               </template>
           </vuetable>
-          <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>          
+          <vuetable-pagination ref="paginationForTeacher" :css="css.pagination" @vuetable-pagination:change-page="onChangePageForTeacher"></vuetable-pagination>          
         </div>
       </div>
-      <div id="student" class="tab-pane fade in active">
+      <div id="student" class="tab-pane fade ">
         <div class="card">
-         <vuetable ref="vuetable" :fields="fieldsOfStudent" pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.149:9000/api/getAccountListByRole?role=student">
+         <vuetable ref="vuetableForStudent" :fields="fieldsOfStudent" pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForStudent" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.149:9000/api/getAccountListByRole?role=student">
               <template slot="actions" scope="props">
                 <div class="table-button-container">
                   <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
@@ -32,7 +32,7 @@
                 </div>
               </template>
           </vuetable>
-          <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
+          <vuetable-pagination ref="paginationForStudent" :css="css.pagination" @vuetable-pagination:change-page="onChangePageForStudent"></vuetable-pagination>
         </div>
       </div>
     </div>
@@ -110,11 +110,17 @@
       }, */
     },
     methods: {
-      onPaginationData (paginationData) {
-        this.$refs.pagination.setPaginationData(paginationData)
+      onPaginationDataForTeacher (paginationData) {
+        this.$refs.paginationForTeacher.setPaginationData(paginationData)
       },
-      onChangePage (page) {
-        this.$refs.vuetable.changePage(page)
+      onChangePageForTeacher (page) {
+        this.$refs.vuetableForTeacher.changePage(page)
+      },
+      onPaginationDataForStudent (paginationData) {
+        this.$refs.paginationForStudent.setPaginationData(paginationData)
+      },
+      onChangePageForStudent (page) {
+        this.$refs.vuetableForStudent.changePage(page)
       },
       editRow (rowData) {
         alert('You clicked edit on' + JSON.stringify(rowData))

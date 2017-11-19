@@ -113,26 +113,21 @@ internals.applyRoutes = function (server, next) {
             var domain = 'http://localhost:9000/api'
             var prev_page_url = null
             var per_page = request.query.per_page
+            const role = request.query.role
             if(request.query.page){
                 current_page = request.query.page * 1
             }
             Async.auto({
                 user: function(done){
                     var page = 1
-                    const role = request.query.role;
+                   
                     SeAccount.getAccountListByRole(role, done)
                 }
             }, (err, results)=>{
                 if(err){
                     reply(err)
                 }
-                var vuetableFormat = {
-                    links:{
-                        pagination:{
-
-                        }
-                }
-            }
+                var vuetableFormat = {}
                 if(results.user.length % 10 === 0){
                     last_page = results.user.length / 10
                 }
@@ -144,15 +139,15 @@ internals.applyRoutes = function (server, next) {
                     prev_page_url = domain + '?page=' + (current_page - 1)
                 }
 
-                vuetableFormat.links.pagination.total = results.user.length
-                vuetableFormat.links.pagination.per_page = per_page
-                vuetableFormat.links.pagination.current_page = current_page
-                vuetableFormat.links.pagination.last_page = last_page
-                vuetableFormat.links.pagination.next_page_url = domain + '?page=' + (current_page + 1)
-                vuetableFormat.links.pagination.prev_page_url = prev_page_url
-                vuetableFormat.links.pagination.from = 1 + 10 * (current_page - 1)
-                vuetableFormat.links.pagination.to = 10 * current_page
-                vuetableFormat.data = results.user.slice(vuetableFormat.links.pagination.from - 1 , vuetableFormat.links.pagination.to)
+                vuetableFormat.total = results.user.length
+                vuetableFormat.per_page = per_page
+                vuetableFormat.current_page = current_page
+                vuetableFormat.last_page = last_page
+                vuetableFormat.next_page_url = domain + '?role=' + role + '&page=' + (current_page + 1)
+                vuetableFormat.prev_page_url = prev_page_url
+                vuetableFormat.from = 1 + 10 * (current_page - 1)
+                vuetableFormat.to = 10 * current_page
+                vuetableFormat.data = results.user.slice(vuetableFormat.from - 1 , vuetableFormat.to)
                 reply(vuetableFormat)
             })
         }
