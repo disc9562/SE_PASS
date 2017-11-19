@@ -89,6 +89,75 @@ internals.applyRoutes = function (server, next) {
             })
         }
     })
+
+    server.route({
+        method:'GET',
+        path:'/getAccountListByRole',
+        config:{
+            cors:{
+                origin:['*'],
+                additionalHeaders: ['cache-control', 'x-requested-with']
+            },
+            validate:{
+                query:{
+                    role:Joi.string().required(),
+                    sort:Joi.empty(),
+                    page:Joi.number(),
+                    per_page:Joi.number()
+                }
+            }
+        },
+        handler:function(request, reply){
+            var current_page = 1
+            var last_page = 1
+            var domain = 'http://localhost:9000/api'
+            var prev_page_url = null
+            var per_page = request.query.per_page
+            if(request.query.page){
+                current_page = request.query.page * 1
+            }
+            Async.auto({
+                user: function(done){
+                    var page = 1
+                    const role = request.query.role;
+                    SeAccount.getAccountListByRole(role, done)
+                }
+            }, (err, results)=>{
+                if(err){
+                    reply(err)
+                }
+                var vuetableFormat = {
+                    links:{
+                        pagination:{
+
+                        }
+                }
+            }
+                if(results.user.length % 10 === 0){
+                    last_page = results.user.length / 10
+                }
+                else{
+                    last_page = Math.round(results.user.length / 10) + 1
+                }
+
+                if(current_page > 1){
+                    prev_page_url = domain + '?page=' + (current_page - 1)
+                }
+
+                vuetableFormat.links.pagination.total = results.user.length
+                vuetableFormat.links.pagination.per_page = per_page
+                vuetableFormat.links.pagination.current_page = current_page
+                vuetableFormat.links.pagination.last_page = last_page
+                vuetableFormat.links.pagination.next_page_url = domain + '?page=' + (current_page + 1)
+                vuetableFormat.links.pagination.prev_page_url = prev_page_url
+                vuetableFormat.links.pagination.from = 1 + 10 * (current_page - 1)
+                vuetableFormat.links.pagination.to = 10 * current_page
+                vuetableFormat.data = results.user.slice(vuetableFormat.links.pagination.from - 1 , vuetableFormat.links.pagination.to)
+                reply(vuetableFormat)
+            })
+        }
+
+    })
     next()
 }
 

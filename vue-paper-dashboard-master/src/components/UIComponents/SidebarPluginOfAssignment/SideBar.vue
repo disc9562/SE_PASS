@@ -73,17 +73,17 @@
         default: () => [{
           name: '作業區',
           icon: 'ti-view-list-alt',
-          path: '/Course/assignment'
+          path: '/Course/assignmentList'
         },
         {
           name: '查詢成績',
           icon: 'ti-text',
-          path: '/Course/grade'
+          path: '/Course/searchgrade'
         },
         {
           name: '作業批改',
           icon: 'ti-pencil-alt2',
-          path: '/Course/correctAssignment'
+          path: '/Course/assignmentListForGrading'
         }
         ]
       }

@@ -19,15 +19,15 @@ import DashboardLayoutOfStudent from '../components/Dashboard/Layout/DashboardLa
 
 import CourseList from 'src/components/Dashboard/Views/CourseList.vue'
 import AssignmentList from 'src/components/Dashboard/Views/AssignmentList.vue'
-import gradeList from 'src/components/Dashboard/Views/gradeList'
-import CorrectAssignmentList from 'src/components/Dashboard/Views/CorrectAssignmentList'
+import SearchGrade from 'src/components/Dashboard/Views/SearchGrade'
+import AssignmentListForGrading from 'src/components/Dashboard/Views/AssignmentListForGrading'
 import AssignmentListForStudent from 'src/components/Dashboard/Views/AssignmentListForStudent'
 import gradeListForStudent from 'src/components/Dashboard/Views/gradeListForStudent'
 import AccountList from 'src/components/Dashboard/Views/AccountList'
 import SignUp from 'src/components/Dashboard/Views/SignUp'
 import Setting from 'src/components/Dashboard/Views/Setting'
-import Correct from 'src/components/Dashboard/Views/Correct'
-import Assignment from 'src/components/Dashboard/Views/Assignment'
+import GradingAssignment from 'src/components/Dashboard/Views/GradingAssignment'
+import AddAssignment from 'src/components/Dashboard/Views/AddAssignment'
 import addCourse from 'src/components/Dashboard/Views/addCourse'
 
 const routes = [
@@ -98,28 +98,28 @@ const routes = [
   {
     path: '/Course',
     component: DashboardLayoutOfAssignmentManager,
-    redirect: '/Course/assignment',
+    redirect: '/Course/assignmentList',
     children: [
       {
-        path: 'assignment',
-        name: 'assignment',
+        path: 'assignmentList',
+        name: 'assignmentList',
         component: AssignmentList
       },
       {
-        path: 'grade',
-        name: 'grade',
-        component: gradeList
+        path: 'searchGrade',
+        name: 'searchGrade',
+        component: SearchGrade
       },
 
       {
-        path: 'correctAssignment',
-        name: 'correctAssignment',
-        component: CorrectAssignmentList
+        path: 'assignmentListForGrading',
+        name: 'assignmentListForGrading',
+        component: AssignmentListForGrading
       },
       {
-        path: 'correct',
-        name: 'correct',
-        component: Correct
+        path: 'gradingAssignment',
+        name: 'gradingAssignment',
+        component: GradingAssignment
       }
     ]
   },
@@ -158,13 +158,14 @@ const routes = [
     ]
   },
   {
+    path: 'addAssignment',
+    component: AddAssignment
+  },
+  {
     path: '/setting',
     component: Setting
   },
-  {
-    path: '/assignment',
-    component: Assignment
-  },
+
   {
     path: '/addcourse',
     component: addCourse

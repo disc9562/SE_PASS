@@ -49,6 +49,16 @@ class SeAccount extends MongoModels{
         //     callback (null, results);
         // })
     }
+
+    static getAccountListByRole(role, callback){
+
+        const query = {role: role};
+
+        this.find(query, callback);
+        
+        
+    }
+
     constructor(attrs) {
 
         super(attrs);

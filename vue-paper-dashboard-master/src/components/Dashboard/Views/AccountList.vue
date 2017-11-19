@@ -7,7 +7,7 @@
     <div class="tab-content">
       <div id="teacher" class="tab-pane fade">
         <div class="card">
-           <vuetable ref="vuetable" :fields="fields" :sort-order="sortOrder" pagination-path="" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="https://vuetable.ratiw.net/api/users">
+           <vuetable ref="vuetable" :fields="fields"  pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.149:9000/api/getAccountListByRole?role=admin">
               <template slot="actions" scope="props">
                 <div class="table-button-container">
                   <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
@@ -22,7 +22,7 @@
       </div>
       <div id="student" class="tab-pane fade in active">
         <div class="card">
-         <vuetable ref="vuetable" :fields="fieldsOfStudent" :sort-order="sortOrder" pagination-path="" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="https://vuetable.ratiw.net/api/users">
+         <vuetable ref="vuetable" :fields="fieldsOfStudent" pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.149:9000/api/getAccountListByRole?role=student">
               <template slot="actions" scope="props">
                 <div class="table-button-container">
                   <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
@@ -42,45 +42,40 @@
   export default {
     data () {
       return {
-        fieldsOfStudent: [{
-          name: 'name',
-          title: '<span class="orange fa fa-address-card"></span> ID',
-          sortField: 'name'
-        },
-        {
-          name: 'gender',
-          title: '<span class="orange glyphicon glyphicon-user"></span> User Name',
-          sortField: 'gender'
-        },
-        {
-          name: 'email',
-          title: '<span class="orange glyphicon glyphicon-envelope"></span> Email',
-          sortField: 'email'
-        },
-        {
-          name: 'birthdate',
-          title: '<span class="orange fa fa-child"></span> TA'
-        },
+        fieldsOfStudent: [
+          {
+            name: 'id',
+            title: '<span class="orange fa fa-address-card"></span> ID'
+          },
+          {
+            name: 'username',
+            title: '<span class="orange glyphicon glyphicon-user"></span> User Name'
+          },
+          {
+            name: 'email',
+            title: '<span class="orange glyphicon glyphicon-envelope"></span> Email'
+          },
+          {
+            name: 'birthdate',
+            title: '<span class="orange fa fa-child"></span> TA'
+          },
           '__slot:actions'
         ],
-        sortOrder: [{
-          field: 'name',
-          direction: 'asc'
-        }],
+  
         fields: [{
-          name: 'name',
-          title: '<span class="orange fa fa-address-card"></span> ID',
-          sortField: 'name'
+          name: 'id',
+          title: '<span class="orange fa fa-address-card"></span> ID'
+          // sortField: 'id'
         },
         {
-          name: 'gender',
-          title: '<span class="orange glyphicon glyphicon-user"></span> User Name',
-          sortField: 'gender'
+          name: 'username',
+          title: '<span class="orange glyphicon glyphicon-user"></span> User Name'
+          // sortField: 'username'
         },
         {
           name: 'email',
-          title: '<span class="orange glyphicon glyphicon-envelope"></span> Email',
-          sortField: 'email'
+          title: '<span class="orange glyphicon glyphicon-envelope"></span> Email'
+          // sortField: 'email'
         },
           '__slot:actions'
         ],

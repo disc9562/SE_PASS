@@ -63,7 +63,7 @@
       },
       assignment () {
         this.$router.push({
-          path: '/assignment'
+          path: '/Course/addAssignment'
         })
       }
     }
