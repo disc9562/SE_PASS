@@ -1,0 +1,11 @@
+workspace:
+  base: /nodejs
+  path: src/github.com/disc9562/SE_PASS/vue-paper-dashboard-master/
+build:
+  image: node:6.11.2
+  commands:
+    - npm install
+    - npm run unit
+  environment:
+    - DRONE_SERVER=http://127.0.0.1:80
+    - DRONE_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXh0IjoiZGlzYzk1NjIiLCJ0eXBlIjoidXNlciJ9.8e0DSAalPh11GlRXoouvmyrNpGFaWRqDJXlqB3ORG8Y
