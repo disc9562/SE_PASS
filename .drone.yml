@@ -1,6 +1,6 @@
 workspace:
   base: /nodejs
-  path: src/github.com/disc9562/SE_PASS/vue-paper-dashboard-master/
+  path: src/github.com/disc9562/SE_PASS/vue-paper-dashboard-master
 build:
   image: node:6
   commands:
