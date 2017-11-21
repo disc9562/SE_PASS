@@ -1,9 +1,7 @@
-workspace:
-  base: /nodejs
-  path: src/github.com/disc9562/SE_PASS/vue-paper-dashboard-master
 pipeline:
   build:
     image: node:6
     commands:
+      - cd vue-paper-dashboard-master
       - npm install
       - npm run unit
