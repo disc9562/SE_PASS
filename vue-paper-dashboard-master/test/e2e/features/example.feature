@@ -1,9 +1,20 @@
-Feature: Example feature
-  As a user of Cucumber.js
-  I want to have documentation on Cucumber
-  So that I can concentrate on building awesome applications
+Feature: Simple maths
+  In order to do maths
+  As a developer
+  I want to increment variables
 
-  Scenario: Reading documentation
-    Given I am on the Cucumber.js GitHub repository
-    When I click on "CLI"
-    Then I should see "Running specific features"
+  Scenario: easy maths
+    Given a variable set to 1
+    When I increment the variable by 1
+    Then the variable should contain 2
+
+  Scenario Outline: much more complex stuff
+    Given a variable set to <var>
+    When I increment the variable by <increment>
+    Then the variable should contain <result>
+
+    Examples:
+      | var | increment | result |
+      | 100 |         5 |    105 |
+      |  99 |      1234 |   1333 |
+      |  12 |         5 |     18 |
