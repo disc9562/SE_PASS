@@ -1,20 +1,10 @@
-Feature: Simple maths
-  In order to do maths
-  As a developer
-  I want to increment variables
+Feature: Addition
+  Scenario: 1 + 0
+    Given I start with 1
+    When I add 0
+    Then I end up with 1
 
-  Scenario: easy maths
-    Given a variable set to 1
-    When I increment the variable by 1
-    Then the variable should contain 2
-
-  Scenario Outline: much more complex stuff
-    Given a variable set to <var>
-    When I increment the variable by <increment>
-    Then the variable should contain <result>
-
-    Examples:
-      | var | increment | result |
-      | 100 |         5 |    105 |
-      |  99 |      1234 |   1333 |
-      |  12 |         5 |     18 |
+  Scenario: 1 + 1
+    Given I start with 1
+    When I add 1
+    Then I end up with 2
