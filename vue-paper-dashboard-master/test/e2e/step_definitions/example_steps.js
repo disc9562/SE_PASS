@@ -1,12 +1,45 @@
-var {defineSupportCode} = require('cucumber')
+require('cucumber').defineSupportCode(function (context) {
+  var setWorldConstructor = context.setWorldConstructor
+  var Given = context.Given
+  var When = context.When
+  var Then = context.Then
 
-defineSupportCode(function ({Given, When, Then}) {
-  Given('I am on the Cucumber.js GitHub repository', function () {
+  /// // Your World /////
+  //
+  // Call 'setWorldConstructor' with to your custom world (optional)
+  //
+
+  var CustomWorld = function () {}
+
+  CustomWorld.prototype.variable = 0
+
+  CustomWorld.prototype.setTo = function (number) {
+    this.variable = parseInt(number)
+  }
+
+  CustomWorld.prototype.incrementBy = function (number) {
+    this.variable += parseInt(number)
+  }
+
+  setWorldConstructor(CustomWorld)
+
+  /// // Your step definitions /////
+  //
+  // use 'Given', 'When' and 'Then' to declare step definitions
+  //
+
+  Given(/^a variable set to (\d+)$/, function (number) {
+    this.setTo(number)
   })
 
-  When('I click on {stringInDoubleQuotes}', function (text) {
+  When(/^I increment the variable by (\d+)$/, function (number) {
+    this.incrementBy(number)
   })
 
-  Then('I should see {stringInDoubleQuotes}', function (text) {
+  Then(/^the variable should contain (\d+)$/, function (number) {
+    if (this.variable !== parseInt(number)) {
+      throw new Error('Variable should contain ' + number +
+        ' but it contains ' + this.variable + '.')
+    }
   })
 })
