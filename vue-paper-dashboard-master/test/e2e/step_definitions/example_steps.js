@@ -1,4 +1,3 @@
-import 
 require('cucumber').defineSupportCode(function (context) {
   var setWorldConstructor = context.setWorldConstructor
   var Given = context.Given
