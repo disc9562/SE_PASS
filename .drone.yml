@@ -9,7 +9,7 @@ pipeline:
     image: appleboy/drone-jenkins
     url: http://140.124.181.81
     user: sepass
-    token: 01eef9330ef7b7a7bc976a799d9fec2d
+    token: 48808d94c65b955187e379c9c3a25df1
     job: CD
     when:
       status: [ success ]
