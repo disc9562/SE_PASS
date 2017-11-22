@@ -8,7 +8,7 @@
     "dev": "cross-env ENABLE_ESLINT=true node build/dev-server.js",
     "build": "cross-env ENABLE_ESLINT=true node build/build.js",
     "unit": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register test/unit/specs/*.spec.js",
-    "e2e": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text ./node_modules/cucumber/bin/cucumber.js test/e2e/features/*.feature",
+    "e2e": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text ./node_modules/cucumber/bin/cucumber.js test/e2e/features/*.feature -r test/e2e/step_definitions/*.js",
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
@@ -38,7 +38,7 @@
     "cross-env": "^3.1.4",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.26.1",
-    "cucumber": "^3.1.0",
+    "cucumber": "^2.3.1",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",

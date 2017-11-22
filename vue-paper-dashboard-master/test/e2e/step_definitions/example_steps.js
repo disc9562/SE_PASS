@@ -1,45 +1,16 @@
-require('cucumber').defineSupportCode(function (context) {
-  var setWorldConstructor = context.setWorldConstructor
-  var Given = context.Given
-  var When = context.When
-  var Then = context.Then
+const defineSupportCode = require('cucumber').defineSupportCode
+const assert = require('assert')
 
-  /// // Your World /////
-  //
-  // Call 'setWorldConstructor' with to your custom world (optional)
-  //
+defineSupportCode(function ({ Given, Then, When }) {
+  let answer = 0
 
-  var CustomWorld = function () {}
-
-  CustomWorld.prototype.variable = 0
-
-  CustomWorld.prototype.setTo = function (number) {
-    this.variable = parseInt(number)
-  }
-
-  CustomWorld.prototype.incrementBy = function (number) {
-    this.variable += parseInt(number)
-  }
-
-  setWorldConstructor(CustomWorld)
-
-  /// // Your step definitions /////
-  //
-  // use 'Given', 'When' and 'Then' to declare step definitions
-  //
-
-  Given(/^a variable set to (\d+)$/, function (number) {
-    this.setTo(number)
+  Given('I start with {int}', function (input) {
+    answer = input
   })
-
-  When(/^I increment the variable by (\d+)$/, function (number) {
-    this.incrementBy(number)
+  When('I add {int}', function (input) {
+    answer = answer + input
   })
-
-  Then(/^the variable should contain (\d+)$/, function (number) {
-    if (this.variable !== parseInt(number)) {
-      throw new Error('Variable should contain ' + number +
-        ' but it contains ' + this.variable + '.')
-    }
+  Then('I end up with {int}', function (input) {
+    assert.equal(answer, input)
   })
 })
