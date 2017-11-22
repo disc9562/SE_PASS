@@ -12,4 +12,4 @@ pipeline:
     token: 01eef9330ef7b7a7bc976a799d9fec2d
     job: CD
     when:
-      status: [ success ]
+      status: [ failure ]
