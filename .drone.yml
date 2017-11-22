@@ -1,7 +1,15 @@
 pipeline:
-  build:
+  test:
     image: node:6
     commands:
       - cd vue-paper-dashboard-master
       - npm install
       - npm run unit
+  jenkins:
+    image: appleboy/drone-jenkins
+    url: http://140.124.181.81:8080
+    user: sepass
+    token: 48808d94c65b955187e379c9c3a25df1
+    job: CD
+    when:
+      status: [ success ]
