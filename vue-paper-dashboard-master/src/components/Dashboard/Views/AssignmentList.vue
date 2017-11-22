@@ -4,11 +4,17 @@
          <div class="card">
           <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" api-url="https://vuetable.ratiw.net/api/users">
             <template slot="actions" scope="props">
+                    <div class="table-button-container">
+                        <button class="btn btn-primary btn-sm" @click="uploadTestScript(props.rowData)">
+                          <span class="glyphicon glyphicon-cloud-upload"></span> 上傳測試檔</button>
+                        <button class="btn btn-success btn-sm" @click="viewReport(props.rowData)">
+                          <span class="glyphicon glyphicon-stats"></span> 查看報表</button>
+                    </div>
+            </template>
+            <template slot="actions2" scope="props">
                       <div class="table-button-container">
-                        <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
-                          <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
                         <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
-                          <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
+                          <span class="glyphicon glyphicon-trash"></span> 刪除</button>
                       </div>
              </template>
           </vuetable>
@@ -38,7 +44,8 @@ export default {
           title: '<span class="orange glyphicon glyphicon-time"></span> 繳交期限',
           sortField: 'gender'
         },
-        '__slot:actions'
+        '__slot:actions',
+        '__slot:actions2'
       ],
       sortOrder: [
       { field: 'name', direction: 'asc' }
@@ -80,7 +87,7 @@ export default {
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
     },
-    editRow (rowData) {
+    uploadTestScript (rowData) {
       alert('You clicked edit on' + JSON.stringify(rowData))
     },
     deleteRow (rowData) {

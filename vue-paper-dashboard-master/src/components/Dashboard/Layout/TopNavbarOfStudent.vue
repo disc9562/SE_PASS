@@ -16,9 +16,10 @@
             <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
             </a>
           </li>
-             <drop-down title="設定" icon="ti-bell">
-               <li><a href="#" v-on:click="setting()">個人檔案</a></li>
-             </drop-down>
+            <div class="table-button-container" style="float:right;">
+             <button class="btn btn-primary btn-sm" @click="studentProfile()">
+              <span class="glyphicon glyphicon-user"></span> 設定個人資料</button>
+          </div>
         </ul>
       </div>
     </div>
@@ -53,9 +54,9 @@
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
       },
-      setting () {
+      studentProfile () {
         this.$router.push({
-          path: '/setting'
+          path: '/homework/profile'
         })
       }
     }

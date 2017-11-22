@@ -10,10 +10,8 @@
           <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" api-url="https://vuetable.ratiw.net/api/users">
             <template slot="actions" scope="props">
                       <div class="table-button-container">
-                        <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
-                          <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
-                        <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
-                          <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
+                        <button class="btn btn-success btn-sm" @click="report(props.rowData)">
+                          <span class="glyphicon glyphicon-stats"></span> 產生報表</button>&nbsp;&nbsp;
                       </div>
              </template>
           </vuetable>
@@ -25,10 +23,8 @@
           <vuetable ref="vuetable" :fields="fields" :sort-order="sortOrder" pagination-path="" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="https://vuetable.ratiw.net/api/users">
             <template slot="actions" scope="props">
              <div class="table-button-container">
-              <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
-                <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
-              <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
-                <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
+              <button class="btn btn-success btn-sm" @click="report(props.rowData)">
+                <span class="glyphicon glyphicon-stats"></span> 產生報表</button>&nbsp;&nbsp;
              </div>
             </template>
           </vuetable>
@@ -101,11 +97,8 @@
       onChangePage (page) {
         this.$refs.vuetable.changePage(page)
       },
-      editRow (rowData) {
+      report (rowData) {
         alert('You clicked edit on' + JSON.stringify(rowData))
-      },
-      deleteRow (rowData) {
-        alert('You clicked delete on' + JSON.stringify(rowData))
       },
       onLoading () {
         console.log('loading... show your spinner here')

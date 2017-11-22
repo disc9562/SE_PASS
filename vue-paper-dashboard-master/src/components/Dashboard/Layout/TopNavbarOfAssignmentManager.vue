@@ -58,7 +58,7 @@
       },
       setting () {
         this.$router.push({
-          path: '/setting'
+          // path: '/setting'
         })
       },
       assignment () {

@@ -12,9 +12,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-             <drop-down title="設定" icon="ti-bell">
-               <li><a href="#" v-on:click="setting()">個人檔案</a></li>
-             </drop-down>
+
         </ul>
       </div>
     </div>
@@ -48,11 +46,6 @@
       },
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
-      },
-      setting () {
-        this.$router.push({
-          path: '/setting'
-        })
       }
     }
   }

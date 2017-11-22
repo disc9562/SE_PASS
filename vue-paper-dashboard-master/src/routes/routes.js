@@ -25,10 +25,11 @@ import AssignmentListForStudent from 'src/components/Dashboard/Views/AssignmentL
 import gradeListForStudent from 'src/components/Dashboard/Views/gradeListForStudent'
 import AccountList from 'src/components/Dashboard/Views/AccountList'
 import SignUp from 'src/components/Dashboard/Views/SignUp'
-import Setting from 'src/components/Dashboard/Views/Setting'
 import GradingAssignment from 'src/components/Dashboard/Views/GradingAssignment'
 import AddAssignment from 'src/components/Dashboard/Views/AddAssignment'
 import addCourse from 'src/components/Dashboard/Views/addCourse'
+import TeacherProfile from 'src/components/Dashboard/Views/TeacherProfile'
+import StudentProfile from 'src/components/Dashboard/Views/StudentProfile'
 
 const routes = [
   {
@@ -84,14 +85,24 @@ const routes = [
     component: Login
   },
   {
-    path: '/app',
+    path: '/teacher',
     component: DashboardLayoutOfCourseManager,
-    redirect: '/app/Course',
+    redirect: '/teacher/Course',
     children: [
       {
         path: 'Course',
         name: 'Course',
         component: CourseList
+      },
+      {
+        path: 'addCourse',
+        name: 'addCourse',
+        component: addCourse
+      },
+      {
+        path: 'profile',
+        name: 'profile',
+        component: TeacherProfile
       }
     ]
   },
@@ -104,6 +115,11 @@ const routes = [
         path: 'assignmentList',
         name: 'assignmentList',
         component: AssignmentList
+      },
+      {
+        path: 'gradingAssignment',
+        name: 'gradingAssignment',
+        component: GradingAssignment
       },
       {
         path: 'searchGrade',
@@ -120,6 +136,11 @@ const routes = [
         path: 'gradingAssignment',
         name: 'gradingAssignment',
         component: GradingAssignment
+      },
+      {
+        path: 'addAssignment',
+        name: 'addAssignment',
+        component: AddAssignment
       }
     ]
   },
@@ -137,6 +158,11 @@ const routes = [
         path: 'grade',
         name: 'grade',
         component: gradeListForStudent
+      },
+      {
+        path: 'profile',
+        name: 'profile',
+        component: StudentProfile
       }
     ]
   },
@@ -156,19 +182,6 @@ const routes = [
         component: SignUp
       }
     ]
-  },
-  {
-    path: 'addAssignment',
-    component: AddAssignment
-  },
-  {
-    path: '/setting',
-    component: Setting
-  },
-
-  {
-    path: '/addcourse',
-    component: addCourse
   },
   { path: '*', component: NotFound }
 ]

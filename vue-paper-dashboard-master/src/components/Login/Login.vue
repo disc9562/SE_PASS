@@ -50,7 +50,7 @@ export default{
     login () {
       if (this.account === 'teacher') {
         this.$router.push({
-          path: '/app/Course'
+          path: '/teacher/Course'
         })
       } else if (this.account === 'student') {
         this.$router.push({

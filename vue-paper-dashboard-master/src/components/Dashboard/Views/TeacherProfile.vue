@@ -1,25 +1,35 @@
 <template>
    	<div class="container">
-
+			<div class="row main">
 				<div class="main-login main-center">
 					<form class="form-horizontal" method="post" action="#">
 						
 						<div class="form-group">
-							<label for="username" class="cols-sm-2 control-label">ID</label>
+							<label for="name" class="cols-sm-2 control-label">Name</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your ID"/>
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<label for="name" class="cols-sm-2 control-label">阿發</label>
 								</div>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">User Name</label>
+							<label for="email" class="cols-sm-2 control-label">Email</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your User Name"/>
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="email" id="email" value="AFA@gmail.com"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">ID</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+										<label for="name" class="cols-sm-2 control-label">105598054</label>
 								</div>
 							</div>
 						</div>
@@ -43,46 +53,37 @@
 								</div>
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-								</div>
-							</div>
-						</div>
-
             <div class="form-group">
-              <select >
+              <label for="confirm" class="cols-sm-2 control-label">role</label>
+							<div class="cols-sm-10">
+              <select disabled>
                 <option value="Instructor">Instructor</option>
                 <option value="Student">Student</option>
-                <option value="TA">TA</option>
+                <option value="TA" selected>TA</option>
                 <option value="Admin">Admin</option>
               </select>
               </div>
-						<div>
-							<form>
-								課程<br>
-								<input type="checkbox" value="1" name="Product_1" checked>SE<br>
-								<input type="checkbox" value="2" name="Product_2">軟體測試與驗證<br>
-								</form>
-						</div>
+            </div>
 						<div class="form-group ">
-							<button type="button" class="btn btn-primary btn-lg btn-block login-button" @click="register()">Register</button>
+							<button type="button" class="btn btn-primary btn-lg btn-block login-button" @click="submit()">確認</button>
+              <button type="button" class="btn btn-primary btn-lg btn-block login-button" @click="cancel()">取消</button>
 						</div>
 					</form>
 				</div>
-
+			</div>
 		</div>
 </template>
 <script>
 export default {
   methods: {
-    register () {
+    submit () {
       this.$router.push({
-        path: 'accountList'
+        path: '/teacher/Course'
+      })
+    },
+    cancel () {
+      this.$router.push({
+        path: '/teacher/Course'
       })
     }
   }

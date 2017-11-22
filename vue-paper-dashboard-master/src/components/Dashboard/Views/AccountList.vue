@@ -10,10 +10,8 @@
            <vuetable ref="vuetableForTeacher" :fields="fields"  pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForTeacher" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.149:9000/api/getAccountListByRole?role=teacher">
               <template slot="actions" scope="props">
                 <div class="table-button-container">
-                  <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
-                    <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
                   <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
-                    <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-trash"></span> 刪除</button>&nbsp;&nbsp;
                 </div>
               </template>
           </vuetable>
@@ -25,10 +23,8 @@
          <vuetable ref="vuetableForStudent" :fields="fieldsOfStudent" pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForStudent" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.149:9000/api/getAccountListByRole?role=student">
               <template slot="actions" scope="props">
                 <div class="table-button-container">
-                  <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
-                    <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
                   <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
-                    <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-trash"></span> 刪除</button>&nbsp;&nbsp;
                 </div>
               </template>
           </vuetable>
@@ -121,9 +117,6 @@
       },
       onChangePageForStudent (page) {
         this.$refs.vuetableForStudent.changePage(page)
-      },
-      editRow (rowData) {
-        alert('You clicked edit on' + JSON.stringify(rowData))
       },
       deleteRow (rowData) {
         alert('You clicked delete on' + JSON.stringify(rowData))

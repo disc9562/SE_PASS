@@ -1,8 +1,7 @@
 <template>
   <div class="row">
     <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#HW1">HW1</a></li>
-      <li><a data-toggle="tab" href="#HW2">HW2</a></li>
+      <li class="active"><a data-toggle="tab" href="#HW1">查看作業成績</a></li>
     </ul>
     <div class="tab-content">
       <div id="HW1" class="tab-pane fade in active">
@@ -10,27 +9,10 @@
           <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" api-url="https://vuetable.ratiw.net/api/users">
             <template slot="actions" scope="props">
                       <div class="table-button-container">
-                        <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
-                          <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
-                        <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
-                          <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
+                        <button class="btn btn-primary btn-sm" @click="correctAssignment(props.rowData)">
+                          <span class="glyphicon glyphicon-pencil"></span> 查看報表</button>&nbsp;&nbsp;
                       </div>
              </template>
-          </vuetable>
-          <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
-        </div>
-      </div>
-      <div id="HW2" class="tab-pane fade">
-        <div class="card">
-          <vuetable ref="vuetable" :fields="fields" :sort-order="sortOrder" pagination-path="" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="https://vuetable.ratiw.net/api/users">
-            <template slot="actions" scope="props">
-             <div class="table-button-container">
-              <button class="btn btn-warning btn-sm" @click="editRow(props.rowData)">
-                <span class="glyphicon glyphicon-pencil"></span> Edit</button>&nbsp;&nbsp;
-              <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
-                <span class="glyphicon glyphicon-trash"></span> Delete</button>&nbsp;&nbsp;
-             </div>
-            </template>
           </vuetable>
           <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
         </div>
@@ -44,20 +26,9 @@
       return {
         fields: [{
           name: 'name',
-          title: '<span class="orange fa fa-address-card"></span> ID',
+          title: '<span class="orange fa fa-address-card"></span>作業',
           sortField: 'name'
         },
-        {
-          name: 'email',
-          title: '<span class="orange glyphicon glyphicon-user"></span> User Name',
-          sortField: 'email'
-        },
-        {
-          name: 'gender',
-          title: '<span class="orange fa fa-history"></span> 繳交情況',
-          sortField: 'gender'
-        },
-          '成績',
           '__slot:actions'
         ],
         sortOrder: [{
@@ -101,11 +72,10 @@
       onChangePage (page) {
         this.$refs.vuetable.changePage(page)
       },
-      editRow (rowData) {
-        alert('You clicked edit on' + JSON.stringify(rowData))
-      },
-      deleteRow (rowData) {
-        alert('You clicked delete on' + JSON.stringify(rowData))
+      correctAssignment (rowData) {
+        this.$router.push({
+          path: '/Course/gradingAssignment'
+        })
       },
       onLoading () {
         console.log('loading... show your spinner here')
