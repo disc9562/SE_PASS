@@ -1,0 +1,51 @@
+
+let express = require('express'),
+    app = express(),
+    port = process.env.PORT || 9000,
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser')
+let SeAccount = require('./models/se_account')
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/frame')
+
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
+
+let seAccountRoute = require('./routes/seAccountRoute')
+seAccountRoute(app)
+
+// catch 404 and forward to error handler
+
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+  // error handlers
+  // development error handler
+  // will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+  res.status(err.status || 500).send({
+  message: err.message,
+  error: err
+    });
+  });
+}
+  
+   
+  
+  // production error handler
+  // no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500).send({
+    message: err.message,
+    error: err
+  });
+});
+
+app.listen(port)
+
+console.log('todo list RESTful: ' + port)
+module.exports = app;
+
