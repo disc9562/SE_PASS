@@ -3,8 +3,9 @@ module.exports = function (app){
 
   app.route('/api/getAccountListByRole')
   .get(seAccount.getAccountListByRole)
-
+  
 
   app.route('/api/signupSE')
   .post(seAccount.create)
+
 }

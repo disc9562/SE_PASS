@@ -9,11 +9,6 @@ const SidebarStore = {
       path: '/Course/assignmentList'
     },
     {
-      name: '查詢成績',
-      icon: 'ti-text',
-      path: '/Course/searchgrade'
-    },
-    {
       name: '作業批改',
       icon: 'ti-pencil-alt2',
       path: '/Course/assignmentListForGrading'

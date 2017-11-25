@@ -27,6 +27,10 @@ let seAccountSchema = new Schema({
     }],
     default:['student']
   },
+  TA: {
+    type: String,
+    default:'No'
+  },
   timeCreated: {
     type: Date,
     default: Date.now

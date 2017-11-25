@@ -19,7 +19,6 @@ import DashboardLayoutOfStudent from '../components/Dashboard/Layout/DashboardLa
 
 import CourseList from 'src/components/Dashboard/Views/CourseList.vue'
 import AssignmentList from 'src/components/Dashboard/Views/AssignmentList.vue'
-import SearchGrade from 'src/components/Dashboard/Views/SearchGrade'
 import AssignmentListForGrading from 'src/components/Dashboard/Views/AssignmentListForGrading'
 import AssignmentListForStudent from 'src/components/Dashboard/Views/AssignmentListForStudent'
 import gradeListForStudent from 'src/components/Dashboard/Views/gradeListForStudent'
@@ -121,12 +120,6 @@ const routes = [
         name: 'gradingAssignment',
         component: GradingAssignment
       },
-      {
-        path: 'searchGrade',
-        name: 'searchGrade',
-        component: SearchGrade
-      },
-
       {
         path: 'assignmentListForGrading',
         name: 'assignmentListForGrading',

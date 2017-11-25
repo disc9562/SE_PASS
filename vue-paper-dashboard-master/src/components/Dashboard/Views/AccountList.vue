@@ -1,13 +1,13 @@
 <template>
   <div class="row">
     <ul class="nav nav-tabs">
-      <li><a data-toggle="tab" href="#teacher">teacher</a></li>
-      <li class="active"><a data-toggle="tab" href="#student">student</a></li>
+      <li class="active"><a data-toggle="tab" href="#teacher">teacher</a></li>
+      <li><a data-toggle="tab" href="#student">student</a></li>
     </ul>
     <div class="tab-content">
       <div id="teacher" class="tab-pane fade in active">
         <div class="card">
-           <vuetable ref="vuetableForTeacher" :fields="fields"  pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForTeacher" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.149:9000/api/getAccountListByRole?role=teacher">
+           <vuetable ref="vuetableForTeacher" :fields="fields"  pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForTeacher" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.81:9000/api/getAccountListByRole?role=teacher">
               <template slot="actions" scope="props">
                 <div class="table-button-container">
                   <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
@@ -20,7 +20,7 @@
       </div>
       <div id="student" class="tab-pane fade ">
         <div class="card">
-         <vuetable ref="vuetableForStudent" :fields="fieldsOfStudent" pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForStudent" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.149:9000/api/getAccountListByRole?role=student">
+         <vuetable ref="vuetableForStudent" :fields="fieldsOfStudent" pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForStudent" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.81:9000/api/getAccountListByRole?role=student">
               <template slot="actions" scope="props">
                 <div class="table-button-container">
                   <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
@@ -52,7 +52,7 @@
             title: '<span class="orange glyphicon glyphicon-envelope"></span> Email'
           },
           {
-            name: 'birthdate',
+            name: 'TA',
             title: '<span class="orange fa fa-child"></span> TA'
           },
           '__slot:actions'

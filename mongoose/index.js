@@ -5,15 +5,24 @@ let express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser')
 let SeAccount = require('./models/se_account')
+let SeCourse = require('./models/se_course')
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/frame')
 
+
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "X-Requested-With")
+  next()
+})
 
 let seAccountRoute = require('./routes/seAccountRoute')
-seAccountRoute(app)
+let seCourseRoute = require('./routes/seCourseRoute')
 
+seAccountRoute(app)
+seCourseRoute(app)
 // catch 404 and forward to error handler
 
 app.use(function(req, res, next) {
