@@ -30,8 +30,8 @@ exports.getAccountListByRole = function(req,res){
     current_page = page * 1
   }
   seAccount.find({'role':role})
-            .then((result)=>{                       
-              if(result.length % 10 === 0){
+            .then((result)=>{                     
+              if(result.length % 10 === 0 && result.length !== 0){
                 last_page = result.length / 10
               }
               else{
@@ -44,7 +44,7 @@ exports.getAccountListByRole = function(req,res){
               vuetableFormat.per_page = per_page
               vuetableFormat.current_page = current_page
               vuetableFormat.last_page = last_page
-              vuetableFormat.next_page_url = domain + '?role=' + role + '&page=' + (current_page + 1)
+              vuetableFormat.next_page_url = domain + '/getAccountListByRole?role=' + role + '&sort=&page=' + (current_page + 1) +'&per_page=' + per_page
               vuetableFormat.prev_page_url = prev_page_url
               vuetableFormat.from = 1 + 10 * (current_page - 1)
               vuetableFormat.to = 10 * current_page

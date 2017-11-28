@@ -1,20 +1,20 @@
 let mongoose = require('mongoose'),
 seCourse = mongoose.model('SeCourse')
 exports.create = function(req,res){
-let document = {
-'coursename' : req.body.coursename,
-'courseteacher' : req.body.courseteacher,
-'TA' : req.body.TA,
-'classtime' : req.body.classtime,
-'population' : req.body.population,
-'coursedescription' : req.body.coursedescription
-}
-seCourse.insertMany(document)
-.then((result)=>{
-  res.send(result)
-}).catch((err)=>{
-  res.json({ error: err })
-})
+  let document = {
+    'coursename' : req.body.coursename,
+    'courseteacher' : req.body.courseteacher,
+    'TA' : req.body.TA,
+    'classtime' : req.body.classtime,
+    'population' : req.body.population,
+    'coursedescription' : req.body.coursedescription
+  }
+  seCourse.insertMany(document)
+  .then((result)=>{
+    res.send(result)
+  }).catch((err)=>{
+    res.json({ error: err })
+  })
 }
 exports.getCourseByTeacher = function(req,res){
 let courseTeacher = req.query.courseTeacher
@@ -30,7 +30,7 @@ current_page = page * 1
 }
 seCourse.find({'courseTeacher':courseTeacher})
         .then((result)=>{                       
-          if(result.length % 10 === 0){
+          if(result.length % 10 === 0 && result.length !== 0){
             last_page = result.length / 10
           }
           else{
@@ -43,7 +43,7 @@ seCourse.find({'courseTeacher':courseTeacher})
           vuetableFormat.per_page = per_page
           vuetableFormat.current_page = current_page
           vuetableFormat.last_page = last_page
-          vuetableFormat.next_page_url = domain + '?courseTeacher=' + courseTeacher + '&page=' + (current_page + 1)
+          vuetableFormat.next_page_url = domain + '?courseTeacher=' + courseTeacher + '&sort=&page=' + (current_page + 1) + '&per_page=' + per_page
           vuetableFormat.prev_page_url = prev_page_url
           vuetableFormat.from = 1 + 10 * (current_page - 1)
           vuetableFormat.to = 10 * current_page
