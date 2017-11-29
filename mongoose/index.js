@@ -7,7 +7,11 @@ let express = require('express'),
 let SeAccount = require('./models/se_account')
 let SeCourse = require('./models/se_course')
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/frame')
+if(process.env.NODE_ENV === 'CI'){
+  mongoose.connect('mongodb://172.19.0.2:27017/frame')
+}else{
+  mongoose.connect('mongodb://localhost:27017/frame')  
+}
 
 
 app.use(bodyParser.urlencoded({extended:true}))
