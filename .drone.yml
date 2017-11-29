@@ -8,6 +8,8 @@ pipeline:
   apiTest:
     image: node:6
     commands:
+      - sleep 15
+      - 'mongo --host mongo --eval "{ ping: 5 }"'
       - cd mongoose
       - npm install
       - npm run test
