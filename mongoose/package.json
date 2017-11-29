@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "test": "node_modules/.bin/mocha  --timeout 6000 ./test/*.test.js --exit",
-    "CItest":"NODE_ENV=CI node_modules/.bin/mocha  --timeout 6000 ./test/*.test.js --exit"
+    "CItest": "NODE_ENV=CI node_modules/.bin/mocha  --timeout 6000 ./test/*.test.js --exit"
   },
   "author": "onex7zero@hotmail.com",
   "license": "ISC",

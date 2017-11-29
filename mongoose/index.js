@@ -6,6 +6,7 @@ let express = require('express'),
     bodyParser = require('body-parser')
 let SeAccount = require('./models/se_account')
 let SeCourse = require('./models/se_course')
+let SeCourseInfo = require('./models/se_courseInfo')
 mongoose.Promise = global.Promise;
 if(process.env.NODE_ENV === 'CI'){
   mongoose.connect('mongodb://172.19.0.2:27017/frame')
@@ -24,9 +25,11 @@ app.use(function(req, res, next) {
 
 let seAccountRoute = require('./routes/seAccountRoute')
 let seCourseRoute = require('./routes/seCourseRoute')
+let seCourseInfoRoute = require('./routes/seCourseInfoRoute')
 
 seAccountRoute(app)
 seCourseRoute(app)
+seCourseInfoRoute(app)
 // catch 404 and forward to error handler
 
 app.use(function(req, res, next) {
