@@ -5,6 +5,12 @@ pipeline:
       - cd vue-paper-dashboard-master
       - npm install
       - npm run unit
+  apiTest:
+    image: node:6
+    commands:
+      - cd mongoose
+      - npm install
+      - npm run unit
   jenkins:
     image: appleboy/drone-jenkins
     url: http://140.124.181.81:8080
@@ -13,3 +19,8 @@ pipeline:
     job: CD
     when:
       status: [ success ]
+
+services:
+  mongo:
+    image: mongo:3.0
+    command: [ --smallfiles ]

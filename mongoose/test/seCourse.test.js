@@ -32,7 +32,7 @@ describe('Testing API with a mocked backend /POST /api/courseTeacher',function()
             expect(res.body.total).to.equal(0);
             expect(res.body.current_page).to.equal(1);
             expect(res.body.last_page).to.equal(1);
-            expect(res.body.next_page_url).to.equal('http://localhost:9000/api?courseTeacher=劉建宏&sort=&page=2&per_page=10');
+            expect(res.body.next_page_url).to.equal('http://140.124.181.81:9090/api?courseTeacher=劉建宏&sort=&page=2&per_page=10');
             expect(res.body.prev_page_url).to.equal(null);
             expect(res.body.from).to.equal(1);
             expect(res.body.to).to.equal(10)

@@ -24,7 +24,7 @@ exports.getAccountListByRole = function(req,res){
   let current_page = 1
   let last_page = 1
   let prev_page_url = null
-  let domain = "http://localhost:9000/api"
+  let domain = "http://140.124.181.81:9090/api"
   let vuetableFormat = {}
   if(page){
     current_page = page * 1
