@@ -10,12 +10,17 @@
         </button>
         <a class="navbar-brand">{{routeName}}</a>
       </div>
-         <div class="table-button-container" style="float:right;">
-              <button class="btn btn-warning btn-sm" @click="addcourse()">
-              <span class="glyphicon glyphicon-plus"></span> 新增課程</button>
-             <button class="btn btn-primary btn-sm" @click="teacherProfile()">
-              <span class="glyphicon glyphicon-user"></span> 設定個人資料</button>
-       </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="open">
+            <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
+                <drop-down title="作業" icon="glyphicon glyphicon-plus">
+               <li><a href="#" v-on:click="assignment()">新增作業</a></li>
+             </drop-down>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </template>
@@ -48,14 +53,14 @@
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
       },
-      teacherProfile () {
+      setting () {
         this.$router.push({
-          path: '/teacher/profile'
+          // path: '/setting'
         })
       },
-      addcourse () {
+      assignment () {
         this.$router.push({
-          path: '/teacher/addcourse'
+          path: '/teacher/Course/addAssignment'
         })
       }
     }

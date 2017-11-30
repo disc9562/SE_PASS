@@ -78,12 +78,12 @@ export default {
   methods: {
     submit () {
       this.$router.push({
-        path: '/homework/assignment'
+        path: '/student/assignmentListForStudent'
       })
     },
     cancel () {
       this.$router.push({
-        path: '/homework/assignment'
+        path: '/student/assignmentListForStudent'
       })
     }
   }

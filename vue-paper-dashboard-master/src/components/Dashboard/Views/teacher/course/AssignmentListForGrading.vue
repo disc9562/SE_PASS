@@ -104,7 +104,7 @@
       },
       correctAssignment (rowData) {
         this.$router.push({
-          path: '/Course/gradingAssignment'
+          path: '/teacher/Course/gradingAssignment'
         })
       },
       onLoading () {

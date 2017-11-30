@@ -2,17 +2,13 @@
   <footer class="footer">
     <div class="container-fluid">
       <nav class="pull-left">
-        <ul>
-          <li>
-            <router-link :to="{path:'/admin'}">Dashboard</router-link>
-          </li>
-        </ul>
+
       </nav>
       <div class="copyright pull-right">
-        &copy; Coded with
+        &copy; Coded with 
         <i class="fa fa-heart heart"></i> by
-        <a href="https://github.com/cristijora" target="_blank">Cristi Jora</a>.
-        Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">Creative Tim</a>.
+        <a href="http://www.cc.ntut.edu.tw/~yccheng/" target="_blank">lab1321</a>.
+        Designed by SE_Team #3 .
       </div>
     </div>
   </footer>

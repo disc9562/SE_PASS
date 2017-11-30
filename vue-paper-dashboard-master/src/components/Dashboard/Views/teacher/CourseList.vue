@@ -81,7 +81,7 @@ export default {
     },
     direct (rowData) {
       this.$router.push({
-        path: '/Course/assignmentList'
+        path: '/teacher/Course/assignmentList'
       })
     },
     onLoading () {

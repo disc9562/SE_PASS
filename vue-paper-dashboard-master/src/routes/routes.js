@@ -1,83 +1,31 @@
-import DashboardLayout from '../components/Dashboard/Layout/DashboardLayout.vue'
 // GeneralViews
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 
-// Admin pages
-import Overview from 'src/components/Dashboard/Views/Overview.vue'
-import UserProfile from 'src/components/Dashboard/Views/UserProfile.vue'
-import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
-import Icons from 'src/components/Dashboard/Views/Icons.vue'
-import Maps from 'src/components/Dashboard/Views/Maps.vue'
-import Typography from 'src/components/Dashboard/Views/Typography.vue'
-import TableList from 'src/components/Dashboard/Views/TableList.vue'
-
 import Login from 'src/components/Login/Login.vue'
-import DashboardLayoutOfCourseManager from '../components/Dashboard/Layout/DashboardLayoutOfCourseManager'
-import DashboardLayoutOfAccountManager from '../components/Dashboard/Layout/DashboardLayoutOfAccountManager'
-import DashboardLayoutOfAssignmentManager from '../components/Dashboard/Layout/DashboardLayoutOfAssignmentManager.vue'
+import DashboardLayoutOfAdminManager from '../components/Dashboard/Layout/DashboardLayoutOfAdminManager'
+import DashboardLayoutOfTeacherManager from '../components/Dashboard/Layout/DashboardLayoutOfTeacherManager'
+import DashboardLayoutOfCourseManager from '../components/Dashboard/Layout/DashboardLayoutOfCourseManager.vue'
 import DashboardLayoutOfStudent from '../components/Dashboard/Layout/DashboardLayoutOfStudent'
 
-import CourseList from 'src/components/Dashboard/Views/CourseList.vue'
-import AssignmentList from 'src/components/Dashboard/Views/AssignmentList.vue'
-import AssignmentListForGrading from 'src/components/Dashboard/Views/AssignmentListForGrading'
-import AssignmentListForStudent from 'src/components/Dashboard/Views/AssignmentListForStudent'
-import gradeListForStudent from 'src/components/Dashboard/Views/gradeListForStudent'
 import AccountList from 'src/components/Dashboard/Views/AccountList'
 import SignUp from 'src/components/Dashboard/Views/SignUp'
-import GradingAssignment from 'src/components/Dashboard/Views/GradingAssignment'
-import AddAssignment from 'src/components/Dashboard/Views/AddAssignment'
-import addCourse from 'src/components/Dashboard/Views/addCourse'
-import TeacherProfile from 'src/components/Dashboard/Views/TeacherProfile'
-import StudentProfile from 'src/components/Dashboard/Views/StudentProfile'
+// teacher/course
+import AssignmentList from 'src/components/Dashboard/Views/teacher/course/AssignmentList.vue'
+import AssignmentListForGrading from 'src/components/Dashboard/Views/teacher/course/AssignmentListForGrading'
+import GradingAssignment from 'src/components/Dashboard/Views/teacher/course/GradingAssignment'
+import AddAssignment from 'src/components/Dashboard/Views/teacher/course/AddAssignment'
+
+// student
+import SearchGradeList from 'src/components/Dashboard/Views/student/SearchGradeList'
+import AssignmentListForStudent from 'src/components/Dashboard/Views/student/AssignmentListForStudent'
+import StudentProfile from 'src/components/Dashboard/Views/student/StudentProfile'
+
+// teacher
+import TeacherProfile from 'src/components/Dashboard/Views/teacher/TeacherProfile'
+import AddCourse from 'src/components/Dashboard/Views/teacher/AddCourse'
+import CourseList from 'src/components/Dashboard/Views/teacher/CourseList.vue'
 
 const routes = [
-  {
-    path: '/default',
-    component: DashboardLayout,
-    redirect: '/admin/overview'
-  },
-  {
-    path: '/admin',
-    component: DashboardLayout,
-    redirect: '/admin/stats',
-    children: [
-      {
-        path: 'overview',
-        name: 'overview',
-        component: Overview
-      },
-      {
-        path: 'stats',
-        name: 'stats',
-        component: UserProfile
-      },
-      {
-        path: 'notifications',
-        name: 'notifications',
-        component: Notifications
-      },
-      {
-        path: 'icons',
-        name: 'icons',
-        component: Icons
-      },
-      {
-        path: 'maps',
-        name: 'maps',
-        component: Maps
-      },
-      {
-        path: 'typography',
-        name: 'typography',
-        component: Typography
-      },
-      {
-        path: 'table-list',
-        name: 'table-list',
-        component: TableList
-      }
-    ]
-  },
   {
     path: '/',
     name: 'Login',
@@ -85,7 +33,7 @@ const routes = [
   },
   {
     path: '/teacher',
-    component: DashboardLayoutOfCourseManager,
+    component: DashboardLayoutOfTeacherManager,
     redirect: '/teacher/Course',
     children: [
       {
@@ -96,7 +44,7 @@ const routes = [
       {
         path: 'addCourse',
         name: 'addCourse',
-        component: addCourse
+        component: AddCourse
       },
       {
         path: 'profile',
@@ -106,9 +54,9 @@ const routes = [
     ]
   },
   {
-    path: '/Course',
-    component: DashboardLayoutOfAssignmentManager,
-    redirect: '/Course/assignmentList',
+    path: '/teacher/Course',
+    component: DashboardLayoutOfCourseManager,
+    redirect: '/teacher/Course/assignmentList',
     children: [
       {
         path: 'assignmentList',
@@ -126,31 +74,27 @@ const routes = [
         component: AssignmentListForGrading
       },
       {
-        path: 'gradingAssignment',
-        name: 'gradingAssignment',
-        component: GradingAssignment
-      },
-      {
         path: 'addAssignment',
         name: 'addAssignment',
         component: AddAssignment
       }
     ]
   },
+
   {
-    path: '/homework',
+    path: '/student',
     component: DashboardLayoutOfStudent,
-    redirect: '/homework/assignment',
+    redirect: '/student/assignmentListForStudent',
     children: [
       {
-        path: 'assignment',
-        name: 'assignment',
+        path: 'assignmentListForStudent',
+        name: 'assignmentListForStudent',
         component: AssignmentListForStudent
       },
       {
-        path: 'grade',
-        name: 'grade',
-        component: gradeListForStudent
+        path: 'searchGradeList',
+        name: 'searchGradeList',
+        component: SearchGradeList
       },
       {
         path: 'profile',
@@ -161,7 +105,7 @@ const routes = [
   },
   {
     path: '/account',
-    component: DashboardLayoutOfAccountManager,
+    component: DashboardLayoutOfAdminManager,
     redirect: '/account/accountList',
     children: [
       {

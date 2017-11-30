@@ -56,7 +56,7 @@
       },
       studentProfile () {
         this.$router.push({
-          path: '/homework/profile'
+          path: '/student/profile'
         })
       }
     }

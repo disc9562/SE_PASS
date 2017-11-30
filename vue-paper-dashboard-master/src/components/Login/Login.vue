@@ -54,7 +54,7 @@ export default{
         })
       } else if (this.account === 'student') {
         this.$router.push({
-          path: '/homework'
+          path: '/student'
         })
       } else if (this.account === 'admin') {
         this.$router.push({

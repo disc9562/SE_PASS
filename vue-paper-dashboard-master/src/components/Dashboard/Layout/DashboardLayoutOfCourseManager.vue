@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <side-bar-of-course type="sidebar" :sidebar-links="$sidebarofcourse.sidebarLinksOfCourse">
+    <side-bar-of-assignment type="sidebar" :sidebar-links="$sidebarofassignment.sidebarLinksOfAssignment">
 
-    </side-bar-of-course>
+    </side-bar-of-assignment>
     <notifications>
 
     </notifications>
@@ -32,8 +32,8 @@
     },
     methods: {
       toggleSidebar () {
-        if (this.$sidebarofcourse.showSidebar) {
-          this.$sidebarofcourse.displaySidebar(false)
+        if (this.$sidebarofassignment.showSidebar) {
+          this.$sidebarofassignment.displaySidebar(false)
         }
       }
     }

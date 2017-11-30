@@ -1,13 +1,11 @@
 <template>
 <form>
   <div class="form-group">
-		<label for="exampleInputEmail1">作業名稱</label>
-    <input class="form-control" id="exampleInputEmail1">
-    <label for="exampleInputEmail1">繳交期限</label>
-    <input type="date" class="form-control" id="exampleInputEmail1">
+    <label for="exampleInputEmail1">分數</label>
+    <input type="email" class="form-control" id="exampleInputEmail1">
   </div>
   <div class="form-group">
-    <label for="exampleTextarea">作業描述</label>
+    <label for="exampleTextarea">評語</label>
     <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
   </div>
   <button type="submit" class="btn btn-primary"@click="submit()">儲存</button>
@@ -19,12 +17,12 @@
     methods: {
       cancel () {
         this.$router.push({
-          path: '/Course/assignmentList'
+          path: '/teacher/Course/assignmentListForGrading'
         })
       },
       submit () {     // todo
         this.$router.push({
-          path: '/Course/assignmentList'
+          path: '/teacher/Course/assignmentListForGrading'
         })
       }
     }
