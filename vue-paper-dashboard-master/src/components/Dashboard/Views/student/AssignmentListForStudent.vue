@@ -4,18 +4,43 @@
          <div class="card">
           <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" api-url="https://vuetable.ratiw.net/api/users">
             <template slot="actions" scope="props">
-              <div class="row">
                 <div class="table-button-container">
-                  <div class="col-sm-4">
-                    <button class="btn btn-info btn-sm " id="get_file" value="Grab file" @click="relationToFile()">
-                     <span class="glyphicon glyphicon-cloud-upload"></span> 上傳作業</button>
-                    <input type="file" id="chooseAssignment" style="opacity: 0; overflow: hidden;width:0.1px;height:0.1px;" accept="file_extension"  class="inputfile" v-on:change="uploadAssignment" />                 
-                  </div>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="assignmentPath" size="5" disabled="disabled">
+                    <div class="upload">
+                      <ul>
+                        <li v-for="(file, index) in files" :key="file.id">
+                          <span>{{file.name}}</span> -
+                          <span>{{file.size}}</span> -
+                          <span v-if="file.error">{{file.error}}</span>
+                          <span v-else-if="file.success">success</span>
+                          <span v-else-if="file.active">active</span>
+                          <span v-else></span>
+                        </li>
+                      </ul>
+                      <div class="example-btn">
+                        <file-upload
+                          class="btn btn-primary"
+                          post-action="/upload/post"
+                          :size="1024 * 1024 * 1024"
+                          :extensions="['gzip','7z','tar','xz','zip','rar']"
+                          accept=".zip"
+                          v-model="files"
+                          @input-filter="inputFilter"
+                          @input-file="inputFile"
+                          ref="upload">
+                          <i class="fa fa-plus"></i>
+                          選擇作業
+                        </file-upload>
+                        <button type="button" class="btn btn-success" v-if="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true">
+                          <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                          開始上傳
+                        </button>
+                        <button type="button" class="btn btn-danger"  v-else @click.prevent="$refs.upload.active = false">
+                          <i class="fa fa-stop" aria-hidden="true"></i>
+                          停止上傳
+                        </button>
+                      </div>
                   </div>
                 </div> 
-              </div>
              </template>
           </vuetable>
           <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
@@ -25,9 +50,14 @@
 </template>
 
 <script>
+import FileUpload from 'vue-upload-component'
 export default {
+  components: {
+    FileUpload
+  },
   data () {
     return {
+      files: [],
       fields: [
         {
           name: 'name',
@@ -98,6 +128,36 @@ export default {
     },
     relationToFile () {
       document.getElementById('chooseAssignment').click()
+    },
+    inputFilter (newFile, oldFile, prevent) {
+      if (newFile && !oldFile) {
+        // Before adding a file
+        // 添加文件前
+        // Filter system files or hide files
+        // 过滤系统文件 和隐藏文件
+        if (/(\/|^)(Thumbs\.db|desktop\.ini|\..+)$/.test(newFile.name)) {
+          return prevent()
+        }
+        // Filter php html js file
+        // 过滤 php html js 文件
+        if (/\.(php5?|html?|jsx?)$/i.test(newFile.name)) {
+          return prevent()
+        }
+      }
+    },
+    inputFile (newFile, oldFile) {
+      if (newFile && !oldFile) {
+        // add
+        console.log('add', newFile)
+      }
+      if (newFile && oldFile) {
+        // update
+        console.log('update', newFile)
+      }
+      if (!newFile && oldFile) {
+        // remove
+        console.log('remove', oldFile)
+      }
     }
   }
 }

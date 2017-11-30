@@ -19,6 +19,7 @@
     "vue": "^2.3.0",
     "vue-clickaway": "^2.1.0",
     "vue-router": "^2.2.0",
+    "vue-upload-component": "^2.7.1",
     "vuetable-2": "^1.7.0"
   },
   "devDependencies": {

@@ -24,11 +24,13 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
 import './assets/sass/paper-dashboard.scss'
 import 'es6-promise/auto'
+import VueUploadComponent from 'vue-upload-component'
 
 // plugin setup
 Vue.use(VueRouter)
 Vue.component('vuetable', Vuetable)
 Vue.component('vuetable-pagination', VueTablePagination)
+Vue.component('file-upload', VueUploadComponent)
 
 Vue.use(SideBar)
 Vue.use(GlobalComponents)
@@ -63,6 +65,7 @@ new Vue({
   },
   comments: {
     VueTable: Vuetable,
-    VueTablePagination: VueTablePagination
+    VueTablePagination: VueTablePagination,
+    VueUploadComponent: VueUploadComponent
   }
 })
