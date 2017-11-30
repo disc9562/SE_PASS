@@ -38,7 +38,7 @@ exports.getAccountListByRole = function(req,res){
                   last_page = Math.round(result.length / 10) + 1
               }                               
               if(current_page > 1){
-                  prev_page_url = domain + '?page=' + (current_page - 1)
+                  prev_page_url = domain + '/getAccountListByRole?role=' + role + '&sort=&page=' + (current_page - 1) +'&per_page=' + per_page
               }             
               vuetableFormat.total = result.length
               vuetableFormat.per_page = per_page

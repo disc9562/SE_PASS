@@ -6,9 +6,11 @@ const async = require('async');
 exports.addStudentIntoCourse = function(req, res){
     let courseId = req.query.courseId
     let studentId = req.query.studentId
+    console.log('4444')
     // let studentInfo
     async.auto({
         findStudent: function(callback){
+
             seAccount.find({id:studentId})
             .then((result)=>{
                 // studentInfo = result[0]
@@ -53,6 +55,44 @@ exports.addStudentIntoCourse = function(req, res){
             })
         }]
     })
+}
 
-
+exports.getStudentsList = function (req, res){
+    let courseId = req.query.courseId
+    console.log(courseId)
+    let page = req.query.page
+    let per_page = req.query.per_page
+    let current_page = 1
+    let last_page = 1
+    let prev_page_url = null
+    let domain = "http://localhost:9090/api"
+    let vuetableFormat = {}
+    if(page){
+        current_page = page * 1
+    }
+    seCourseInfo.find({'courseId':courseId})
+                .then((result)=>{
+                    console.log(result)
+                    if(result[0].students.length % 10 === 0 && result[0].students.length !== 0){
+                        last_page = result[0].students.length / 10
+                    }
+                    else{
+                        last_page = Math.round(result[0].students.length / 10) + 1
+                    }
+                    if(current_page > 1){
+                        prev_page_url = domain + '/getStudentsList?courseId' + courseId + '&sort=&page=' + (current_page - 1) + '&per_page=' + per_page
+                    }
+                    vuetableFormat.total = result[0].students.length
+                    vuetableFormat.per_page = per_page
+                    vuetableFormat.current_page = current_page
+                    vuetableFormat.last_page = last_page
+                    vuetableFormat.next_page_url = domain + '/getStudentsList?courseId' + courseId + '&sort=&page=' + (current_page + 1) + '&per_page=' + per_page
+                    vuetableFormat.prev_page_url = prev_page_url
+                    vuetableFormat.from = 1 + 10 * (current_page - 1)
+                    vuetableFormat.to = 10 * current_page
+                    vuetableFormat.data = result[0].students.slice(vuetableFormat.from - 1 , vuetableFormat.to)
+                    res.json(vuetableFormat)
+                }).catch((err)=>{
+                    res.json({error:err})
+                })
 }

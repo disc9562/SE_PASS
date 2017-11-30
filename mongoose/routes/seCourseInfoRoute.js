@@ -3,5 +3,8 @@ module.exports = function (app){
 
   app.route('/api/addStudentIntoCourse')
   .post(seCourseInfo.addStudentIntoCourse)
+
+  app.route('/api/getStudentsList')
+  .get(seCourseInfo.getStudentsList)
   
 }
