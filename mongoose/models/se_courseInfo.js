@@ -10,7 +10,7 @@ let seCourseInfoSchema = new Schema({
         required: true,
         unique: true
     },
-    student:{
+    students:{
         type : Array
     }
 })

@@ -23,7 +23,7 @@ exports.addStudentIntoCourse = function(req, res){
                 if(result.length === 0){
                     let document = {
                         courseId: courseId,
-                        student:studentInfo.findStudent
+                        students:studentInfo.findStudent
                     }
                     seCourseInfo.insertMany(document)
                     .then((result)=>{
@@ -34,11 +34,11 @@ exports.addStudentIntoCourse = function(req, res){
                     })
                 }
                 else{
-                    for(let student of result[0].student){
+                    for(let student of result[0].students){
                         if(student.id === studentId)
                             res.json({ error: 'he is already in the course' })
                     }
-                    result[0].student.push(studentInfo.findStudent)
+                    result[0].students.push(studentInfo.findStudent)
                     seCourseInfo.update({'_id':result[0]._id},result[0])
                     .then((update)=>{
                         console.log('update CourseInfo')
