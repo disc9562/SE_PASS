@@ -20,9 +20,25 @@ app.post('/upload', function(req, res) {
     if (err){
       return res.status(500).send(err)
     }
-    fs.createReadStream(assignmentPath + req.files.file.name).pipe(unzip.Extract({ path: 'C:/Users/user/Desktop/upload/' }))
     res.send('File uploaded!')
+    fs.createReadStream(assignmentPath + req.files.file.name)
+      .pipe(unzip.Extract({ path: 'C:/Users/user/Desktop/upload/' }))
+      .on('close', function () {
+        res.send('File unzip!')
+      })
   })
+})
+
+app.get('/download', function(req, res){
+  let file = 'C:/Users/user/Desktop/eclipse.zip'
+  if(!file){
+    return res.status(400).send('No files were downloaded.')
+  }
+  res.download(file,function(err){
+    if (err){
+      res.status(500).send(err)
+    }
+  }) 
 })
 
 app.listen(3000, function () {
