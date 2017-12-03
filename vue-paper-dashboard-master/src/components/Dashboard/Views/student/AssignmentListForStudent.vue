@@ -19,10 +19,10 @@
                       <div class="example-btn">
                         <file-upload
                           class="btn btn-primary"
-                          post-action="/upload/post"
+                          post-action="http://localhost:3000/upload"
+                          extensions="gzip,7z,tar,xz,zip,rar"
+                          accept=".gzip,.7z,.tar,.xz,.zip,.rar"
                           :size="1024 * 1024 * 1024"
-                          :extensions="['gzip','7z','tar','xz','zip','rar']"
-                          accept=".zip"
                           v-model="files"
                           @input-filter="inputFilter"
                           @input-file="inputFile"
@@ -132,14 +132,11 @@ export default {
     inputFilter (newFile, oldFile, prevent) {
       if (newFile && !oldFile) {
         // Before adding a file
-        // 添加文件前
         // Filter system files or hide files
-        // 过滤系统文件 和隐藏文件
         if (/(\/|^)(Thumbs\.db|desktop\.ini|\..+)$/.test(newFile.name)) {
           return prevent()
         }
         // Filter php html js file
-        // 过滤 php html js 文件
         if (/\.(php5?|html?|jsx?)$/i.test(newFile.name)) {
           return prevent()
         }
@@ -147,15 +144,12 @@ export default {
     },
     inputFile (newFile, oldFile) {
       if (newFile && !oldFile) {
-        // add
         console.log('add', newFile)
       }
       if (newFile && oldFile) {
-        // update
         console.log('update', newFile)
       }
       if (!newFile && oldFile) {
-        // remove
         console.log('remove', oldFile)
       }
     }
