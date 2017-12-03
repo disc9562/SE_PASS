@@ -4,18 +4,20 @@ let mongoose = require('mongoose'),
 const async = require('async');
 
 exports.addStudentIntoCourse = function(req, res){
-    let courseId = req.query.courseId
-    let studentId = req.query.studentId
-    console.log('4444')
+    let courseId = req.body.courseId
+    let studentId = req.body.studentId
     // let studentInfo
+    // seAccount.find({id:studentId})
+    // .then(result=>{return result})
+    // .then()
     async.auto({
         findStudent: function(callback){
-
             seAccount.find({id:studentId})
             .then((result)=>{
                 // studentInfo = result[0]
                 callback(null, result[0])
             }).catch((err)=>{
+                console.log('err')
                 res.json({ error: err })
             })
         },
