@@ -20,12 +20,11 @@ app.post('/upload', function(req, res) {
     if (err){
       return res.status(500).send(err)
     }
-    res.send('File uploaded!')
     fs.createReadStream(assignmentPath + req.files.file.name)
-      .pipe(unzip.Extract({ path: 'C:/Users/user/Desktop/upload/' }))
-      .on('close', function () {
-        res.send('File unzip!')
-      })
+    .pipe(unzip.Extract({ path: 'C:/Users/user/Desktop/upload/' }))
+    .on('close', function () {
+      res.send('File unzip!')
+    })
   })
 })
 
