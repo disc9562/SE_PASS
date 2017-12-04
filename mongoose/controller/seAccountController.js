@@ -53,4 +53,14 @@ exports.getAccountListByRole = function(req,res){
             }).catch((err)=>{
               res.json({ error: err })
             })
-}   
+}
+
+exports.delete = function(req, res){
+  console.log('delete')
+  seAccount.remove({id:req.params.id})
+  .then((result)=>{
+    res.send(result)
+  }).catch((err)=>{
+    res.json(err)
+  })
+}
