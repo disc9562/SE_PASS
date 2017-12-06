@@ -7,8 +7,6 @@ import DashboardLayoutOfTeacherManager from '../components/Dashboard/Layout/Dash
 import DashboardLayoutOfCourseManager from '../components/Dashboard/Layout/DashboardLayoutOfCourseManager.vue'
 import DashboardLayoutOfStudent from '../components/Dashboard/Layout/DashboardLayoutOfStudent'
 
-import AccountList from 'src/components/Dashboard/Views/AccountList'
-import SignUp from 'src/components/Dashboard/Views/SignUp'
 // teacher/course
 import AssignmentList from 'src/components/Dashboard/Views/teacher/course/AssignmentList.vue'
 import AssignmentListForGrading from 'src/components/Dashboard/Views/teacher/course/AssignmentListForGrading'
@@ -22,8 +20,13 @@ import StudentProfile from 'src/components/Dashboard/Views/student/StudentProfil
 
 // teacher
 import TeacherProfile from 'src/components/Dashboard/Views/teacher/TeacherProfile'
-import AddCourse from 'src/components/Dashboard/Views/teacher/AddCourse'
 import CourseList from 'src/components/Dashboard/Views/teacher/CourseList.vue'
+
+// account
+import AddCourse from 'src/components/Dashboard/Views/admin/AddCourse'
+import SignUp from 'src/components/Dashboard/Views/admin/SignUp'
+import AccountList from 'src/components/Dashboard/Views/admin/AccountList'
+import AllCourseList from 'src/components/Dashboard/Views/admin/AllCourseList'
 
 const routes = [
   {
@@ -40,11 +43,6 @@ const routes = [
         path: 'Course',
         name: 'Course',
         component: CourseList
-      },
-      {
-        path: 'addCourse',
-        name: 'addCourse',
-        component: AddCourse
       },
       {
         path: 'profile',
@@ -117,6 +115,16 @@ const routes = [
         path: 'signUp',
         name: 'signUp',
         component: SignUp
+      },
+      {
+        path: 'addCourse',
+        name: 'addCourse',
+        component: AddCourse
+      },
+      {
+        path: 'allCourseList',
+        name: 'allCourseList',
+        component: AllCourseList
       }
     ]
   },

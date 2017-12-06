@@ -58,8 +58,8 @@
 							<div class="cols-sm-10">
               <select disabled>
                 <option value="Instructor">Instructor</option>
-                <option value="Student">Student</option>
-                <option value="TA" selected>TA</option>
+                <option value="Student"selected>Student</option>
+                <option value="TA" >TA</option>
                 <option value="Admin">Admin</option>
               </select>
               </div>

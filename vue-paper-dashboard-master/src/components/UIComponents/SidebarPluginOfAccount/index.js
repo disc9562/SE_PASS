@@ -4,15 +4,26 @@ const SidebarStore = {
   showSidebar: false,
   sidebarLinksOfAccount: [
     {
-      name: 'Account List',
-      icon: 'ti-text',
-      path: '/account/AccountList'
+      name: '課程列表',
+      icon: 'ti-view-list-alt',
+      path: '/account/allCourseList'
     },
     {
-      name: 'Sign Up',
+      name: '帳戶列表',
       icon: 'ti-view-list-alt',
+      path: '/account/accountList'
+    },
+    {
+      name: '新增課程',
+      icon: 'glyphicon glyphicon-plus-sign',
+      path: '/account/addCourse'
+    },
+    {
+      name: '新增帳戶',
+      icon: 'glyphicon glyphicon-plus-sign',
       path: '/account/signUp'
     }
+
   ],
   displaySidebar (value) {
     this.showSidebar = value

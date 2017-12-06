@@ -11,8 +11,6 @@
         <a class="navbar-brand">{{routeName}}</a>
       </div>
          <div class="table-button-container" style="float:right;">
-              <button class="btn btn-warning btn-sm" @click="addcourse()">
-              <span class="glyphicon glyphicon-plus"></span> 新增課程</button>
              <button class="btn btn-primary btn-sm" @click="teacherProfile()">
               <span class="glyphicon glyphicon-user"></span> 設定個人資料</button>
        </div>
@@ -51,11 +49,6 @@
       teacherProfile () {
         this.$router.push({
           path: '/teacher/profile'
-        })
-      },
-      addcourse () {
-        this.$router.push({
-          path: '/teacher/addcourse'
         })
       }
     }

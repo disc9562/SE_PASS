@@ -19,12 +19,12 @@
     methods: {
       cancel () {
         this.$router.push({
-          path: '/teacher/Course'
+          path: '/account/allCourseList'
         })
       },
       submit () {     // todo
         this.$router.push({
-          path: '/teacher/Course'
+          path: '/account/allCourseList'
         })
       }
     }

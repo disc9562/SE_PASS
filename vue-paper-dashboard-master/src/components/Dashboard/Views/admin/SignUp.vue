@@ -82,7 +82,7 @@ export default {
   methods: {
     register () {
       this.$router.push({
-        path: 'accountList'
+        path: '/account/accountList'
       })
     }
   }
