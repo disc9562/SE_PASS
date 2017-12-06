@@ -5,22 +5,26 @@ var expect = require('chai').expect;
 var mongooseMock = require('mongoose-mock')
 var sinon = require('sinon')
 var sinonChai = require("sinon-chai");
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 require('sinon');
 require('sinon-mongoose');
 require('../models/se_courseInfo')
 require('../models/se_account')
-var seCourseInfoController = require('../controller/seCourseInfoController')
-var app = require('../index')
+require('../models/se_course')
+let seCourseInfoController = require('../controller/seCourseInfoController')
+let app = require('../index')
 chai.use(sinonChai)
 chai.use(chaiHttp)
 
-describe.only('There is no data in courseInfo collection', function(){
+describe('There is no data in courseInfo collection', function(){
     it('add student into the course', function(done){
-        var seCourseInfo = mongoose.model('SeCourseInfo')
-        var seCourseInfoMock = sinon.mock(seCourseInfo)
-        var seAccount = mongoose.model('SeAccount')
-        var SeAccountMock = sinon.mock(seAccount)
+        let seCourseInfo = mongoose.model('SeCourseInfo')
+        let seCourseInfoMock = sinon.mock(seCourseInfo)
+        let seAccount = mongoose.model('SeAccount')
+        let SeAccountMock = sinon.mock(seAccount)
+        let seCourse = mongoose.model('SeCourse')
+        let seCourseMock = sinon.mock(seCourse)
+
         SeAccountMock.expects('find')
         .withArgs({'id':'105598017'})
         .resolves([{
@@ -80,6 +84,11 @@ describe.only('There is no data in courseInfo collection', function(){
                 }
             ]
         )
+
+        seCourseMock.expects('update')
+        .withArgs({'courseId':'5a1eaad63fa9c62328b3562d'})
+        .resolves()
+
         chai.request(app)
         .post('/api/addStudentIntoCourse')
         .send({
@@ -90,6 +99,8 @@ describe.only('There is no data in courseInfo collection', function(){
             SeAccountMock.restore()            
             seCourseInfoMock.verify()
             seCourseInfoMock.restore()
+            seCourseMock.verify()
+            seCourseMock.restore()
             expect(res.status).to.equal(200);
             expect(res.body[0].courseId).to.equal('5a1eaad63fa9c62328b3562d');
             expect(res.body[0].students[0].username).to.equal('disc9562')

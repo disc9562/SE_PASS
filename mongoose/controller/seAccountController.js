@@ -64,3 +64,21 @@ exports.delete = function(req, res){
     res.json(err)
   })
 }
+
+exports.login = function(req, res){
+  let id = req.body.id
+  let password = req.body.password
+
+  seAccount.find({'id': id})
+  .then((result)=>{
+    if(result.length === 0){
+      res.json({fail:'there is no account'})
+    }else if(result[0].password !== password){
+      res.json({fail:'password error'})
+    }else{
+      res.send(result)
+    }
+  }).catch((err)=>{
+    res.json(err)
+  })
+}

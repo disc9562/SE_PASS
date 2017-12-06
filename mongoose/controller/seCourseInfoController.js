@@ -1,6 +1,7 @@
 let mongoose = require('mongoose'),
     seCourseInfo = mongoose.model('SeCourseInfo'),
     seAccount = mongoose.model('SeAccount')
+    seCourse = mongoose.model('SeCourse')
 const async = require('async');
 
 exports.addStudentIntoCourse = function(req, res){
@@ -24,6 +25,8 @@ exports.addStudentIntoCourse = function(req, res){
         updateCourseInfo:['findStudent', function(studentInfo, callback){
             seCourseInfo.find({'courseId':courseId})
             .then((result)=>{
+                return result
+            }).then((result)=>{
                 if(result.length === 0){
                     let document = {
                         courseId: courseId,
@@ -31,8 +34,8 @@ exports.addStudentIntoCourse = function(req, res){
                     }
                     seCourseInfo.insertMany(document)
                     .then((result)=>{
-                        console.log('new CourseInfo')
-                        res.send(result)
+												console.log('new CourseInfo')
+                        callback(null,result)
                     }).catch((err)=>{
                         res.json({ error: err })
                     })
@@ -40,13 +43,13 @@ exports.addStudentIntoCourse = function(req, res){
                 else{
                     for(let student of result[0].students){
                         if(student.id === studentId)
-                            res.json({ error: 'he is already in the course' })
+                            res.json({ error: 'student is already in the course' })
                     }
                     result[0].students.push(studentInfo.findStudent)
                     seCourseInfo.update({'_id':result[0]._id},result[0])
                     .then((update)=>{
-                        console.log('update CourseInfo')
-                        res.send(update)
+												console.log('update CourseInfo')
+                        callback(null,update) 
                     }).catch((err)=>{
                         console.log('insert error')
                         res.json({ error: err })
@@ -55,7 +58,15 @@ exports.addStudentIntoCourse = function(req, res){
             }).catch((err)=>{
                 res.json({ error: err })
             })
-        }]
+				}],
+				coursePopulationOperation:['updateCourseInfo', function(update, callback){
+					seCourse.update({'courseId': courseId}, {$inc: { 'pupulation': 1 }})
+					.then((result)=>{
+						res.send(update.updateCourseInfo)
+					}).catch((err)=>{
+						res.json({error:err})
+					})
+				}]
     })
 }
 
