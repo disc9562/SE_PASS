@@ -9,9 +9,6 @@ let seAssignmentSchema = new Schema({
   coursename: {
     type: String
   },
-  TA: {
-    type: Array
-  },
   deadline: {
     type: String,
     required: true
