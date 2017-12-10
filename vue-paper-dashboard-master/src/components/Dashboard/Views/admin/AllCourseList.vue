@@ -5,9 +5,9 @@
           <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" api-url="https://vuetable.ratiw.net/api/users">
             <template slot="actions" scope="props">
                       <div class="table-button-container">
-                        <button class="btn btn-success btn-sm" @click="direct(props.rowData)">
+                        <button class="btn btn-success btn-sm" @click="courseInfo(props.rowData)">
                           <span class="glyphicon glyphicon-open-file"></span> 課程詳細內容</button>&nbsp;&nbsp;
-                        <button class="btn btn-danger btn-sm" @click="direct(props.rowData)">
+                        <button class="btn btn-danger btn-sm" @click="deleteCourse(props.rowData)">
                           <span class="glyphicon glyphicon-trash"></span> 刪除課程</button>&nbsp;&nbsp;
                       </div>
              </template>
@@ -81,10 +81,13 @@ export default {
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
     },
-    direct (rowData) {
+    courseInfo (rowData) {
       this.$router.push({
-        path: '/teacher/Course/assignmentList'
+        path: '/account/courseInfo'
       })
+    },
+    deleteCourse () {
+
     },
     onLoading () {
       console.log('loading... show your spinner here')

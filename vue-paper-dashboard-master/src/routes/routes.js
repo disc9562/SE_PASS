@@ -27,6 +27,7 @@ import AddCourse from 'src/components/Dashboard/Views/admin/AddCourse'
 import SignUp from 'src/components/Dashboard/Views/admin/SignUp'
 import AccountList from 'src/components/Dashboard/Views/admin/AccountList'
 import AllCourseList from 'src/components/Dashboard/Views/admin/AllCourseList'
+import CourseInfo from 'src/components/Dashboard/Views/admin/CourseInfo'
 
 const routes = [
   {
@@ -125,6 +126,11 @@ const routes = [
         path: 'allCourseList',
         name: 'allCourseList',
         component: AllCourseList
+      },
+      {
+        path: 'courseInfo',
+        name: 'courseInfo',
+        component: CourseInfo
       }
     ]
   },
