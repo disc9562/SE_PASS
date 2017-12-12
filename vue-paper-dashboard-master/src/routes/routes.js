@@ -16,10 +16,8 @@ import AddAssignment from 'src/components/Dashboard/Views/teacher/course/AddAssi
 // student
 import SearchGradeList from 'src/components/Dashboard/Views/student/SearchGradeList'
 import AssignmentListForStudent from 'src/components/Dashboard/Views/student/AssignmentListForStudent'
-import StudentProfile from 'src/components/Dashboard/Views/student/StudentProfile'
 
 // teacher
-import TeacherProfile from 'src/components/Dashboard/Views/teacher/TeacherProfile'
 import CourseList from 'src/components/Dashboard/Views/teacher/CourseList.vue'
 
 // account
@@ -28,6 +26,7 @@ import SignUp from 'src/components/Dashboard/Views/admin/SignUp'
 import AccountList from 'src/components/Dashboard/Views/admin/AccountList'
 import AllCourseList from 'src/components/Dashboard/Views/admin/AllCourseList'
 import CourseInfo from 'src/components/Dashboard/Views/admin/CourseInfo'
+import AssignCourse from 'src/components/Dashboard/Views/admin/AssignCourse'
 
 const routes = [
   {
@@ -44,11 +43,6 @@ const routes = [
         path: 'Course',
         name: 'Course',
         component: CourseList
-      },
-      {
-        path: 'profile',
-        name: 'profile',
-        component: TeacherProfile
       }
     ]
   },
@@ -94,11 +88,6 @@ const routes = [
         path: 'searchGradeList',
         name: 'searchGradeList',
         component: SearchGradeList
-      },
-      {
-        path: 'profile',
-        name: 'profile',
-        component: StudentProfile
       }
     ]
   },
@@ -131,6 +120,11 @@ const routes = [
         path: 'courseInfo',
         name: 'courseInfo',
         component: CourseInfo
+      },
+      {
+        path: 'assignCourse',
+        name: 'assignCourse',
+        component: AssignCourse
       }
     ]
   },

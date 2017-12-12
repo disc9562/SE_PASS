@@ -34,6 +34,11 @@ let seAccountSchema = new Schema({
   timeCreated: {
     type: Date,
     default: Date.now
-  } 
+  },
+  course:{
+    type: Array,
+    default: []
+  }
+
 })
 module.exports = mongoose.model('SeAccount', seAccountSchema)

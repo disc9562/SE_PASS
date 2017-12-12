@@ -22,6 +22,11 @@ const SidebarStore = {
       name: '新增課程',
       icon: 'glyphicon glyphicon-plus-sign',
       path: '/account/addCourse'
+    },
+    {
+      name: ' 選課',
+      icon: 'glyphicon glyphicon-plus-sign',
+      path: '/account/assignCourse'
     }
   ],
   displaySidebar (value) {

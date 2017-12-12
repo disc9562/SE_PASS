@@ -12,6 +12,11 @@ const SidebarStore = {
       name: '作業批改',
       icon: 'ti-pencil-alt2',
       path: '/teacher/Course/assignmentListForGrading'
+    },
+    {
+      name: '新增作業',
+      icon: 'ti-pencil-alt2',
+      path: '/teacher/Course/addAssignment'
     }
   ],
   displaySidebar (value) {

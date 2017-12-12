@@ -16,10 +16,6 @@
             <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
             </a>
           </li>
-            <div class="table-button-container" style="float:right;">
-             <button class="btn btn-primary btn-sm" @click="studentProfile()">
-              <span class="glyphicon glyphicon-user"></span> 設定個人資料</button>
-          </div>
         </ul>
       </div>
     </div>
@@ -53,11 +49,6 @@
       },
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
-      },
-      studentProfile () {
-        this.$router.push({
-          path: '/student/profile'
-        })
       }
     }
   }

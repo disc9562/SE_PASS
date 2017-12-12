@@ -10,17 +10,6 @@
         </button>
         <a class="navbar-brand">{{routeName}}</a>
       </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="open">
-            <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
-                <drop-down title="作業" icon="glyphicon glyphicon-plus">
-               <li><a href="#" v-on:click="assignment()">新增作業</a></li>
-             </drop-down>
-            </a>
-          </li>
-        </ul>
-      </div>
     </div>
   </nav>
 </template>
@@ -56,11 +45,6 @@
       setting () {
         this.$router.push({
           // path: '/setting'
-        })
-      },
-      assignment () {
-        this.$router.push({
-          path: '/teacher/Course/addAssignment'
         })
       }
     }

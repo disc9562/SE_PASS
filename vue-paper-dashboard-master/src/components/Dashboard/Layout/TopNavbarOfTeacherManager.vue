@@ -10,10 +10,6 @@
         </button>
         <a class="navbar-brand">{{routeName}}</a>
       </div>
-         <div class="table-button-container" style="float:right;">
-             <button class="btn btn-primary btn-sm" @click="teacherProfile()">
-              <span class="glyphicon glyphicon-user"></span> 設定個人資料</button>
-       </div>
     </div>
   </nav>
 </template>
@@ -45,11 +41,6 @@
       },
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
-      },
-      teacherProfile () {
-        this.$router.push({
-          path: '/teacher/profile'
-        })
       }
     }
   }

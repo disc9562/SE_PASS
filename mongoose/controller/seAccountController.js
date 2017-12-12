@@ -9,7 +9,6 @@ exports.create = function(req,res){
     'role' : req.body.role,
     'TA' : req.body.TA
   }
-   
     seAccount.insertMany(document)
     .then((result)=>{
       res.send(result)

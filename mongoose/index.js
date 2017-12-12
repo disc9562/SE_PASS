@@ -7,6 +7,7 @@ let express = require('express'),
 let SeAccount = require('./models/se_account')
 let SeCourse = require('./models/se_course')
 let SeCourseInfo = require('./models/se_courseInfo')
+const cors = require('cors')
 mongoose.Promise = global.Promise;
 if(process.env.NODE_ENV === 'CI'){
   mongoose.connect('mongodb://172.19.0.2:27017/frame')
@@ -22,6 +23,8 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With")
   next()
 })
+app.use(cors())
+app.options('*', cors())
 
 let seAccountRoute = require('./routes/seAccountRoute')
 let seCourseRoute = require('./routes/seCourseRoute')
