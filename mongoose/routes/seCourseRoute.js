@@ -6,4 +6,10 @@ module.exports = function (app){
 
     app.route('/api/addCourseSE')
     .post(seCourse.create)
+    
+    app.route('/api/getAllCourse')
+    .get(seCourse.getAllCourse)
+
+    app.route('/api/deleteCourse')
+    .post(seCourse.deleteCourse)
 }

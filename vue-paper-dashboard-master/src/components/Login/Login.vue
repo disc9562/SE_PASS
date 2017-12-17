@@ -37,7 +37,8 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
+import axios from 'axios'
 export default{
   data () {
     return {
@@ -60,8 +61,22 @@ export default{
         this.$router.push({
           path: '/account'
         })
+      } else {
+        axios.post('http://localhost:9090/api/login', {
+          id: this.account,
+          password: this.password
+        }).then((result) => {
+          this.actionLogin(result.data[0])
+          this.$router.push({
+            path: '/teacher'
+          })
+          console.log(result)
+        }).catch((err) => {
+          console.log(err)
+        })
       }
-    }
+    },
+    ...mapActions(['actionLogin'])
   }
 }
 </script>

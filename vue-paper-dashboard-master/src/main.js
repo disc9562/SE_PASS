@@ -19,6 +19,7 @@ import SideBarOfAccount from './components/UIComponents/SidebarPluginOfAccount'
 import routes from './routes/routes'
 
 // library imports
+import store from './store'
 import Chartist from 'chartist'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -60,6 +61,7 @@ new Vue({
   el: '#app',
   render: h => h(App),
   router,
+  store,
   data: {
     Chartist: Chartist
   },

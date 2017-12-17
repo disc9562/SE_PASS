@@ -47,9 +47,9 @@ const routes = [
     ]
   },
   {
-    path: '/teacher/Course',
+    path: '/teacher/Course/:courseId/',
     component: DashboardLayoutOfCourseManager,
-    redirect: '/teacher/Course/assignmentList',
+    redirect: '/teacher/Course/:courseId/assignmentList',
     children: [
       {
         path: 'assignmentList',

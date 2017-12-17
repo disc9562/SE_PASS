@@ -29,6 +29,7 @@
 
 <script>
 import uploadFile from '../uploadFile.vue'
+import { mapGetters } from 'vuex'
 export default {
   components: {
     uploadFile
@@ -82,6 +83,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['getUser', 'getRole', 'getId'])
   /* httpOptions(){
     return {headers: {'Authorization': "my-token"}} //table props -> :http-options="httpOptions"
   }, */

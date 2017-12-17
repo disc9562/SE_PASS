@@ -15,6 +15,7 @@ exports.addStudentIntoCourse = function(req, res){
         findStudent: function(callback){
             seAccount.find({id:studentId})
             .then((result)=>{
+                console.log(result)
                 // studentInfo = result[0]
                 callback(null, result[0])
             }).catch((err)=>{
@@ -34,7 +35,7 @@ exports.addStudentIntoCourse = function(req, res){
                     }
                     seCourseInfo.insertMany(document)
                     .then((result)=>{
-												console.log('new CourseInfo')
+					            console.log('new CourseInfo')
                         callback(null,result)
                     }).catch((err)=>{
                         res.json({ error: err })

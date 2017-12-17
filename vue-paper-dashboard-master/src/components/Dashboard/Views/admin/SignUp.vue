@@ -19,7 +19,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control"	v-model="userName"name="name" id="name"  placeholder="Enter your User Name"/>
+									<input type="text" class="form-control"	v-model="userName" name="name" id="name"  placeholder="Enter your User Name"/>
 								</div>
 							</div>
 						</div>

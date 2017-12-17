@@ -120,8 +120,9 @@
         this.$refs.vuetableForStudent.changePage(page)
       },
       deleteRow (rowData) {
-        // console.log(rowData.id)
-        axios.post('http://localhost:9090/api/deleteAccount/516516565')
+        axios.post('http://localhost:9090/api/deleteAccount', {
+          id: rowData.id
+        })
         .then((response) => {
           location.reload()
         }).catch((err) => {

@@ -56,7 +56,7 @@ exports.getAccountListByRole = function(req,res){
 
 exports.delete = function(req, res){
   console.log('delete')
-  seAccount.remove({id:req.params.id})
+  seAccount.remove({id:req.body.id})
   .then((result)=>{
     res.send(result)
   }).catch((err)=>{
@@ -67,7 +67,6 @@ exports.delete = function(req, res){
 exports.login = function(req, res){
   let id = req.body.id
   let password = req.body.password
-
   seAccount.find({'id': id})
   .then((result)=>{
     if(result.length === 0){

@@ -7,7 +7,7 @@ module.exports = function (app){
   app.route('/api/signupSE')
   .post(seAccount.create)
 
-  app.route('/api/deleteAccount/:id')
+  app.route('/api/deleteAccount')
   .post(seAccount.delete)
 
   app.route('/api/login')

@@ -13,7 +13,7 @@
         <input type="text" class="form-control" id="population" v-model="population">
       </div>
       <div class="form-group">
-        <label for="coursedescription">作業描述</label>
+        <label for="coursedescription">課程描述</label>
         <textarea class="form-control" id="coursedescription" rows="3" v-model="coursedescription"></textarea>
       </div>
       <button type="submit" class="btn btn-primary">新增課程</button>
