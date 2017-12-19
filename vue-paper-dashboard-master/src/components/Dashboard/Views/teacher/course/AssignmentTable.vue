@@ -1,5 +1,6 @@
 <template>
-       <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" api-url="apiUrl">
+<div class="card">
+       <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="apiUrl">
             <template slot="actions" scope="props">
                     <div class="table-button-container">
                       <div class="row">
@@ -23,6 +24,8 @@
                       </div>
              </template>
           </vuetable>
+         <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
+        </div>
 </template>
 <script>
 export default {
@@ -30,19 +33,19 @@ export default {
     return {
       fields: [
         {
-          name: 'name',
+          name: 'assignmentname',
           title: '<span class="orange glyphicon glyphicon-pencil"></span> 作業名稱',
-          sortField: 'name'
+          sortField: 'assignmentname'
         },
         {
-          name: 'email',
-          title: '<span class="orange fa fa-history"></span> 繳交情況',
-          sortField: 'email'
+          name: 'deadline',
+          title: '<span class="orange fa fa-history"></span> 繳交期限',
+          sortField: 'deadline'
         },
         {
-          name: 'gender',
-          title: '<span class="orange glyphicon glyphicon-time"></span> 繳交期限',
-          sortField: 'gender'
+          name: 'assignmentdescription',
+          title: '<span class="orange glyphicon glyphicon-time"></span> 作業描述',
+          sortField: 'assignmentdescription'
         },
         '__slot:actions',
         '__slot:actions2'
@@ -76,6 +79,10 @@ export default {
     }
   },
   props: ['apiUrl'],
+  mounted () {
+    console.log('*****************************')
+    console.log(this.apiUrl)
+  },
   methods: {
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)

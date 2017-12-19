@@ -1,10 +1,7 @@
 <template>
     <div class="row">
       <div class="col-md-12">
-         <div class="card">
            <assignment-table :apiUrl="this.apiUrl"></assignment-table>
-          <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
-        </div>
       </div>
     </div>
 </template>
@@ -19,6 +16,5 @@ export default {
   computed: {
     ...mapGetters({apiUrl: 'getCourseUrl'})
   }
-
 }
 </script>

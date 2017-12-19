@@ -6,27 +6,27 @@ const SidebarStore = {
     {
       name: '帳戶列表',
       icon: 'ti-view-list-alt',
-      path: '/account/accountList'
+      path: 'accountList'
     },
     {
       name: '課程列表',
       icon: 'ti-view-list-alt',
-      path: '/account/allCourseList'
+      path: 'allCourseList'
     },
     {
       name: '新增帳戶',
       icon: 'glyphicon glyphicon-plus-sign',
-      path: '/account/signUp'
+      path: 'signUp'
     },
     {
       name: '新增課程',
       icon: 'glyphicon glyphicon-plus-sign',
-      path: '/account/addCourse'
+      path: 'addCourse'
     },
     {
       name: ' 選課',
       icon: 'glyphicon glyphicon-plus-sign',
-      path: '/account/assignCourse'
+      path: 'assignCourse'
     }
   ],
   displaySidebar (value) {

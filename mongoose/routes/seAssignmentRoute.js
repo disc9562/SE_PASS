@@ -1,10 +1,10 @@
 module.exports = function (app){
-  let seCourse = require('../controller/seCourseController')
+  let seAssignment = require('../controller/seAssignmentController')
 
   app.route('/api/getAssignmentByCourse')
-  .get(seCourse.getCourseByTeacher)
+  .get(seAssignment.getAssignmentByCourse)
 
   app.route('/api/addAssignment')
-  .post(seCourse.create)
+  .post(seAssignment.addAssignment)
   
 }

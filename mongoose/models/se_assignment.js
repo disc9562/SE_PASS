@@ -6,11 +6,11 @@ let seAssignmentSchema = new Schema({
     required: true,
     unique: true
   },
-  coursename: {
+  courseid: {
     type: String
   },
   deadline: {
-    type: String,
+    type: Date,
     required: true
   },
   submit: {

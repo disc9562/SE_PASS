@@ -7,6 +7,7 @@ let express = require('express'),
 let SeAccount = require('./models/se_account')
 let SeCourse = require('./models/se_course')
 let SeCourseInfo = require('./models/se_courseInfo')
+let SeAssignment = require('./models/se_assignment')
 const cors = require('cors')
 mongoose.Promise = global.Promise;
 if(process.env.NODE_ENV === 'CI'){
@@ -27,12 +28,14 @@ app.use(cors())
 app.options('*', cors())
 
 let seAccountRoute = require('./routes/seAccountRoute')
+let seAssignmentRoute = require('./routes/seAssignmentRoute')
 let seCourseRoute = require('./routes/seCourseRoute')
 let seCourseInfoRoute = require('./routes/seCourseInfoRoute')
 
 seAccountRoute(app)
 seCourseRoute(app)
 seCourseInfoRoute(app)
+seAssignmentRoute(app)
 // catch 404 and forward to error handler
 
 app.use(function(req, res, next) {
