@@ -16,9 +16,11 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.14.0",
-    "moment": "^2.20.1",
+    "express-fileupload": "^0.3.0",
     "moment-timezone": "^0.5.14",
     "mongoose": "^4.13.4",
+    "rimraf": "^2.6.2",
+    "unzip": "^0.1.11",
     "validator": "^9.1.1"
   },
   "devDependencies": {

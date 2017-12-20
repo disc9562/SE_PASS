@@ -1,9 +1,10 @@
 let mongoose = require('mongoose'),
 seAssignment = mongoose.model('SeAssignment')
 let moment = require('moment-timezone')
-exports.addAssignment= function(req,res) 
+exports.addAssignment = function(req,res) 
 {
-  let deadline = moment(req.body.deadline).set({'hour':0,'minute':0,'second':0})
+  let setTime = req.body.deadline.split('-')
+  let deadline = moment.tz([parseInt(setTime[0]),parseInt(setTime[1]) - 1,parseInt(setTime[2]) + 1, 0, 0, 0, 0],'Asia/Taipei').format('YYYY-MM-DD')
   let document = {
     'assignmentname' : req.body.assignmentname,
     'courseid' : req.body.courseid,

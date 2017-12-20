@@ -5,15 +5,10 @@
                     <div class="table-button-container">
                       <div class="row">
                          <div class = "col-sm-5">
-                         <button class="btn btn-info btn-sm " id="get_file" value="Grab file" @click="relationToFile()">
-                         <span class="glyphicon glyphicon-cloud-upload"></span> 選擇測試腳本</button>
+                           <uploadFile :assignmentName="props.rowData.assignmentname" :courseName="courseName"></uploadFile>
                          <button class="btn btn-success btn-sm" @click="viewReport(props.rowData)">
                          <span class="glyphicon glyphicon-stats"></span> 查看報表</button>
-                        <input type="file" id="chooseScript" style="opacity: 0; overflow: hidden;width:0.1px;height:0.1px;" accept="file_extension"  class="inputfile" v-on:change="uploadTestScript" />                         
                         </div>
-                         <div class = "col-sm-7">
-                         <input type="text" class="form-control" id="scriptPath" size="5" disabled="disabled">
-                         </div>
                        </div>
                     </div>
             </template>
@@ -28,7 +23,12 @@
         </div>
 </template>
 <script>
+import uploadFile from '../../uploadFile.vue'
+import {mapGetters} from 'vuex'
 export default {
+  components: {
+    uploadFile
+  },
   data () {
     return {
       fields: [
@@ -78,21 +78,16 @@ export default {
       }
     }
   },
-  props: ['apiUrl'],
-  mounted () {
-    console.log('*****************************')
-    console.log(this.apiUrl)
+  computed: {
+    ...mapGetters({courseName: 'getCourseName'})
   },
+  props: ['apiUrl'],
   methods: {
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
     },
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
-    },
-    uploadTestScript (event) {
-      var scriptFile = event.target.files[0]
-      document.getElementById('scriptPath').value = scriptFile.name
     },
     deleteRow (rowData) {
       alert('You clicked delete on' + JSON.stringify(rowData))
@@ -102,9 +97,6 @@ export default {
     },
     onLoaded () {
       console.log('loaded! .. hide your spinner here')
-    },
-    relationToFile () {
-      document.getElementById('chooseScript').click()
     }
   }
 }

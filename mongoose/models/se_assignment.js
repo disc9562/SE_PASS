@@ -10,7 +10,7 @@ let seAssignmentSchema = new Schema({
     type: String
   },
   deadline: {
-    type: Date,
+    type: String,
     required: true
   },
   submit: {

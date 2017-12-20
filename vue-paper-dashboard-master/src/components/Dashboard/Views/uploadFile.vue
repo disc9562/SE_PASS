@@ -13,7 +13,8 @@
     <div class="example-btn">
         <file-upload
           class="btn btn-primary"
-          post-action="http://localhost:3000/upload"
+          post-action="http://localhost:9090/uploadByTeacher"
+          :data="data"
           extensions="gzip,7z,tar,xz,zip,rar"
           accept=".gzip,.7z,.tar,.xz,.zip,.rar"
           :size="1024 * 1024 * 1024"
@@ -39,8 +40,13 @@ export default {
   components: {
     FileUpload
   },
+  props: ['assignmentName', 'courseName'],
   data () {
     return {
+      data: {
+        'assignmentName': this.assignmentName,
+        'courseName': this.courseName
+      },
       files: []
     }
   }

@@ -25,7 +25,7 @@ var webpackConfig = {
       jQuery: "jquery",
       jquery: "jquery"
     })
-  ],*/
+  ], */
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     modules: [
@@ -38,6 +38,11 @@ var webpackConfig = {
       'assets': resolve('src/assets'),
       'components': resolve('src/components')
     }
+  },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
   },
   module: {
     rules: [
@@ -81,8 +86,8 @@ var esLintRule = {
   }
 }
 
-if(process.env.ENABLE_ESLINT && process.env.ENABLE_ESLINT === 'true'){
-  webpackConfig.module.rules.unshift(esLintRule) //add eslint
+if (process.env.ENABLE_ESLINT && process.env.ENABLE_ESLINT === 'true') {
+  webpackConfig.module.rules.unshift(esLintRule) // add eslint
 }
 
 module.exports = webpackConfig

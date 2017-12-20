@@ -73,6 +73,7 @@ exports.addStudentIntoCourse = function(req, res){
 
 exports.getStudentsList = function (req, res){
     let courseId = req.query.courseId
+    console.log('[cousrId]')
     console.log(courseId)
     let page = req.query.page
     let per_page = req.query.per_page

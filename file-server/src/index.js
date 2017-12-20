@@ -4,6 +4,8 @@ const unzip = require('unzip')
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
 const app = express()
+const os = require('os')
+const path = require('path')
 
 app.use(cors())
 app.options('*', cors())
@@ -12,6 +14,9 @@ app.options('/upload',fileUpload())
 
 const assignmentPath = 'C:/Users/user/Desktop/upload/'
 
+if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace'))){
+  fs.mkdirSync(path.join(os.homedir(),'seWorkSpace'))
+}
 app.post('/upload', function(req, res) {
   if (!req.files){
     return res.status(400).send('No files were uploaded.')

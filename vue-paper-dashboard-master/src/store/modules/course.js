@@ -1,22 +1,25 @@
 const state = {
   url: 'http://localhost:9090/api/getAssignmentByCourse?courseid=',
-  courseId: undefined
+  courseId: undefined,
+  courseName: undefined
 }
 
 const mutations = {
-  ENTERCOURSE (state, courseId) {
-    state.url = state.url + courseId
-    state.courseId = courseId
+  ENTERCOURSE (state, course) {
+    state.url = state.url + course._id
+    state.courseId = course._id
+    state.courseName = course.coursename
   },
   LEAVECOURSE (state) {
     state.url = 'http://localhost:9090/api/getAssignmentByCourse?courseid='
     state.courseId = undefined
+    state.courseName = undefined
   }
 }
 
 const actions = {
-  actionEnterCourse ({ commit }, courseId) {
-    commit('ENTERCOURSE', courseId)
+  actionEnterCourse ({ commit }, course) {
+    commit('ENTERCOURSE', course)
   },
   actionLeaveCourse ({ commit }) {
     commit('LEAVECOURSE')
@@ -25,7 +28,8 @@ const actions = {
 
 const getters = {
   getCourseUrl: state => state.url,
-  getCourseId: state => state.courseId
+  getCourseId: state => state.courseId,
+  getCourseName: state => state.courseName
 }
 
 export default {

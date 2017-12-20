@@ -8,7 +8,15 @@ let SeAccount = require('./models/se_account')
 let SeCourse = require('./models/se_course')
 let SeCourseInfo = require('./models/se_courseInfo')
 let SeAssignment = require('./models/se_assignment')
+
+const rimraf = require('rimraf')
+const fs = require('fs')
+const unzip = require('unzip')
+const fileUpload = require('express-fileupload')
 const cors = require('cors')
+const os = require('os')
+const path = require('path')
+
 mongoose.Promise = global.Promise;
 if(process.env.NODE_ENV === 'CI'){
   mongoose.connect('mongodb://172.19.0.2:27017/frame')
@@ -26,6 +34,8 @@ app.use(function(req, res, next) {
 })
 app.use(cors())
 app.options('*', cors())
+app.use(fileUpload())
+app.options('/upload',fileUpload())
 
 let seAccountRoute = require('./routes/seAccountRoute')
 let seAssignmentRoute = require('./routes/seAssignmentRoute')
@@ -36,16 +46,58 @@ seAccountRoute(app)
 seCourseRoute(app)
 seCourseInfoRoute(app)
 seAssignmentRoute(app)
-// catch 404 and forward to error handler
 
+
+let uploadFilePath
+app.post('/uploadByTeacher', function(req, res) {
+  if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace'))){
+    fs.mkdirSync(path.join(os.homedir(),'seWorkSpace'))
+  }
+  if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace',req.body.courseName))){
+    fs.mkdirSync(path.join(os.homedir(),'seWorkSpace',req.body.courseName))
+  }
+  uploadFilePath = path.join(os.homedir(),'seWorkSpace',req.body.courseName)
+
+  if (!req.files){
+    return res.status(400).send('No files were uploaded.')
+  }
+  req.files.file.mv(path.join(uploadFilePath,req.files.file.name), function(err) {
+    console.log(req.files.file.name)
+    if (err){
+      return res.status(500).send(err)
+    }
+    fs.createReadStream(path.join(uploadFilePath,req.files.file.name))
+    .pipe(unzip.Extract({ path:path.join( uploadFilePath , req.body.assignmentName + '_teacher') }))
+    .on('close', function () {
+      rimraf(path.join(uploadFilePath,req.files.file.name),function(){
+        res.send('File unzip!')
+      })
+    })
+  })
+})
+
+app.get('/download', function(req, res){
+  let file = 'C:/Users/user/Desktop/eclipse.zip'
+  if(!file){
+    return res.status(400).send('No files were downloaded.')
+  }
+  res.download(file,function(err){
+    if (err){
+      res.status(500).send(err)
+    }
+  }) 
+})
+
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
-  // error handlers
-  // development error handler
-  // will print stacktrace
+
+// error handlers
+// development error handler
+// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
   res.status(err.status || 500).send({
@@ -54,9 +106,7 @@ if (app.get('env') === 'development') {
     });
   });
 }
-  
-   
-  
+
   // production error handler
   // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
@@ -67,7 +117,6 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(port)
-
 console.log('todo list RESTful: ' + port)
 module.exports = app;
 

@@ -15,11 +15,11 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import jenkins from '../../../../../main/jenkins'
 let axios = require('axios')
 export default {
   data () {
     return {
-      // courseId: undefined,
       assignmentName: undefined,
       deadline: undefined,
       assignmentDescription: undefined
@@ -34,7 +34,7 @@ export default {
         assignmentdescription: this.assignmentDescription
       })
       .then((response) => {
-        console.log(response)
+        jenkins.createJob(response.data[0].courseid, this.courseName, response.data[0].assignmentname)
         this.$router.push({
           path: 'assignmentList'
         })
@@ -44,10 +44,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({courseId: 'getCourseId'})
-  /* httpOptions(){
-    return {headers: {'Authorization': "my-token"}} //table props -> :http-options="httpOptions"
-  }, */
+    ...mapGetters({courseId: 'getCourseId', courseName: 'getCourseName'})
   }
 
 }

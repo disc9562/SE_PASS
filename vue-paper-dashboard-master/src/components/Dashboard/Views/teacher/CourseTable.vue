@@ -86,7 +86,7 @@ export default {
       this.$refs.vuetable.changePage(page)
     },
     direct (rowData) {
-      this.actionEnterCourse(rowData._id)
+      this.actionEnterCourse(rowData)
       this.$router.push({
         path: '/teacher/Course/' + rowData._id + '/assignmentList'
       })
