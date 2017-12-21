@@ -15,15 +15,16 @@ exports.addStudentIntoCourse = function(req, res){
         findStudent: function(callback){
             seAccount.find({id:studentId})
             .then((result)=>{
-                console.log(result)
+                // console.log(result)
                 // studentInfo = result[0]
                 callback(null, result[0])
             }).catch((err)=>{
-                console.log('err')
+                // console.log('err')
                 res.json({ error: err })
             })
         },
         updateCourseInfo:['findStudent', function(studentInfo, callback){
+            console.log(studentInfo)
             seCourseInfo.find({'courseId':courseId})
             .then((result)=>{
                 return result
@@ -35,7 +36,7 @@ exports.addStudentIntoCourse = function(req, res){
                     }
                     seCourseInfo.insertMany(document)
                     .then((result)=>{
-					            console.log('new CourseInfo')
+					    console.log('new CourseInfo')
                         callback(null,result)
                     }).catch((err)=>{
                         res.json({ error: err })
@@ -46,16 +47,23 @@ exports.addStudentIntoCourse = function(req, res){
                         if(student.id === studentId)
                             res.json({ error: 'student is already in the course' })
                     }
+                    studentInfo.findStudent.course.push(courseId)
                     result[0].students.push(studentInfo.findStudent)
                     seCourseInfo.update({'_id':result[0]._id},result[0])
                     .then((update)=>{
-												console.log('update CourseInfo')
+						console.log('update CourseInfo')
                         callback(null,update) 
                     }).catch((err)=>{
                         console.log('insert error')
                         res.json({ error: err })
                     })
                 }
+                seAccount.update({'id':studentId},studentInfo.findStudent)
+                .then((update)=>{
+                    console.log(update)
+                }).catch((err)=>{
+                    res.json({ error: err })
+                })
             }).catch((err)=>{
                 res.json({ error: err })
             })
@@ -67,7 +75,7 @@ exports.addStudentIntoCourse = function(req, res){
 					}).catch((err)=>{
 						res.json({error:err})
 					})
-				}]
+                }]
     })
 }
 

@@ -3,21 +3,28 @@ const state = {
   isLogin: false,
   role: 'student',
   id: undefined,
-  url: 'http://localhost:9090/api/getCourseByTeacher?courseTeacher=',
+  url: undefined,
   metaData: {}
 }
 
 const mutations = {
   LOGIN (state, data) {
+    if (data.role[0] === 'teacher') {
+      state.url = 'http://localhost:9090/api/getCourseByTeacher?courseTeacher=' + data.username
+    } else if (data.role[0] === 'student') {
+      state.url = 'http://localhost:9090/api/getCourseByStudent?studentId=' + data.id
+    }
     state.isLogin = true
     state.role = data.role[0]
     state.id = data.id
     state.userName = data.username
-    state.url = state.url + data.username
   },
   LOGOUT (state) {
     state.isLogin = false
     state.userName = 'guest'
+    state.role = undefined
+    state.id = undefined
+    state.url = undefined
   },
   SYNC (state, metaData) {
     state.metaData = metaData

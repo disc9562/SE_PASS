@@ -3,29 +3,20 @@
        <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="apiUrl">
             <template slot="actions" scope="props">
                     <div class="table-button-container">
-
-
-                          <uploadFile :assignmentName="props.rowData.assignmentname" :courseName="courseName"></uploadFile>
-                         <button class="btn btn-success btn-sm" @click="viewReport(props.rowData)">
-                         <span class="glyphicon glyphicon-stats"></span> 查看報表</button>
+                         <button class="btn btn-success btn-sm" @click="enterCourse(props.rowData)">
+                         <span class="glyphicon glyphicon-stats"></span> 進入課程</button>
                     </div>
             </template>
-            <template slot="actions2" scope="props">
-                      <div class="table-button-container">
-                        <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
-                          <span class="glyphicon glyphicon-trash"></span> 刪除</button>
-                      </div>
-             </template>
           </vuetable>
          <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
         </div>
 </template>
 <script>
-import uploadFile from '../../uploadFile.vue'
+// import uploadFile from '../../uploadFile.vue'
 import {mapGetters} from 'vuex'
 export default {
   components: {
-    uploadFile
+    // uploadFile
   },
   data () {
     return {
@@ -79,7 +70,7 @@ export default {
   computed: {
     ...mapGetters({courseName: 'getCourseName'})
   },
-  props: ['apiUrl'],
+  props: ['apiUrl', 'id'],
   methods: {
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
@@ -87,8 +78,8 @@ export default {
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
     },
-    deleteRow (rowData) {
-      alert('You clicked delete on' + JSON.stringify(rowData))
+    enterCourse (rowData) {
+
     },
     onLoading () {
       console.log('loading... show your spinner here')

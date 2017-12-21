@@ -10,9 +10,8 @@
           <span v-else></span>
         </li>
     </ul>
-    <div class="example-btn">
         <file-upload
-          class="btn btn-primary"
+          class="btn btn-primary btn-sm"
           post-action="http://localhost:9090/uploadByTeacher"
           :data="data"
           extensions="gzip,7z,tar,xz,zip,rar"
@@ -23,15 +22,14 @@
           <i class="fa fa-plus"></i>
           選擇作業
         </file-upload>
-          <button type="button" class="btn btn-success" v-if="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true">
+          <button type="button" class="btn btn-success btn-sm" v-if="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true">
             <i class="fa fa-arrow-up" aria-hidden="true"></i>
             開始上傳
           </button>
-          <button type="button" class="btn btn-danger"  v-else @click.prevent="$refs.upload.active = false">
+          <button type="button" class="btn btn-danger btn-sm"  v-else @click.prevent="$refs.upload.active = false">
             <i class="fa fa-stop" aria-hidden="true"></i>
             停止上傳
           </button>
-    </div>
   </div>
 </template>
 <script>

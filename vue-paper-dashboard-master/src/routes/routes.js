@@ -2,6 +2,7 @@
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 
 import Login from 'src/components/Login/Login.vue'
+import StudentChooseCourse from 'src/components/StudentChooseCourse/StudentChooseCourse.vue'
 import DashboardLayoutOfAdminManager from '../components/Dashboard/Layout/DashboardLayoutOfAdminManager'
 import DashboardLayoutOfTeacherManager from '../components/Dashboard/Layout/DashboardLayoutOfTeacherManager'
 import DashboardLayoutOfCourseManager from '../components/Dashboard/Layout/DashboardLayoutOfCourseManager.vue'
@@ -33,6 +34,11 @@ const routes = [
     path: '/',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/studentChooseCourse/:studentId/',
+    name: 'StudentChooseCourse',
+    component: StudentChooseCourse
   },
   {
     path: '/teacher',

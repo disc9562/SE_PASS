@@ -46,18 +46,15 @@ export default{
       password: ''
     }
   },
-
+  mounted () {
+    this.init()
+  },
   methods: {
+    init () {
+      this.actionLogout()
+    },
     login () {
-      if (this.account === 'teacher') {
-        this.$router.push({
-          path: '/teacher/Course'
-        })
-      } else if (this.account === 'student') {
-        this.$router.push({
-          path: '/student'
-        })
-      } else if (this.account === 'admin') {
+      if (this.account === 'admin') {
         this.$router.push({
           path: '/account'
         })
@@ -67,16 +64,21 @@ export default{
           password: this.password
         }).then((result) => {
           this.actionLogin(result.data[0])
-          this.$router.push({
-            path: '/teacher'
-          })
-          console.log(result)
+          if (result.data[0].role[0] === 'teacher') {
+            this.$router.push({
+              path: '/teacher'
+            })
+          } else if (result.data[0].role[0] === 'student') {
+            this.$router.push({
+              path: '/studentChooseCourse'
+            })
+          }
         }).catch((err) => {
           console.log(err)
         })
       }
     },
-    ...mapActions(['actionLogin'])
+    ...mapActions(['actionLogin', 'actionLogout'])
   }
 }
 </script>
