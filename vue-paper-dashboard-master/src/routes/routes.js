@@ -81,9 +81,9 @@ const routes = [
   },
 
   {
-    path: '/student',
+    path: '/student/:courseId',
     component: DashboardLayoutOfStudent,
-    redirect: '/student/assignmentListForStudent',
+    redirect: '/student/:courseId/assignmentListForStudent',
     children: [
       {
         path: 'assignmentListForStudent',

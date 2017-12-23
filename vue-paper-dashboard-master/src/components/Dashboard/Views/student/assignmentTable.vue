@@ -3,52 +3,50 @@
        <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="apiUrl">
             <template slot="actions" scope="props">
                     <div class="table-button-container">
-                         <button class="btn btn-success btn-sm" @click="enterCourse(props.rowData)">
-                         <span class="glyphicon glyphicon-stats"></span> 進入課程</button>
+
+
+                          <uploadFile :assignmentName="props.rowData.assignmentname" :courseName="courseName"></uploadFile>
+                         <button class="btn btn-success btn-sm" @click="viewReport(props.rowData)">
+                         <span class="glyphicon glyphicon-stats"></span> 查看報表</button>
                     </div>
             </template>
+            <template slot="actions2" scope="props">
+                      <div class="table-button-container">
+                        <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
+                          <span class="glyphicon glyphicon-trash"></span> 刪除</button>
+                      </div>
+             </template>
           </vuetable>
          <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
         </div>
 </template>
 <script>
-// import uploadFile from '../../uploadFile.vue'
-import {mapGetters, mapActions} from 'vuex'
+import uploadFile from '../uploadFile.vue'
+import {mapGetters} from 'vuex'
 export default {
   components: {
-    // uploadFile
-  },
-  mounted () {
+    uploadFile
   },
   data () {
     return {
       fields: [
         {
-          name: 'coursename',
-          title: '<span class="orange glyphicon glyphicon-book"></span> 課程名稱',
-          sortField: 'name'
+          name: 'assignmentname',
+          title: '<span class="orange glyphicon glyphicon-pencil"></span> 作業名稱',
+          sortField: 'assignmentname'
         },
         {
-          name: 'courseteacher',
-          title: '助教',
-          sortField: 'email'
+          name: 'deadline',
+          title: '<span class="orange fa fa-history"></span> 繳交期限',
+          sortField: 'deadline'
         },
         {
-          name: 'classtime',
-          title: '助教',
-          sortField: 'email'
+          name: 'assignmentdescription',
+          title: '<span class="orange glyphicon glyphicon-time"></span> 作業描述',
+          sortField: 'assignmentdescription'
         },
-        {
-          name: 'population',
-          title: '人數',
-          sortField: 'gender'
-        },
-        {
-          name: 'coursedescription',
-          title: '人數',
-          sortField: 'gender'
-        },
-        '__slot:actions'
+        '__slot:actions',
+        '__slot:actions2'
       ],
       sortOrder: [
       { field: 'name', direction: 'asc' }
@@ -81,7 +79,7 @@ export default {
   computed: {
     ...mapGetters({courseName: 'getCourseName'})
   },
-  props: ['apiUrl', 'id'],
+  props: ['apiUrl'],
   methods: {
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
@@ -89,20 +87,15 @@ export default {
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
     },
-    enterCourse (rowData) {
-      console.log(rowData._id)
-      this.actionEnterCourse(rowData)
-      this.$router.push({
-        path: '/student/' + rowData._id + '/assignmentListForStudent'
-      })
+    deleteRow (rowData) {
+      alert('You clicked delete on' + JSON.stringify(rowData))
     },
     onLoading () {
       console.log('loading... show your spinner here')
     },
     onLoaded () {
       console.log('loaded! .. hide your spinner here')
-    },
-    ...mapActions(['actionEnterCourse'])
+    }
   }
 }
 </script>

@@ -14,7 +14,7 @@ export default {
     StudentTable
   },
   computed: {
-    ...mapGetters({apiUrl: 'getCourseUrl', id: 'getId'})
+    ...mapGetters({apiUrl: 'getUrl', id: 'getId'})
   }
 }
 </script>

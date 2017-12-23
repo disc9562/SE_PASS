@@ -4,6 +4,9 @@ module.exports = function (app){
     app.route('/api/getCourseByTeacher')
     .get(seCourse.getCourseByTeacher)
 
+    app.route('/api/getCourseByStudent')
+    .get(seCourse.getCourseByStudent)
+
     app.route('/api/addCourseSE')
     .post(seCourse.create)
     

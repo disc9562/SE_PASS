@@ -70,7 +70,7 @@ export default{
             })
           } else if (result.data[0].role[0] === 'student') {
             this.$router.push({
-              path: '/studentChooseCourse'
+              path: '/studentChooseCourse/' + result.data[0]._id
             })
           }
         }).catch((err) => {
