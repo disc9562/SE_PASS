@@ -38,6 +38,18 @@ let seAccountSchema = new Schema({
   course:{
     type: Array,
     default: []
+  },
+  assignmentDiscript:{
+    type:String,
+    default:'未評論'
+  },
+  submitAssignment:{
+    type:String,
+    default:'未繳交'
+  },
+  assignmentScore:{
+    type:String,
+    default:'未繳交'
   }
 
 })

@@ -6,17 +6,12 @@ const SidebarStore = {
     {
       name: '作業區',
       icon: 'ti-view-list-alt',
-      path: 'assignmentList'
-    },
-    {
-      name: '作業批改',
-      icon: 'ti-pencil-alt2',
-      path: 'assignmentListForGrading'
+      path: '/teacher/Course/assignmentList'
     },
     {
       name: '新增作業',
       icon: 'ti-pencil-alt2',
-      path: 'addAssignment'
+      path: '/teacher/Course/addAssignment'
     }
   ],
   displaySidebar (value) {

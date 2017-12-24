@@ -6,5 +6,8 @@ module.exports = function (app){
 
   app.route('/api/addAssignment')
   .post(seAssignment.addAssignment)
+
+  app.route('/api/getStudentListByAssignment')
+  .get(seAssignment.getStudentListByAssignment)
   
 }

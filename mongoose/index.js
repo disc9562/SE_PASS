@@ -75,7 +75,33 @@ app.post('/uploadByTeacher', function(req, res) {
     })
   })
 })
+app.post('/uploadByStudent', function(req, res) {
+  console.log(req)
+  if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace'))){
+    fs.mkdirSync(path.join(os.homedir(),'seWorkSpace'))
+  }
+  if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace',req.body.courseName))){
+    fs.mkdirSync(path.join(os.homedir(),'seWorkSpace',req.body.courseName))
+  }
+  uploadFilePath = path.join(os.homedir(),'seWorkSpace',req.body.courseName)
 
+  if (!req.files){
+    return res.status(400).send('No files were uploaded.')
+  }
+  req.files.file.mv(path.join(uploadFilePath,req.files.file.name), function(err) {
+    console.log(req.files.file.name)
+    if (err){
+      return res.status(500).send(err)
+    }
+    fs.createReadStream(path.join(uploadFilePath,req.files.file.name))
+    .pipe(unzip.Extract({ path:path.join( uploadFilePath , req.body.assignmentName +'_'+ req.body.studentId) }))
+    .on('close', function () {
+      rimraf(path.join(uploadFilePath,req.files.file.name),function(){
+        res.send('File unzip!')
+      })
+    })
+  })
+})
 app.get('/download', function(req, res){
   let file = 'C:/Users/user/Desktop/eclipse.zip'
   if(!file){

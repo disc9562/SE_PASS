@@ -88,7 +88,7 @@ export default {
     direct (rowData) {
       this.actionEnterCourse(rowData)
       this.$router.push({
-        path: '/teacher/Course/' + rowData._id + '/assignmentList'
+        path: '/teacher/Course/assignmentList'
       })
     },
     onLoading () {

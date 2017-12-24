@@ -12,7 +12,7 @@
     </ul>
         <file-upload
           class="btn btn-primary btn-sm"
-          post-action="http://localhost:9090/uploadByTeacher"
+          post-action="http://localhost:9090/uploadByStudent"
           :data="data"
           extensions="gzip,7z,tar,xz,zip,rar"
           accept=".gzip,.7z,.tar,.xz,.zip,.rar"
@@ -20,7 +20,7 @@
           v-model="files"
           ref="upload">
           <i class="fa fa-plus"></i>
-          選擇腳本
+          選擇作業
         </file-upload>
           <button type="button" class="btn btn-success btn-sm" v-if="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true">
             <i class="fa fa-arrow-up" aria-hidden="true"></i>
@@ -38,12 +38,13 @@ export default {
   components: {
     FileUpload
   },
-  props: ['assignmentName', 'courseName'],
+  props: ['assignmentName', 'courseName', 'studentId'],
   data () {
     return {
       data: {
         'assignmentName': this.assignmentName,
-        'courseName': this.courseName
+        'courseName': this.courseName,
+        'studentId': this.studentId
       },
       files: []
     }

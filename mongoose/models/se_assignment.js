@@ -13,11 +13,7 @@ let seAssignmentSchema = new Schema({
     type: String,
     required: true
   },
-  submit: {
-    type: Array,
-    default: []
-  },
-  comment: {
+  studentdetail: {
     type: Array,
     default: []
   },

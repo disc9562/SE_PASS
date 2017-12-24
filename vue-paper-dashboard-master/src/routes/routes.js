@@ -2,9 +2,9 @@
 import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 
 import Login from 'src/components/Login/Login.vue'
-import StudentChooseCourse from 'src/components/StudentChooseCourse/StudentChooseCourse.vue'
+import ChooseCourse from 'src/components/StudentChooseCourse/ChooseCourse.vue'
 import DashboardLayoutOfAdminManager from '../components/Dashboard/Layout/DashboardLayoutOfAdminManager'
-import DashboardLayoutOfTeacherManager from '../components/Dashboard/Layout/DashboardLayoutOfTeacherManager'
+import DashboardLayoutOfChooseCourse from '../components/Dashboard/Layout/DashboardLayoutOfChooseCourse'
 import DashboardLayoutOfCourseManager from '../components/Dashboard/Layout/DashboardLayoutOfCourseManager.vue'
 import DashboardLayoutOfStudent from '../components/Dashboard/Layout/DashboardLayoutOfStudent'
 
@@ -36,13 +36,8 @@ const routes = [
     component: Login
   },
   {
-    path: '/studentChooseCourse/:studentId/',
-    name: 'StudentChooseCourse',
-    component: StudentChooseCourse
-  },
-  {
     path: '/teacher',
-    component: DashboardLayoutOfTeacherManager,
+    component: DashboardLayoutOfChooseCourse,
     redirect: '/teacher/Course',
     children: [
       {
@@ -53,9 +48,9 @@ const routes = [
     ]
   },
   {
-    path: '/teacher/Course/:courseId/',
+    path: '/teacher/Course/',
     component: DashboardLayoutOfCourseManager,
-    redirect: '/teacher/Course/:courseId/assignmentList',
+    redirect: '/teacher/Course/assignmentList',
     children: [
       {
         path: 'assignmentList',
@@ -68,7 +63,7 @@ const routes = [
         component: GradingAssignment
       },
       {
-        path: 'assignmentListForGrading',
+        path: ':homeworkName/assignmentListForGrading',
         name: 'assignmentListForGrading',
         component: AssignmentListForGrading
       },
@@ -79,7 +74,18 @@ const routes = [
       }
     ]
   },
-
+  {
+    path: '/student/:studentId/',
+    component: DashboardLayoutOfChooseCourse,
+    redirect: 'student/:studentId/ChooseCourse',
+    children: [
+      {
+        path: 'ChooseCourse',
+        name: 'ChooseCourse',
+        component: ChooseCourse
+      }
+    ]
+  },
   {
     path: '/student/:courseId',
     component: DashboardLayoutOfStudent,

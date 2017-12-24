@@ -25,28 +25,23 @@ export default {
       fields: [
         {
           name: 'coursename',
-          title: '<span class="orange glyphicon glyphicon-book"></span> 課程名稱',
-          sortField: 'name'
+          title: '<span class="orange glyphicon glyphicon-book"></span> 課程名稱'
         },
         {
           name: 'courseteacher',
-          title: '助教',
-          sortField: 'email'
+          title: '授課導師'
         },
         {
           name: 'classtime',
-          title: '助教',
-          sortField: 'email'
+          title: '課程時間'
         },
         {
           name: 'population',
-          title: '人數',
-          sortField: 'gender'
+          title: '人數'
         },
         {
           name: 'coursedescription',
-          title: '人數',
-          sortField: 'gender'
+          title: '課程描述'
         },
         '__slot:actions'
       ],

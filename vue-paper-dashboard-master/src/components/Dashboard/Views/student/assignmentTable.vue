@@ -5,7 +5,7 @@
                     <div class="table-button-container">
 
 
-                          <uploadFile :assignmentName="props.rowData.assignmentname" :courseName="courseName"></uploadFile>
+                          <upload-for-student :assignmentName="props.rowData.assignmentname" :courseName="courseName" :studentId="studentId"></upload-for-student>
                          <button class="btn btn-success btn-sm" @click="viewReport(props.rowData)">
                          <span class="glyphicon glyphicon-stats"></span> 查看報表</button>
                     </div>
@@ -21,11 +21,11 @@
         </div>
 </template>
 <script>
-import uploadFile from '../uploadFile.vue'
+import uploadForStudent from '../uploadForStudent.vue'
 import {mapGetters} from 'vuex'
 export default {
   components: {
-    uploadFile
+    uploadForStudent
   },
   data () {
     return {
@@ -77,7 +77,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({courseName: 'getCourseName'})
+    ...mapGetters({courseName: 'getCourseName', studentId: 'getId'})
   },
   props: ['apiUrl'],
   methods: {

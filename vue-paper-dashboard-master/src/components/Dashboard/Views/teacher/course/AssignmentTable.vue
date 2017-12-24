@@ -1,16 +1,20 @@
 <template>
 <div class="card">
-       <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="apiUrl">
+       <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="apiUrl">
             <template slot="actions" scope="props">
-                    <div class="table-button-container">
-
-
-                          <uploadFile :assignmentName="props.rowData.assignmentname" :courseName="courseName"></uploadFile>
-                         <button class="btn btn-success btn-sm" @click="viewReport(props.rowData)">
-                         <span class="glyphicon glyphicon-stats"></span> 查看報表</button>
-                    </div>
+              <div class="table-button-container">
+                  <uploadFile :assignmentName="props.rowData.assignmentname" :courseName="courseName"></uploadFile>
+              </div>
             </template>
             <template slot="actions2" scope="props">
+              <div class="table-button-container">
+                <button class="btn btn-success btn-sm" @click="enterAssignment(props.rowData)">
+                <span class="glyphicon glyphicon-stats"></span> 作業批改</button>
+                <button class="btn btn-success btn-sm" @click="viewReport(props.rowData)">
+                <span class="glyphicon glyphicon-stats"></span> 查看報表</button>
+              </div>
+            </template>
+            <template slot="actions3" scope="props">
                       <div class="table-button-container">
                         <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
                           <span class="glyphicon glyphicon-trash"></span> 刪除</button>
@@ -22,7 +26,7 @@
 </template>
 <script>
 import uploadFile from '../../uploadFile.vue'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 export default {
   components: {
     uploadFile
@@ -32,21 +36,19 @@ export default {
       fields: [
         {
           name: 'assignmentname',
-          title: '<span class="orange glyphicon glyphicon-pencil"></span> 作業名稱',
-          sortField: 'assignmentname'
+          title: '<span class="orange glyphicon glyphicon-pencil"></span> 作業名稱'
         },
         {
           name: 'deadline',
-          title: '<span class="orange fa fa-history"></span> 繳交期限',
-          sortField: 'deadline'
+          title: '<span class="orange fa fa-history"></span> 繳交期限'
         },
         {
           name: 'assignmentdescription',
-          title: '<span class="orange glyphicon glyphicon-time"></span> 作業描述',
-          sortField: 'assignmentdescription'
+          title: '<span class="orange glyphicon glyphicon-time"></span> 作業描述'
         },
         '__slot:actions',
-        '__slot:actions2'
+        '__slot:actions2',
+        '__slot:actions3'
       ],
       sortOrder: [
       { field: 'name', direction: 'asc' }
@@ -80,8 +82,14 @@ export default {
     ...mapGetters({courseName: 'getCourseName'})
   },
   props: ['apiUrl'],
+  mounted () {
+    console.log('this.init')
+    this.init()
+  },
   methods: {
     onPaginationData (paginationData) {
+      console.log('*****paginationData******')
+      console.log(paginationData)
       this.$refs.pagination.setPaginationData(paginationData)
     },
     onChangePage (page) {
@@ -93,9 +101,20 @@ export default {
     onLoading () {
       console.log('loading... show your spinner here')
     },
+    enterAssignment (rowData) {
+      console.log(rowData)
+      this.actionaddAssignment(rowData.assignmentname)
+      this.$router.push({
+        path: rowData.assignmentname + '/assignmentListForGrading'
+      })
+    },
     onLoaded () {
       console.log('loaded! .. hide your spinner here')
-    }
+    },
+    init () {
+      this.initAssignmentUrl()
+    },
+    ...mapActions(['actionaddAssignment', 'initAssignmentUrl'])
   }
 }
 </script>
