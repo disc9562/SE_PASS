@@ -10,4 +10,7 @@ module.exports = function (app){
   app.route('/api/getStudentListByAssignment')
   .get(seAssignment.getStudentListByAssignment)
   
+  app.route('/api/updateAssignmentGrade')
+  .post(seAssignment.updateAssignmentGrade)
+  
 }

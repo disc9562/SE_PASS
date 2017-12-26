@@ -86,8 +86,9 @@ export default {
       this.$refs.vuetable.changePage(page)
     },
     correctAssignment (rowData) {
+      this.selectstudent(rowData)
       this.$router.push({
-        path: 'gradingAssignment'
+        path: '/teacher/Course/gradingAssignment'
       })
     },
     downLoadAssignment (rowData) {
@@ -104,7 +105,7 @@ export default {
     onLoaded () {
       console.log('loaded! .. hide your spinner here')
     },
-    ...mapActions(['actionaddAssignment'])
+    ...mapActions(['actionaddAssignment', 'selectstudent'])
   }
 }
 </script>

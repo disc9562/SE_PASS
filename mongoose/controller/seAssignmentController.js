@@ -48,7 +48,6 @@ exports.getAssignmentByCourse = function(req, res){
   let vuetableFormat = {}
   seAssignment.find({courseid:courseid})
   .then((result)=>{
-    console.log(result)
     if(result.length % 10 === 0 && result.length !== 0){
       last_page = result.length / 10
     }
@@ -109,9 +108,59 @@ exports.getStudentListByAssignment = function(req, res){
     vuetableFormat.from = 1 + 10 * (current_page - 1)
     vuetableFormat.to = 10 * current_page
     vuetableFormat.data = result[0].studentdetail.slice(vuetableFormat.from - 1 , vuetableFormat.to)
-    console.log(vuetableFormat.data)
     res.json(vuetableFormat)
   }).catch((err)=>{
     res.json({'error':err})
   })
+}
+
+exports.updateAssignmentGrade = function(req,res) 
+{
+  console.log(req.body)
+  seAssignment.find({'req.body.assignmentName':req.body.assignemtName
+  }).then(result=>{
+    console.log(result)
+  }).catch(err=>{
+    console.log(err)
+  })
+  // seAssignment.update(
+  //   {'studentdetail.id':req.body.studentId}
+  //   ,{$set:{
+  //   'studentdetail.assignmentDiscript':req.body.description,
+  //   'studentdetail.submitAssignment':'已繳交',
+  //   'studentdetail.assignmentScore':req.body.score
+  //   }}).then(result=>{
+  //     console.log(result)
+  //   }).catch(err=>{
+  //     console.log(err)
+  //   })
+   
+  // let document = {
+  //   'assignmentname' : req.body.assignmentname,
+  //   'courseid' : req.body.courseid,
+  //   'deadline' : req.body.deadline ,
+  //   'assignmentdescription' : req.body.assignmentdescription
+  // }
+  // seAssignment.insertMany(document)
+  //   .then((result)=>{
+  //     seCourseInfo.find({
+  //       'courseId': req.body.courseid
+  //     })
+  //     .then((courseInfo)=>{
+  //       seAssignment.update(
+  //         {'assignmentname':req.body.assignmentname}
+  //         ,{$set:{
+  //         'studentdetail':courseInfo[0].students,
+  //         }})
+  //       .then((update)=>{
+  //         console.log(update)
+  //       })
+  //     })
+  //   })
+  //   .then((result)=>{
+  //     res.send(result)
+  //   }).catch((err)=>{
+  //     res.json({ error: err })
+  //   })
+
 }
