@@ -17,10 +17,15 @@ exports.addAssignment = function(req,res)
         'courseId': req.body.courseid
       })
       .then((courseInfo)=>{
+        let studentList = []
+        courseInfo[0].students.forEach(student=>{
+          studentList.push(student)
+        })
+        console.log(studentList)
         seAssignment.update(
           {'assignmentname':req.body.assignmentname}
           ,{$set:{
-          'studentdetail':courseInfo[0].students,
+            'studentdetail':studentList,
           }})
         .then((update)=>{
           console.log(update)
@@ -117,12 +122,18 @@ exports.getStudentListByAssignment = function(req, res){
 exports.updateAssignmentGrade = function(req,res) 
 {
   console.log(req.body)
-  seAssignment.find({'req.body.assignmentName':req.body.assignemtName
-  }).then(result=>{
-    console.log(result)
-  }).catch(err=>{
-    console.log(err)
-  })
+  // seAssignment.find({assignmentname:req.body.assignmentName}).then(result=>{
+  //   console.log(result[0].studentdetail[0].username)
+  // }).catch(err=>{
+  //   console.log(err)
+  // })
+  seAssignment.update({'studentdetail.id': req.body.studentId,'courseid':req.body.courseId,'assignmentname':req.body.assignmentName}, {'$set': {
+    'studentdetail.$.assignmentDiscript': req.body.description,
+    'studentdetail.$.assignmentScore': req.body.score
+}})
+.then((update)=>{
+  console.log(update)
+})
   // seAssignment.update(
   //   {'studentdetail.id':req.body.studentId}
   //   ,{$set:{

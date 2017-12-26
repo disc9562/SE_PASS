@@ -34,7 +34,8 @@ export default {
         score: this.score,
         description: this.description,
         studentName: this.studentName,
-        assignmentName: this.assignmentName
+        assignmentName: this.assignmentName,
+        courseId: this.courseId
       })
       this.$router.push({
         path: `/teacher/Course/${this.assignmentName}/assignmentListForGrading`
@@ -42,7 +43,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({studentId: 'getStudentId', studentName: 'getStudent', assignmentName: 'getAssignmentName', courseId: ''})
+    ...mapGetters({studentId: 'getStudentId', studentName: 'getStudent', assignmentName: 'getAssignmentName', courseId: 'getCourseId'})
   }
 }
 </script>
