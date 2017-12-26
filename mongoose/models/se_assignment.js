@@ -3,8 +3,7 @@ let Schema = mongoose.Schema
 let seAssignmentSchema = new Schema({
   assignmentname: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   courseid: {
     type: String

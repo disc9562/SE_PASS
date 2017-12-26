@@ -1,22 +1,25 @@
 const state = {
   url: 'http://localhost:9090/api/getStudentListByAssignment?assignmentName=',
-  assignmentName: undefined
+  assignmentName: undefined,
+  courseId: undefined
 }
 
 const mutations = {
-  ADDASIGNMENT (state, assignmentName) {
-    state.assignmentName = assignmentName
-    state.url = state.url + assignmentName
+  ADDASIGNMENT (state, data) {
+    console.log(data)
+    state.assignmentName = data.assignmentname
+    state.url = state.url + data.assignmentname + '&courseId=' + data.courseid
   },
   INITASSIGNMENTURL (state) {
     state.url = 'http://localhost:9090/api/getStudentListByAssignment?assignmentName='
     state.assignmentName = undefined
+    state.courseId = undefined
   }
 }
 
 const actions = {
-  actionaddAssignment ({ commit }, assignmentName) {
-    commit('ADDASIGNMENT', assignmentName)
+  actionaddAssignment ({ commit }, data) {
+    commit('ADDASIGNMENT', data)
   },
   initAssignmentUrl ({commit}) {
     commit('INITASSIGNMENTURL')

@@ -81,9 +81,8 @@ export default {
   computed: {
     ...mapGetters({courseName: 'getCourseName'})
   },
-  props: ['apiUrl'],
+  props: ['apiUrl', 'courseid'],
   mounted () {
-    console.log('this.init')
     this.init()
   },
   methods: {
@@ -102,8 +101,8 @@ export default {
       console.log('loading... show your spinner here')
     },
     enterAssignment (rowData) {
-      console.log(rowData)
-      this.actionaddAssignment(rowData.assignmentname)
+      rowData.courseid = this.courseid
+      this.actionaddAssignment(rowData)
       this.$router.push({
         path: rowData.assignmentname + '/assignmentListForGrading'
       })

@@ -23,7 +23,7 @@ exports.addAssignment = function(req,res)
         })
         console.log(studentList)
         seAssignment.update(
-          {'assignmentname':req.body.assignmentname}
+          {'assignmentname':req.body.assignmentname,'courseid':req.body.courseid}
           ,{$set:{
             'studentdetail':studentList,
           }})
@@ -84,15 +84,17 @@ exports.getAssignmentByCourse = function(req, res){
 }
 
 exports.getStudentListByAssignment = function(req, res){
+  console.log(req.query)
   let page = req.query.page
   let per_page = req.query.per_page
   let assignmentName = req.query.assignmentName
+  let courseId = req.query.courseId
   let current_page = 1
   let last_page = 1
   let prev_page_url = null
   let domain = "http://140.124.181.149:9090/api"
   let vuetableFormat = {}
-  seAssignment.find({'assignmentname':assignmentName})
+  seAssignment.find({'assignmentname':assignmentName, 'courseid':courseId})
   .then((result)=>{
 
     if(result.length % 10 === 0 && result.length !== 0){
