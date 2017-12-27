@@ -1,4 +1,6 @@
 
+var fstream = require('fstream'),
+    zlib = require('zlib');
 let express = require('express'),
     app = express(),
     port = process.env.PORT || 9090,
@@ -9,6 +11,7 @@ let SeCourse = require('./models/se_course')
 let SeCourseInfo = require('./models/se_courseInfo')
 let SeAssignment = require('./models/se_assignment')
 
+const async = require('async');
 const rimraf = require('rimraf')
 const fs = require('fs')
 const unzip = require('unzip')
@@ -50,6 +53,61 @@ seAssignmentRoute(app)
 
 let uploadFilePath
 app.post('/uploadByTeacher', function(req, res) {
+  if(fs.existsSync(path.join(os.homedir(),'seWorkSpace',req.body.courseName,req.body.assignmentName +'_teacher')))
+  {
+    rimraf(path.join(os.homedir(),'seWorkSpace',req.body.courseName,req.body.assignmentName +'_teacher'),function(){
+      console.log('Reomove File!')
+      uploadFileFromTeacher(req, res)
+    })
+  }
+  else{
+    uploadFileFromTeacher(req, res)
+  }
+})
+app.post('/uploadByStudent', function(req, res) {
+  if(fs.existsSync(path.join(os.homedir(),'seWorkSpace',req.body.courseName,req.body.assignmentName +'_'+req.body.studentId)))
+  {
+    rimraf(path.join(os.homedir(),'seWorkSpace',req.body.courseName,req.body.assignmentName +'_'+req.body.studentId),function(){
+      console.log('Reomove File!')
+      uploadFileFromStudent(req, res)
+    })
+  }
+  else{
+  uploadFileFromStudent(req, res)
+  }
+})
+app.get('/download', function(req, res){
+  console.log('compressFilePath')    
+  // let assignmentPath =path.join(os.homedir(),'seWorkSpace',req.query.courseName,req.query.assignmentName +'_'+req.query.id)  
+  // async.auto({
+    // compressFile:function(){
+      // console.log(`compressFilePath:${assignmentPath}`)
+      //  fstream.Reader({ 'path': assignmentPath , 'type': 'Directory' }) /* Read the source directory */
+      // .pipe(zlib.Gzip()) /* Compress the .tar file */
+      // .pipe(fstream.Writer({ 'path': assignmentPath +'.gz'}))
+      // console.log('compressFile finish')
+    // },
+      console.log('download')
+      let file = path.join(os.homedir(),'seWorkSpace',req.query.courseName,req.query.assignmentName +'_'+req.query.id +'.zip')
+      if(!file){
+        return res.status(400).send('No files were downloaded.')
+        }
+      res.download(file,function(err){
+        if (err){
+          res.status(500).send(err)
+        }
+        else{
+          console.log('downloading')
+        }
+      }) 
+ 
+  })
+ 
+function compressFile(path) {
+
+}
+
+function uploadFileFromTeacher(req, res){
   if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace'))){
     fs.mkdirSync(path.join(os.homedir(),'seWorkSpace'))
   }
@@ -67,16 +125,15 @@ app.post('/uploadByTeacher', function(req, res) {
       return res.status(500).send(err)
     }
     fs.createReadStream(path.join(uploadFilePath,req.files.file.name))
-    .pipe(unzip.Extract({ path:path.join( uploadFilePath , req.body.assignmentName + '_teacher') }))
+    .pipe(unzip.Extract({ path:path.join( uploadFilePath , req.body.assignmentName +'_teacher') }))
     .on('close', function () {
       rimraf(path.join(uploadFilePath,req.files.file.name),function(){
         res.send('File unzip!')
       })
     })
   })
-})
-app.post('/uploadByStudent', function(req, res) {
-  console.log(req)
+}
+function uploadFileFromStudent(req, res){
   if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace'))){
     fs.mkdirSync(path.join(os.homedir(),'seWorkSpace'))
   }
@@ -96,24 +153,12 @@ app.post('/uploadByStudent', function(req, res) {
     fs.createReadStream(path.join(uploadFilePath,req.files.file.name))
     .pipe(unzip.Extract({ path:path.join( uploadFilePath , req.body.assignmentName +'_'+ req.body.studentId) }))
     .on('close', function () {
-      rimraf(path.join(uploadFilePath,req.files.file.name),function(){
+      // rimraf(path.join(uploadFilePath,req.files.file.name),function(){
         res.send('File unzip!')
-      })
+      // })
     })
   })
-})
-app.get('/download', function(req, res){
-  let file = 'C:/Users/user/Desktop/eclipse.zip'
-  if(!file){
-    return res.status(400).send('No files were downloaded.')
-  }
-  res.download(file,function(err){
-    if (err){
-      res.status(500).send(err)
-    }
-  }) 
-})
-
+}
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -1,6 +1,6 @@
 <template>
 <div class="row">
-  <assignment-list-for-grading-table :apiUrl="this.apiUrl"> </assignment-list-for-grading-table>
+  <assignment-list-for-grading-table :assignment="this.assignmentName" :courseNameBefore="this.courseNameBefore" :apiUrl="this.apiUrl"> </assignment-list-for-grading-table>
 </div>
 </template>
 <script>
@@ -11,7 +11,7 @@ export default {
     AssignmentListForGradingTable
   },
   computed: {
-    ...mapGetters({apiUrl: 'getAssignmentUrl'})
+    ...mapGetters({apiUrl: 'getAssignmentUrl', assignmentName: 'getAssignmentName', courseNameBefore: 'getCourseName'})
   }
 }
 </script>

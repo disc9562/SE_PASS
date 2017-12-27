@@ -34,10 +34,11 @@ app.post('/upload', function(req, res) {
 })
 
 app.get('/download', function(req, res){
-  let file = 'C:/Users/user/Desktop/eclipse.zip'
+  let file = 'C:/Users/OnePlay/Desktop/TaipeiData.zip'
+  console.log('oqlwkeopqwke')
   if(!file){
     return res.status(400).send('No files were downloaded.')
-  }
+  }~
   res.download(file,function(err){
     if (err){
       res.status(500).send(err)

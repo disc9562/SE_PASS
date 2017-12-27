@@ -3,8 +3,10 @@
   <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="apiUrl">
     <template slot="actions" scope="props">
       <div class="table-button-container">
-        <button class="btn btn-primary btn-sm" @click="downLoadAssignment(props.rowData)">
-          <span class="glyphicon glyphicon-pencil"></span> 下載作業</button>&nbsp;&nbsp;           
+        <button class="btn btn-primary btn-sm">
+          <span class="glyphicon glyphicon-pencil"></span>
+          <a :href="downloadUrl" download>下載作業</a>
+        </button>&nbsp;&nbsp;           
         <button class="btn btn-success btn-sm" @click="correctAssignment(props.rowData)">
           <span class="glyphicon glyphicon-pencil"></span> 作業批改</button>&nbsp;&nbsp;
       </div>
@@ -14,7 +16,6 @@
 </div>
 </template>
 <script>
-import axios from 'axios'
 import uploadFile from '../../uploadFile.vue'
 import {mapGetters, mapActions} from 'vuex'
 export default {
@@ -23,6 +24,7 @@ export default {
   },
   data () {
     return {
+      downloadUrl: undefined,
       fields: [{
         name: 'id',
         title: '<span class="orange fa fa-address-card"></span> ID'
@@ -74,10 +76,14 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapGetters({courseName: 'getCourseName'})
+  mounted () {
+    this.downloadUrl = 'http://localhost:9090/download' + '?id=' + this.id + '&assignmentName=' + this.assignment + '&courseName=' + this.courseNameBefore
+    console.log(this.downloadUrl)
   },
-  props: ['apiUrl'],
+  computed: {
+    ...mapGetters({courseName: 'getCourseName', assignmentName: 'getAssignmentName'})
+  },
+  props: ['apiUrl', 'assignment', 'courseNameBefore'],
   methods: {
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
@@ -89,14 +95,6 @@ export default {
       this.selectstudent(rowData)
       this.$router.push({
         path: '/teacher/Course/gradingAssignment'
-      })
-    },
-    downLoadAssignment (rowData) {
-      axios.get('http://localhost:9090/download', {
-        params: {
-          courseName: rowData
-          // assignmentName:
-        }
       })
     },
     onLoading () {
