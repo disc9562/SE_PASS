@@ -15,9 +15,12 @@ Create One ${role} Account And Verify It
     Click Element    xpath://option[text()='${role}']
     Click Button    xpath://button[contains(text(),'Register')]
     Click Element    xpath://*[contains(text(),"帳戶列表")]
+    Click Element    xpath://*[contains(@href,'#${role}')]
+    Wait Until Element Is Visible    xpath://*[contains(@id,'${role}')]
+    Sleep    2s    
     Run Keyword If    '${role}'=='student'    Create Student List    ${role}
     ...    ELSE    Create Teacher List    ${role}
-    @{actaulItems}=    Get WebElements    xpath://*[@id='${role}']//tr[@item-index='0']/td[not(contains(@class,'vuetable-slot'))]
+    @{actaulItems}=    Get WebElements    xpath://*[contains(text(),'${role}01')]/../*[not(contains(@class,'vuetable-slot'))]
     Log    ${actaulItems.__len__()}
     Log Many    @{expectItems}
     :FOR    ${index}    ${actaulItem}    IN ENUMERATE    @{actaulItems}
