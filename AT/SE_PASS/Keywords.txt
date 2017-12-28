@@ -1,0 +1,22 @@
+*** Setting ***
+Library    Selenium2Library    implicit_wait=3s
+
+*** Variable ***
+${role}    admin
+${browser}    chrome
+${dcTrackURL}    http://localhost:1234/
+${admin_password}    1234
+&{admin}    name=admin    password=${admin_password}
+&{windowSize}    width=1920    height=1080
+${userNameField}    xpath://input[@id='username']
+${passwordField}    xpath://input[@id='password']
+${loginButton}    xpath://button[@id='login-submit']
+
+*** Keywords ***
+Open Browser And Login As ${role}
+    Open Browser    ${dcTrackURL}    ${browser}
+    Set Window Size    ${windowSize.width}    ${windowSize.height}
+    Input Text    ${userNameField}    ${${role}.name}
+    Input Password    ${passwordField}    ${${role}.password}
+    Click Button    ${loginButton}
+

@@ -1,0 +1,34 @@
+*** Setting ***
+Library    Selenium2Library    implicit_wait=3s
+
+*** Variables ***
+@{expectItems}    ${EMPTY}
+
+*** Keywords ***        
+Create One ${role} Account And Verify It
+    Click Element    xpath://*[contains(text(),"新增帳戶")]
+    Input Text    xpath://input[@id='username']    ${role}01
+    Input Text    xpath://input[@id='name']    ${role}
+    Input Text    xpath://input[@id='password']    1234 
+    Input Text    xpath://input[@id='confirm']    1234
+    Input Text    xpath://input[@id='email']    ${role}01@yahoo.com.tw
+    Click Element    xpath://option[text()='${role}']
+    Click Button    xpath://button[contains(text(),'Register')]
+    Click Element    xpath://*[contains(text(),"帳戶列表")]
+    Run Keyword If    '${role}'=='student'    Create Student List    ${role}
+    ...    ELSE    Create Teacher List    ${role}
+    @{actaulItems}=    Get WebElements    xpath://*[@id='${role}']//tr[@item-index='0']/td[not(contains(@class,'vuetable-slot'))]
+    Log    ${actaulItems.__len__()}
+    Log Many    @{expectItems}
+    :FOR    ${index}    ${actaulItem}    IN ENUMERATE    @{actaulItems}
+    \    Should Be Equal        @{expectItems}[${index}]    ${actaulItem.text}
+
+Create Student List
+    [Arguments]    ${role}
+    @{expectItems}=    Create List    ${role}01    ${role}    ${role}01@yahoo.com.tw    No
+    Set Suite Variable    @{expectItems}
+
+Create Teacher List
+    [Arguments]    ${role}
+    @{expectItems}=    Create List    ${role}01    ${role}    ${role}01@yahoo.com.tw
+    Set Suite Variable    @{expectItems}
