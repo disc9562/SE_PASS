@@ -13,7 +13,7 @@ import AssignmentList from 'src/components/Dashboard/Views/teacher/course/Assign
 import AssignmentListForGrading from 'src/components/Dashboard/Views/teacher/course/AssignmentListForGrading'
 import GradingAssignment from 'src/components/Dashboard/Views/teacher/course/GradingAssignment'
 import AddAssignment from 'src/components/Dashboard/Views/teacher/course/AddAssignment'
-
+import Report from 'src/components/Dashboard/Views/teacher/course/report'
 // student
 import SearchGradeList from 'src/components/Dashboard/Views/student/SearchGradeList'
 import AssignmentListForStudent from 'src/components/Dashboard/Views/student/AssignmentListForStudent'
@@ -56,6 +56,10 @@ const routes = [
         path: 'assignmentList',
         name: 'assignmentList',
         component: AssignmentList
+      },
+      {
+        path: 'report/:assignmentId',
+        component: Report
       },
       {
         path: 'gradingAssignment',

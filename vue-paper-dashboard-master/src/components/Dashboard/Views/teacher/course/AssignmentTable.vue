@@ -113,7 +113,14 @@ export default {
     init () {
       this.initAssignmentUrl()
     },
-    ...mapActions(['actionaddAssignment', 'initAssignmentUrl'])
+    viewReport (rowData) {
+      this.actionAddAssignmentId(rowData._id)
+      this.$router.push({
+        path: 'report/' + rowData._id
+      })
+      // console.log(rowData)
+    },
+    ...mapActions(['actionaddAssignment', 'initAssignmentUrl', 'actionAddAssignmentId'])
   }
 }
 </script>

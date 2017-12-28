@@ -122,19 +122,18 @@ exports.getStudentListByAssignment = function(req, res){
   })
 }
 
-exports.updateAssignmentGrade = function(req,res) 
-{
+exports.updateAssignmentGrade = function(req,res){
   console.log(req.body)
   // seAssignment.find({assignmentname:req.body.assignmentName}).then(result=>{
   //   console.log(result[0].studentdetail[0].username)
   // }).catch(err=>{
   //   console.log(err)
   // })
-  seAssignment.update({'studentdetail.id': req.body.studentId,'courseid':req.body.courseId,'assignmentname':req.body.assignmentName}, {'$set': {
+  seAssignment.update(
+    {'studentdetail.id': req.body.studentId,'courseid':req.body.courseId,'assignmentname':req.body.assignmentName}, {'$set': {
     'studentdetail.$.assignmentDiscript': req.body.description,
     'studentdetail.$.assignmentScore': req.body.score
-}})
-.then((update)=>{
+}}).then((update)=>{
   console.log(update)
 })
   // seAssignment.update(
@@ -177,4 +176,43 @@ exports.updateAssignmentGrade = function(req,res)
   //     res.json({ error: err })
   //   })
 
+}
+
+exports.getAllStudentGradeByAssignmentId = function(req, res){
+  let assignmentId = req.query.assignmentId
+  seAssignment.findOne({_id: assignmentId}).then((result)=>{
+    let grade = {
+      '59':0,
+      '69':0,
+      '79':0,
+      '89':0,
+      '99':0,
+      '100':0
+    }
+    console.log('****************')
+    for(let student in result.studentdetail){
+      let score
+      if(student.assignmentScore !== '未繳交')
+        score = student.assignmentScore * 1
+      else
+        continue
+      if(score < 60)
+        grade['59'] += 1
+      else if (60 <= score && score <= 69){
+        grade['69'] += 1
+      }else if (70 <= score && score <= 79){
+        grade['79'] += 1
+      }else if (80 <= score && score <= 89){
+        grade['89'] += 1
+      }else if (90 <= score && score <= 99){
+        grade['99'] += 1
+      }else{
+        grade['100'] += 1
+      }
+      res.json({'grade':grade})
+    }
+    console.log(result)
+  }).catch((err)=>{
+    res.json({error: err})
+  })
 }
