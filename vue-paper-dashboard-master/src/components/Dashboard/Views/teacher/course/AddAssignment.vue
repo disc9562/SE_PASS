@@ -34,14 +34,16 @@ export default {
         assignmentdescription: this.assignmentDescription
       })
       .then((response) => {
+        let result = JSON.parse(response.config.data)
         this.$router.push({
           path: 'assignmentList'
         })
-        let data = JSON.parse(response.config.data)
-        console.log(`[ID] ${data.courseid}`)
-        jenkins.createJob(data.courseid
+        return result
+      })
+      .then((result) => {
+        jenkins.createJob(result.courseid
                         , this.courseName
-                        , data.assignmentname)
+                        , result.assignmentname)
       })
       .catch((err) => {
         console.log(err)
