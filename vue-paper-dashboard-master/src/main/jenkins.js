@@ -1,8 +1,6 @@
-// const fs = require('fs')
-// const path = require('path')
 import {Querystring} from 'request/lib/querystring.js'
 import axios from 'axios'
-let jenkinsApi = require('jenkins-api')
+import jenkinsApi from 'jenkins-api'
 // let jenkins = jenkinsApi.init('http://wayne:wayne@192.168.99.100:8080')
 let jenkins = jenkinsApi.init('http://sepass:lab1321@140.124.181.81:8080')
 Querystring.prototype.unescape = function (val) { return val }

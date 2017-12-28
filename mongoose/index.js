@@ -1,6 +1,3 @@
-
-var fstream = require('fstream'),
-    zlib = require('zlib');
 let express = require('express'),
     app = express(),
     port = process.env.PORT || 9090,
@@ -27,7 +24,6 @@ if(process.env.NODE_ENV === 'CI'){
   mongoose.connect('mongodb://localhost:27017/frame')  
 }
 
-
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 app.use(function(req, res, next) {
@@ -49,7 +45,6 @@ seAccountRoute(app)
 seCourseRoute(app)
 seCourseInfoRoute(app)
 seAssignmentRoute(app)
-
 
 let uploadFilePath
 app.post('/uploadByTeacher', function(req, res) {
@@ -76,36 +71,20 @@ app.post('/uploadByStudent', function(req, res) {
   uploadFileFromStudent(req, res)
   }
 })
-app.get('/download', function(req, res){
-  console.log('compressFilePath')    
-  // let assignmentPath =path.join(os.homedir(),'seWorkSpace',req.query.courseName,req.query.assignmentName +'_'+req.query.id)  
-  // async.auto({
-    // compressFile:function(){
-      // console.log(`compressFilePath:${assignmentPath}`)
-      //  fstream.Reader({ 'path': assignmentPath , 'type': 'Directory' }) /* Read the source directory */
-      // .pipe(zlib.Gzip()) /* Compress the .tar file */
-      // .pipe(fstream.Writer({ 'path': assignmentPath +'.gz'}))
-      // console.log('compressFile finish')
-    // },
-      console.log('download')
-      let file = path.join(os.homedir(),'seWorkSpace',req.query.courseName,req.query.assignmentName +'_'+req.query.id +'.zip')
-      if(!file){
-        return res.status(400).send('No files were downloaded.')
-        }
-      res.download(file,function(err){
-        if (err){
-          res.status(500).send(err)
-        }
-        else{
-          console.log('downloading')
-        }
-      }) 
- 
-  })
- 
-function compressFile(path) {
-
-}
+app.get('/download', function(req, res){   
+  let file = path.join(os.homedir(),'seWorkSpace',req.query.courseName,req.query.assignmentName +'_'+req.query.id +'.zip')
+  if(!file){
+    return res.status(400).send('No files were downloaded.')
+    }
+  res.download(file,function(err){
+    if (err){
+      res.status(500).send(err)
+    }
+    else{
+      console.log('downloading')
+    }
+  }) 
+})
 
 function uploadFileFromTeacher(req, res){
   if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace'))){

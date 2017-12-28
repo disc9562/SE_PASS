@@ -3,12 +3,11 @@
   <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="apiUrl">
     <template slot="actions" scope="props">
       <div class="table-button-container">
-        <button class="btn btn-primary btn-sm"  @click="direct(props.rowData)">
-          <span class="glyphicon glyphicon-pencil"></span>
-        </button>&nbsp;&nbsp;
+        <button class="btn btn-primary btn-sm"  @click="bindStudentId(props.rowData)">
+          <span class="glyphicon glyphicon-pencil"></span>下載作業</button>&nbsp;&nbsp;
         <button class="btn btn-success btn-sm" @click="correctAssignment(props.rowData)">
           <span class="glyphicon glyphicon-pencil"></span> 作業批改</button>&nbsp;&nbsp;
-        <a id='here' :href="downloadUrl" download>下載作業</a>
+          <a id='downloadFile' :href="downloadUrl" download></a>
       </div>
       </template>
   </vuetable>
@@ -97,11 +96,11 @@ export default {
         path: '/teacher/Course/gradingAssignment'
       })
     },
-    direct (rowData) {
+    bindStudentId (rowData) {
       this.downloadUrl = 'http://localhost:9090/download' + '?id=' + rowData.id + '&assignmentName=' + this.assignment + '&courseName=' + this.courseNameBefore
-      document.getElementById('here').href = this.downloadUrl
-      document.getElementById('here').click()
-      console.log(document.getElementById('here').href)
+      document.getElementById('downloadFile').href = this.downloadUrl
+      document.getElementById('downloadFile').click()
+      console.log(document.getElementById('downloadFile').href)
     },
     onLoading () {
       console.log('loading... show your spinner here')

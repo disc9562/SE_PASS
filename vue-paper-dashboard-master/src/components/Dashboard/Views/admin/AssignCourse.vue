@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="col-sm-6">
-         <h5>Step2: 選擇學生(可多選)</h5>
+         <h5>Step2: 選擇學生</h5>
         <div class="well" style="overflow-y: scroll;max-height: 40vh;">
           <div class="btn-group-vertical" style="width: 100%">
             <ul>
