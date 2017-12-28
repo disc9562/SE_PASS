@@ -7,19 +7,12 @@ const async = require('async');
 exports.addStudentIntoCourse = function(req, res){
     let courseId = req.body.courseId
     let studentId = req.body.studentId
-    // let studentInfo
-    // seAccount.find({id:studentId})
-    // .then(result=>{return result})
-    // .then()
     async.auto({
         findStudent: function(callback){
             seAccount.find({id:studentId})
             .then((result)=>{
-                // console.log(result)
-                // studentInfo = result[0]
                 callback(null, result[0])
             }).catch((err)=>{
-                // console.log('err')
                 res.json({ error: err })
             })
         },
@@ -27,13 +20,12 @@ exports.addStudentIntoCourse = function(req, res){
             console.log(studentInfo)
             seCourseInfo.find({'courseId':courseId})
             .then((result)=>{
-                return result
-            }).then((result)=>{
                 if(result.length === 0){
                     let document = {
                         courseId: courseId,
                         students:studentInfo.findStudent
                     }
+                    studentInfo.findStudent.course.push(courseId)
                     seCourseInfo.insertMany(document)
                     .then((result)=>{
 					    console.log('new CourseInfo')

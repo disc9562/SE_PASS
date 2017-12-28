@@ -62,17 +62,14 @@
         fields: [{
           name: 'id',
           title: '<span class="orange fa fa-address-card"></span> ID'
-          // sortField: 'id'
         },
         {
           name: 'username',
           title: '<span class="orange glyphicon glyphicon-user"></span> User Name'
-          // sortField: 'username'
         },
         {
           name: 'email',
           title: '<span class="orange glyphicon glyphicon-envelope"></span> Email'
-          // sortField: 'email'
         },
           '__slot:actions'
         ],
@@ -100,11 +97,6 @@
           }
         }
       }
-    },
-    computed: {
-      /* httpOptions(){
-        return {headers: {'Authorization': "my-token"}} //table props -> :http-options="httpOptions"
-      }, */
     },
     methods: {
       onPaginationDataForTeacher (paginationData) {

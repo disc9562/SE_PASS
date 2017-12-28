@@ -15,7 +15,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-// import jenkins from '../../../../../main/jenkins'
+import jenkins from '../../../../../main/jenkins'
 let axios = require('axios')
 export default {
   data () {
@@ -37,11 +37,11 @@ export default {
         this.$router.push({
           path: 'assignmentList'
         })
-        console.log(`response~> ${JSON.stringify(response.config.data)}`)
-        console.log(`課程名稱~> ${this.courseName}`)
-        // jenkins.createJob(response.config.data.courseid
-        //                 , this.courseName
-        //                 , response.config.data.assignmentname)
+        let data = JSON.parse(response.config.data)
+        console.log(`[ID] ${data.courseid}`)
+        jenkins.createJob(data.courseid
+                        , this.courseName
+                        , data.assignmentname)
       })
       .catch((err) => {
         console.log(err)

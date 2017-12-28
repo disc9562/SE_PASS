@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20171228 18:47:32.553" generator="Robot 3.0.2 (Python 2.7.14 on win32)">
+<suite source="C:\Users\cmf15bs\Desktop\SE_PASS\AT" id="s1" name="AT">
+<suite source="C:\Users\cmf15bs\Desktop\SE_PASS\AT\SE_PASS" id="s1-s1" name="SE PASS">
+<suite source="C:\Users\cmf15bs\Desktop\SE_PASS\AT\SE_PASS\Admin" id="s1-s1-s1" name="Admin">
+<suite source="C:\Users\cmf15bs\Desktop\SE_PASS\AT\SE_PASS\Admin\AdminCreatAccount.robot" id="s1-s1-s1-s1" name="AdminCreatAccount">
+<kw type="setup" name="Open Browser And Login As admin" library="Keywords">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>${dcTrackURL}</arg>
+<arg>${browser}</arg>
+</arguments>
+<msg timestamp="20171228 18:47:32.702" level="INFO">Opening browser 'chrome' to base url 'http://localhost:1234/'.</msg>
+<status status="PASS" endtime="20171228 18:47:38.912" starttime="20171228 18:47:32.702"></status>
+</kw>
+<kw name="Set Window Size" library="Selenium2Library">
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<arguments>
+<arg>${windowSize.width}</arg>
+<arg>${windowSize.height}</arg>
+</arguments>
+<status status="PASS" endtime="20171228 18:47:40.046" starttime="20171228 18:47:38.913"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>${userNameField}</arg>
+<arg>${${role}.name}</arg>
+</arguments>
+<msg timestamp="20171228 18:47:40.047" level="INFO">Typing text 'admin' into text field 'xpath://input[@id='username']'.</msg>
+<status status="PASS" endtime="20171228 18:47:40.228" starttime="20171228 18:47:40.047"></status>
+</kw>
+<kw name="Input Password" library="Selenium2Library">
+<doc>Types the given password into text field identified by ``locator``.</doc>
+<arguments>
+<arg>${passwordField}</arg>
+<arg>${${role}.password}</arg>
+</arguments>
+<msg timestamp="20171228 18:47:40.229" level="INFO">Typing password into text field 'xpath://input[@id='password']'.</msg>
+<status status="PASS" endtime="20171228 18:47:40.349" starttime="20171228 18:47:40.228"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks button identified by ``locator``.</doc>
+<arguments>
+<arg>${loginButton}</arg>
+</arguments>
+<msg timestamp="20171228 18:47:40.349" level="INFO">Clicking button 'xpath://button[@id='login-submit']'.</msg>
+<status status="PASS" endtime="20171228 18:47:40.492" starttime="20171228 18:47:40.349"></status>
+</kw>
+<status status="PASS" endtime="20171228 18:47:40.493" starttime="20171228 18:47:32.701"></status>
+</kw>
+<test id="s1-s1-s1-s1-t1" name="It Should Shown Correctly Account">
+<kw name="Create One student Account And Verify It" library="Keywords">
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[contains(text(),"新增帳戶")]</arg>
+</arguments>
+<msg timestamp="20171228 18:47:40.494" level="INFO">Clicking element 'xpath://*[contains(text(),"新增帳戶")]'.</msg>
+<status status="PASS" endtime="20171228 18:47:40.632" starttime="20171228 18:47:40.494"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://input[@id='username']</arg>
+<arg>${role}01</arg>
+</arguments>
+<msg timestamp="20171228 18:47:40.632" level="INFO">Typing text 'student01' into text field 'xpath://input[@id='username']'.</msg>
+<status status="PASS" endtime="20171228 18:47:40.983" starttime="20171228 18:47:40.632"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://input[@id='name']</arg>
+<arg>${role}</arg>
+</arguments>
+<msg timestamp="20171228 18:47:40.984" level="INFO">Typing text 'student' into text field 'xpath://input[@id='name']'.</msg>
+<status status="PASS" endtime="20171228 18:47:41.090" starttime="20171228 18:47:40.984"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://input[@id='password']</arg>
+<arg>1234</arg>
+</arguments>
+<msg timestamp="20171228 18:47:41.091" level="INFO">Typing text '1234' into text field 'xpath://input[@id='password']'.</msg>
+<status status="PASS" endtime="20171228 18:47:41.213" starttime="20171228 18:47:41.090"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://input[@id='confirm']</arg>
+<arg>1234</arg>
+</arguments>
+<msg timestamp="20171228 18:47:41.214" level="INFO">Typing text '1234' into text field 'xpath://input[@id='confirm']'.</msg>
+<status status="PASS" endtime="20171228 18:47:41.344" starttime="20171228 18:47:41.213"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://input[@id='email']</arg>
+<arg>${role}01@yahoo.com.tw</arg>
+</arguments>
+<msg timestamp="20171228 18:47:41.345" level="INFO">Typing text 'student01@yahoo.com.tw' into text field 'xpath://input[@id='email']'.</msg>
+<status status="PASS" endtime="20171228 18:47:41.633" starttime="20171228 18:47:41.345"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://option[text()='${role}']</arg>
+</arguments>
+<msg timestamp="20171228 18:47:41.634" level="INFO">Clicking element 'xpath://option[text()='student']'.</msg>
+<status status="PASS" endtime="20171228 18:47:41.725" starttime="20171228 18:47:41.633"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks button identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://button[contains(text(),'Register')]</arg>
+</arguments>
+<msg timestamp="20171228 18:47:41.726" level="INFO">Clicking button 'xpath://button[contains(text(),'Register')]'.</msg>
+<status status="PASS" endtime="20171228 18:47:41.863" starttime="20171228 18:47:41.725"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath://*[contains(text(),"帳戶列表")]</arg>
+</arguments>
+<msg timestamp="20171228 18:47:41.864" level="INFO">Clicking element 'xpath://*[contains(text(),"帳戶列表")]'.</msg>
+<status status="PASS" endtime="20171228 18:47:41.950" starttime="20171228 18:47:41.863"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${role}'=='student'</arg>
+<arg>Create Student List</arg>
+<arg>${role}</arg>
+<arg>ELSE</arg>
+<arg>Create Teacher List</arg>
+<arg>${role}</arg>
+</arguments>
+<kw name="Create Student List" library="Keywords">
+<arguments>
+<arg>${role}</arg>
+</arguments>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${role}01</arg>
+<arg>${role}</arg>
+<arg>${role}01@yahoo.com.tw</arg>
+<arg>No</arg>
+</arguments>
+<assign>
+<var>@{expectItems}</var>
+</assign>
+<msg timestamp="20171228 18:47:41.952" level="INFO">@{expectItems} = [ student01 | student | student01@yahoo.com.tw | No ]</msg>
+<status status="PASS" endtime="20171228 18:47:41.952" starttime="20171228 18:47:41.951"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>@{expectItems}</arg>
+</arguments>
+<msg timestamp="20171228 18:47:41.953" level="INFO">@{expectItems} = [ student01 | student | student01@yahoo.com.tw | No ]</msg>
+<status status="PASS" endtime="20171228 18:47:41.953" starttime="20171228 18:47:41.952"></status>
+</kw>
+<status status="PASS" endtime="20171228 18:47:41.955" starttime="20171228 18:47:41.951"></status>
+</kw>
+<status status="PASS" endtime="20171228 18:47:41.957" starttime="20171228 18:47:41.950"></status>
+</kw>
+<kw name="Get WebElements" library="Selenium2Library">
+<doc>Returns list of WebElement objects matching the ``locator``.</doc>
+<arguments>
+<arg>xpath://*[@id='${role}']//tr[@item-index='0']/td[not(contains(@class,'vuetable-slot'))]</arg>
+</arguments>
+<assign>
+<var>@{actaulItems}</var>
+</assign>
+<msg timestamp="20171228 18:47:42.141" level="INFO">@{actaulItems} = [ &lt;selenium.webdriver.remote.webelement.WebElement (session="dd2d37887c9b9284e8966a6295fb18b0", element="0.08487374792420521-13")&gt; | &lt;selenium.webdriver.remote.webelement.WebElement (session="dd2d3788...</msg>
+<status status="PASS" endtime="20171228 18:47:42.141" starttime="20171228 18:47:41.957"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${actaulItems.__len__()}</arg>
+</arguments>
+<msg timestamp="20171228 18:47:42.142" level="INFO">4</msg>
+<status status="PASS" endtime="20171228 18:47:42.142" starttime="20171228 18:47:42.141"></status>
+</kw>
+<kw name="Log Many" library="BuiltIn">
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<arguments>
+<arg>@{expectItems}</arg>
+</arguments>
+<msg timestamp="20171228 18:47:42.142" level="INFO">student01</msg>
+<msg timestamp="20171228 18:47:42.143" level="INFO">student</msg>
+<msg timestamp="20171228 18:47:42.143" level="INFO">student01@yahoo.com.tw</msg>
+<msg timestamp="20171228 18:47:42.143" level="INFO">No</msg>
+<status status="PASS" endtime="20171228 18:47:42.143" starttime="20171228 18:47:42.142"></status>
+</kw>
+<kw type="for" name="${index} | ${actaulItem} IN ENUMERATE [ @{actaulItems} ]">
+<kw type="foritem" name="${index} = 0, ${actaulItem} = &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;dd2d37887c9b9284e8966a6295fb18b0&quot;, element=&quot;0.08487374792420521-13&quot;)&gt;">
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>@{expectItems}[${index}]</arg>
+<arg>${actaulItem.text}</arg>
+</arguments>
+<msg timestamp="20171228 18:47:42.159" level="FAIL">student01 != </msg>
+<status status="FAIL" endtime="20171228 18:47:42.159" starttime="20171228 18:47:42.144"></status>
+</kw>
+<status status="FAIL" endtime="20171228 18:47:42.160" starttime="20171228 18:47:42.143"></status>
+</kw>
+<status status="FAIL" endtime="20171228 18:47:42.160" starttime="20171228 18:47:42.143"></status>
+</kw>
+<status status="FAIL" endtime="20171228 18:47:42.160" starttime="20171228 18:47:40.494"></status>
+</kw>
+<status status="FAIL" endtime="20171228 18:47:42.160" critical="yes" starttime="20171228 18:47:40.493">student01 != </status>
+</test>
+<status status="FAIL" endtime="20171228 18:47:42.161" starttime="20171228 18:47:32.593"></status>
+</suite>
+<status status="FAIL" endtime="20171228 18:47:42.163" starttime="20171228 18:47:32.591"></status>
+</suite>
+<status status="FAIL" endtime="20171228 18:47:42.164" starttime="20171228 18:47:32.589"></status>
+</suite>
+<status status="FAIL" endtime="20171228 18:47:42.166" starttime="20171228 18:47:32.572"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" id="s1" name="AT" pass="0">AT</stat>
+<stat fail="1" id="s1-s1" name="SE PASS" pass="0">AT.SE PASS</stat>
+<stat fail="1" id="s1-s1-s1" name="Admin" pass="0">AT.SE PASS.Admin</stat>
+<stat fail="1" id="s1-s1-s1-s1" name="AdminCreatAccount" pass="0">AT.SE PASS.Admin.AdminCreatAccount</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
