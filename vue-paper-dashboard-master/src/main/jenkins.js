@@ -1,45 +1,45 @@
 import {Querystring} from 'request/lib/querystring.js'
 import axios from 'axios'
-import jenkinsApi from 'jenkins-api'
+// import jenkinsApi from 'jenkins-api'
 // let jenkins = jenkinsApi.init('http://wayne:wayne@192.168.99.100:8080')
-let jenkins = jenkinsApi.init('http://sepass:lab1321@140.124.181.81:8080')
+
+// let jenkins = jenkinsApi.init('http://sepass:lab1321@140.124.181.81:8080')
 Querystring.prototype.unescape = function (val) { return val }
 exports.createJob = function (courseId, courseName, homeworkName) {
-  console.log('***********************')
-  console.log(courseId)
-  let xml = `
-  <project>
-    <actions/>
-    <description></description>
-    <keepDependencies>false</keepDependencies>
-    <properties/>
-    <scm class="hudson.scm.NullSCM"/>
-    <canRoam>true</canRoam>
-    <disabled>false</disabled>
-    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
-    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-    <triggers/>
-    <concurrentBuild>false</concurrentBuild>
-    <builders>
-      <hudson.tasks.BatchFile>
-        <command>echo &apos;123&apos;</command>
-      </hudson.tasks.BatchFile>
-    </builders>
-    <publishers/>
-    <buildWrappers/>
-  </project>`
+  // let xml = `
+  // <project>
+  //   <actions/>
+  //   <description></description>
+  //   <keepDependencies>false</keepDependencies>
+  //   <properties/>
+  //   <scm class="hudson.scm.NullSCM"/>
+  //   <canRoam>true</canRoam>
+  //   <disabled>false</disabled>
+  //   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  //   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  //   <triggers/>
+  //   <concurrentBuild>false</concurrentBuild>
+  //   <builders>
+  //     <hudson.tasks.BatchFile>
+  //       <command>echo &apos;123&apos;</command>
+  //     </hudson.tasks.BatchFile>
+  //   </builders>
+  //   <publishers/>
+  //   <buildWrappers/>
+  // </project>`
   axios.get('http://localhost:9090/api/getStudentsList?courseId=' + courseId)
   .then((result) => {
-    let studentList = result.data.data
-    studentList.forEach(student => {
-      jenkins.create_job(`${courseName}_${homeworkName}_${student.id}`, xml, function (err, data) {
-        if (err) {
-          console.log(err)
-        } else {
-          console.log(data)
-        }
-      })
-    })
+    console.log(result.data.data[0])
+    // let studentList = result.data.data
+    // studentList.forEach(student => {
+    //   jenkins.create_job(`${courseName}_${homeworkName}_${student.id}`, xml, function (err, data) {
+    //     if (err) {
+    //       console.log(err)
+    //     } else {
+    //       console.log(data)
+    //     }
+    //   })
+    // })
   })
 }
 // 建構job

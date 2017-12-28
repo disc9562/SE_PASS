@@ -12,14 +12,8 @@
         </div>
 </template>
 <script>
-// import uploadFile from '../../uploadFile.vue'
 import {mapGetters, mapActions} from 'vuex'
 export default {
-  components: {
-    // uploadFile
-  },
-  mounted () {
-  },
   data () {
     return {
       fields: [
