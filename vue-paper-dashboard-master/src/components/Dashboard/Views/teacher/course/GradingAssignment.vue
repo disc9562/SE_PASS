@@ -28,7 +28,7 @@ export default {
         path: '/teacher/Course/assignmentListForGrading'
       })
     },
-    grading () {     // todo
+    grading () {
       axios.post('http://localhost:9090/api/updateAssignmentGrade', {
         studentId: this.studentId,
         score: this.score,

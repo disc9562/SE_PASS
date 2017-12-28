@@ -63,8 +63,10 @@ app.post('/uploadByStudent', function(req, res) {
   if(fs.existsSync(path.join(os.homedir(),'seWorkSpace',req.body.courseName,req.body.assignmentName +'_'+req.body.studentId)))
   {
     rimraf(path.join(os.homedir(),'seWorkSpace',req.body.courseName,req.body.assignmentName +'_'+req.body.studentId),function(){
-      console.log('Reomove File!')
-      uploadFileFromStudent(req, res)
+      rimraf(path.join(os.homedir(),'seWorkSpace',req.body.courseName,req.body.assignmentName +'_'+req.body.studentId+'.zip'),function(){
+        console.log('Reomove File!')
+        uploadFileFromStudent(req, res)
+      })
     })
   }
   else{

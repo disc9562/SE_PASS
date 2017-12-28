@@ -6,7 +6,7 @@
         <button class="btn btn-primary btn-sm"  @click="bindStudentId(props.rowData)">
           <span class="glyphicon glyphicon-pencil"></span>下載作業</button>&nbsp;&nbsp;
         <button class="btn btn-success btn-sm" @click="correctAssignment(props.rowData)">
-          <span class="glyphicon glyphicon-pencil"></span> 作業批改</button>&nbsp;&nbsp;
+          <span class="glyphicon glyphicon-pencil"></span> 打成績</button>&nbsp;&nbsp;
           <a id='downloadFile' :href="downloadUrl" download></a>
       </div>
       </template>

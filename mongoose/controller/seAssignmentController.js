@@ -33,6 +33,7 @@ exports.addAssignment = function(req,res)
       })
     })
     .then((result)=>{
+      console.log(`[result]~>${result}`)
       res.send(result)
     }).catch((err)=>{
       res.json({ error: err })
