@@ -38,7 +38,6 @@ Create Teacher List
 
 Create One Course And Verify It
     [Arguments]    @{expectedItems}
-     # @{expectedItems}    Create List    ALSD    謝老師    每周四下午三點    60    ALSD
     Click Element    xpath://*[contains(text(),'新增課程')]
     Input Text    xpath://input[@id='coursename']    @{expectedItems}[0]
     Click Element    xpath://option[@value="@{expectedItems}[1]"]
@@ -47,6 +46,42 @@ Create One Course And Verify It
     Input Text    xpath://textarea[@id='coursedescription']    @{expectedItems}[4]
     Click Button    xpath://button[contains(text(), '新增課程')]
     Click Element    xpath://*[contains(text(),'課程列表')]
-    @{actualRows}=    Get WebElements    xpath://tr/td[contains(text(),'@{expectedItems}[1]') and contains(text(),'@{expectedItems}[0]')]/../td[not(contains(@class,'vuetable-slot'))]
+    @{actualRows}=    Get WebElements    xpath://tr/td[contains(text(),'@{expectedItems}[0]')]/../td[not(contains(@class,'vuetable-slot'))]
     :FOR    ${index}   ${actaulItem}    IN ENUMERATE    @{actualRows}
     \    Should Be Equal    ${actaulItem.text}    @{expectedItems}[${index}]
+
+Choose Course
+    [Arguments]    ${courseName}    @{students}
+    Click Element    xpath://*[contains(text(),'選課')]
+    :FOR    ${student}    IN    @{students}
+    \    Click Element    xpath://*[contains(text(),'${courseName}')]/input
+    \    Click Element    xpath://*[contains(text(),'${student}')]/input
+    \    Click Button    xpath://*[contains(text(),'送出表單')]
+    Click Element    xpath://*[contains(text(),"課程列表")]
+    Click Button    //td[contains(text(),'${courseName}')]/../*[contains(@class,'vuetable-slot')]//*[contains(@class,'btn-success')]
+    Sleep    0.5s
+    :FOR    ${student}    IN    @{students}
+    \    Element Should Be Visible    xpath://td[text()='${student}']
+Delete Student
+    [Arguments]    @{students}
+    Click Element    xpath://*[contains(text(),'帳戶列表')]
+    :FOR    ${student}    IN    @{students}
+    \    Wait Until Element Is Visible    xpath://*[contains(@href,'#student')]
+    \    Click Element    xpath://*[contains(@href,'#student')]
+    \    Sleep    0.5s    
+    \    Click Button    xpath://tr/td[contains(text(),'${student}')]/../*[contains(@class,'vuetable-slot')]//button
+
+Delete Teacher
+    [Arguments]    @{teachers}
+    Click Element    xpath://*[contains(text(),'帳戶列表')]
+    Click Element    xpath://*[contains(@href,'#teacher')]
+    :FOR    ${teacher}    IN    @{teachers}
+    \    Wait Until Element Is Visible    xpath://*[contains(text(),'${teacher}')]
+    \    Click Button    xpath://tr/td[contains(text(),'${teacher}')]/../*[contains(@class,'vuetable-slot')]//button
+
+Delete Course
+    [Arguments]    @{courses}
+    Click Element    xpath://*[contains(text(),'課程列表')]
+    :FOR    ${course}    IN    @{courses}
+    \    Wait Until Element Is Visible    xpath://*[contains(text(),'${course}')]
+    \    Click Button    xpath://tr/td[contains(text(),'${course}')]/../*[contains(@class,'vuetable-slot')]//button[contains(@class,'btn btn-danger btn-sm')]

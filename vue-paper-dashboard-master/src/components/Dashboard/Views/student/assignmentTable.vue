@@ -10,12 +10,6 @@
                          <span class="glyphicon glyphicon-stats"></span> 查看報表</button>
                     </div>
             </template>
-            <template slot="actions2" scope="props">
-                      <div class="table-button-container">
-                        <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
-                          <span class="glyphicon glyphicon-trash"></span> 刪除</button>
-                      </div>
-             </template>
           </vuetable>
          <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
         </div>
@@ -45,8 +39,7 @@ export default {
           title: '<span class="orange glyphicon glyphicon-time"></span> 作業描述',
           sortField: 'assignmentdescription'
         },
-        '__slot:actions',
-        '__slot:actions2'
+        '__slot:actions'
       ],
       sortOrder: [
       { field: 'name', direction: 'asc' }
