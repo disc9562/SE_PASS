@@ -9,5 +9,7 @@ Suite Teardown    Close Browser
 
 *** Test Cases ***
 It Should Shown Correctly Account
-    Create One teacher Account And Verify It
-    Create One student Account And Verify It
+    Create One account Account And Verify It    teacher    teacher1
+    Create One account Account And Verify It    teacher    teacher2
+    Create One account Account And Verify It    student    student1
+    Create One account Account And Verify It    student    student2

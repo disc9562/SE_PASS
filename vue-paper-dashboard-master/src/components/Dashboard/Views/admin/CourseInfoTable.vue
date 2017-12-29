@@ -1,49 +1,40 @@
-<template>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" api-url="http://localhost:9090/api/getAllCourse">
+ <template>
+ <div class="card">
+          <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="getStudentUrl">
             <template slot="actions" scope="props">
                       <div class="table-button-container">
-                        <button class="btn btn-success btn-sm" @click="courseInfo(props.rowData)">
-                          <span class="glyphicon glyphicon-trash"></span> 詳細資料</button>&nbsp;&nbsp;
-                        <button class="btn btn-danger btn-sm" @click="deleteCourse(props.rowData)">
-                          <span class="glyphicon glyphicon-trash"></span> 刪除課程</button>&nbsp;&nbsp;
+
+                        <button class="btn btn-success btn-sm" @click="deleteStudent(props.rowData)">
+                          <span class="glyphicon glyphicon-log-in"></span>刪除學生</button>&nbsp;&nbsp;
                       </div>
              </template>
           </vuetable>
           <vuetable-pagination ref="pagination" :css="css.pagination" @vuetable-pagination:change-page="onChangePage"></vuetable-pagination>
         </div>
-      </div>
-    </div>
 </template>
-
 <script>
+import axios from 'axios'
 import { mapActions } from 'vuex'
-const axios = require('axios')
 export default {
   data () {
     return {
+      url: undefined,
       fields: [
         {
-          name: 'coursename',
-          title: '<span class="orange glyphicon glyphicon-book"></span> 課程名稱'
+          name: 'username',
+          title: '<span class="orange glyphicon glyphicon-book"></span> 學生名稱'
         },
         {
-          name: 'courseteacher',
-          title: '老師'
+          name: 'id',
+          title: '學號'
         },
         {
-          name: 'classtime',
-          title: '課程時間'
+          name: 'TA',
+          title: '助教'
         },
         {
-          name: 'population',
-          title: '人數'
-        },
-        {
-          name: 'coursedescription',
-          title: '課程描述'
+          name: 'email',
+          title: '信箱'
         },
         '__slot:actions'
       ],
@@ -75,38 +66,27 @@ export default {
       }
     }
   },
-  mounted () {
-    console.log('this.init')
-    this.init()
-  },
-  computed: {
-  /* httpOptions(){
-    return {headers: {'Authorization': "my-token"}} //table props -> :http-options="httpOptions"
-  }, */
-  },
+  props: ['getStudentUrl', 'getCourseId'],
   methods: {
-    init () {
-      this.actionLeaveCourse()
-    },
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
     },
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
     },
-    courseInfo (rowData) {
-      console.log(rowData)
-      this.actionEnterCourse(rowData)
-      this.$router.push({
-        path: '/account/courseInfo'
-      })
-    },
-    deleteCourse (rowData) {
-      axios.post('http://localhost:9090/api/deleteCourse', {
-        coursename: rowData.coursename
+    deleteStudent (rowData) {
+      axios.post('http://localhost:9090/api/deleteCourseStudent', {
+        courseid: this.getCourseId,
+        studentid: rowData.id
       })
         .then((response) => {
-          location.reload()
+          this.$refs.vuetable.refresh()
+          // this.$router.push({
+          //   path: '/account/courseInfo'
+          // })
+          // console.log('response')
+          // console.log(response)
+          // location.reload()
         }).catch((err) => {
           console.log(err)
         })
@@ -117,7 +97,20 @@ export default {
     onLoaded () {
       console.log('loaded! .. hide your spinner here')
     },
-    ...mapActions(['actionEnterCourse', 'actionLeaveCourse'])
+    ...mapActions(['actionEnterCourse'])
+  },
+  computed: {
+    // ...mapGetters(['getUser'])
+  /* httpOptions(){
+    return {headers: {'Authorization': "my-token"}} //table props -> :http-options="httpOptions"
+  }, */
+  // },
+  // watch: {
+  //   apiUrl: function (oldval, val) {
+  //     this.url = val
+  //     console.log(this.url)
+  //   }
+
   }
 }
 </script>

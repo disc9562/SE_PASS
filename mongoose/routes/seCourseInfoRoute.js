@@ -6,5 +6,8 @@ module.exports = function (app){
 
   app.route('/api/getStudentsList')
   .get(seCourseInfo.getStudentsList)
-  
+
+  app.route('/api/deleteCourseStudent')
+  .post(seCourseInfo.deleteCourseStudent)
+
 }

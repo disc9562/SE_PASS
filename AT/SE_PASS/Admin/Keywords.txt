@@ -5,33 +5,48 @@ Library    Selenium2Library    implicit_wait=3s
 @{expectItems}    ${EMPTY}
 
 *** Keywords ***        
-Create One ${role} Account And Verify It
+Create One account Account And Verify It
+    [Arguments]    ${role}    ${account}
     Click Element    xpath://*[contains(text(),"新增帳戶")]
-    Input Text    xpath://input[@id='username']    ${role}01
-    Input Text    xpath://input[@id='name']    ${role}
-    Input Text    xpath://input[@id='password']    1234 
+    Input Text    xpath://input[@id='username']    ${account}
+    Input Text    xpath://input[@id='name']    ${account}
+    Input Text    xpath://input[@id='password']    1234
     Input Text    xpath://input[@id='confirm']    1234
-    Input Text    xpath://input[@id='email']    ${role}01@yahoo.com.tw
+    Input Text    xpath://input[@id='email']    ${account}@yahoo.com.tw
     Click Element    xpath://option[text()='${role}']
     Click Button    xpath://button[contains(text(),'Register')]
     Click Element    xpath://*[contains(text(),"帳戶列表")]
     Click Element    xpath://*[contains(@href,'#${role}')]
     Wait Until Element Is Visible    xpath://*[contains(@id,'${role}')]
-    Sleep    2s    
-    Run Keyword If    '${role}'=='student'    Create Student List    ${role}
-    ...    ELSE    Create Teacher List    ${role}
-    @{actaulItems}=    Get WebElements    xpath://*[contains(text(),'${role}01')]/../*[not(contains(@class,'vuetable-slot'))]
+    Run Keyword If    '${role}'=='student'    Create Student List    ${account}
+    ...    ELSE    Create Teacher List    ${account}
+    @{actaulItems}=    Get WebElements    xpath://*[contains(text(),'${account}')]/../*[not(contains(@class,'vuetable-slot'))]
     Log    ${actaulItems.__len__()}
     Log Many    @{expectItems}
     :FOR    ${index}    ${actaulItem}    IN ENUMERATE    @{actaulItems}
     \    Should Be Equal        @{expectItems}[${index}]    ${actaulItem.text}
 
 Create Student List
-    [Arguments]    ${role}
-    @{expectItems}=    Create List    ${role}01    ${role}    ${role}01@yahoo.com.tw    No
+    [Arguments]    ${account}
+    @{expectItems}=    Create List    ${account}    ${account}    ${account}@yahoo.com.tw    No
     Set Suite Variable    @{expectItems}
 
 Create Teacher List
-    [Arguments]    ${role}
-    @{expectItems}=    Create List    ${role}01    ${role}    ${role}01@yahoo.com.tw
+    [Arguments]    ${account}
+    @{expectItems}=    Create List    ${account}    ${account}    ${account}@yahoo.com.tw
     Set Suite Variable    @{expectItems}
+
+Create One Course And Verify It
+    [Arguments]    @{expectedItems}
+     # @{expectedItems}    Create List    ALSD    謝老師    每周四下午三點    60    ALSD
+    Click Element    xpath://*[contains(text(),'新增課程')]
+    Input Text    xpath://input[@id='coursename']    @{expectedItems}[0]
+    Click Element    xpath://option[@value="@{expectedItems}[1]"]
+    Input Text    xpath://input[@id='classtime']    @{expectedItems}[2]
+    Input Text    xpath://input[@id='population']    @{expectedItems}[3]
+    Input Text    xpath://textarea[@id='coursedescription']    @{expectedItems}[4]
+    Click Button    xpath://button[contains(text(), '新增課程')]
+    Click Element    xpath://*[contains(text(),'課程列表')]
+    @{actualRows}=    Get WebElements    xpath://tr/td[contains(text(),'@{expectedItems}[1]') and contains(text(),'@{expectedItems}[0]')]/../td[not(contains(@class,'vuetable-slot'))]
+    :FOR    ${index}   ${actaulItem}    IN ENUMERATE    @{actualRows}
+    \    Should Be Equal    ${actaulItem.text}    @{expectedItems}[${index}]
