@@ -32,9 +32,6 @@
       </ul>
       <moving-arrow :move-y="arrowMovePx">
     </moving-arrow>
-    <div id="TA">
-    <p>TA: Hank</p>
-    </div>
     </div>
   </div>
 </template>
@@ -128,8 +125,3 @@
   }
 
 </script>
-<style>
-#TA{
-  padding-left:35px
-}
-</style>

@@ -23,7 +23,7 @@ let seAccountSchema = new Schema({
   },
   role: {
     type: [{type: String,
-      enum: ['teacher','student','admin','TA']
+      enum: ['teacher','student']
     }],
     default:['student']
   },
