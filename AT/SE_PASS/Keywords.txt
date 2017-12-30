@@ -7,6 +7,8 @@ ${browser}    chrome
 ${dcTrackURL}    http://localhost:1234/
 ${admin_password}    1234
 &{admin}    name=admin    password=${admin_password}
+&{student}    name=student1    password=${admin_password}
+&{teacher}    name=teacher1    password=${admin_password}
 &{windowSize}    width=1920    height=1080
 ${userNameField}    xpath://input[@id='username']
 ${passwordField}    xpath://input[@id='password']
