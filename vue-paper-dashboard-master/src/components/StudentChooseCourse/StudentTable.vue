@@ -70,8 +70,15 @@ export default {
   computed: {
     ...mapGetters({courseName: 'getCourseName'})
   },
+  mounted () {
+    console.log('this.init()')
+    this.init()
+  },
   props: ['apiUrl', 'id'],
   methods: {
+    init () {
+      this.actionLeaveCourse()
+    },
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
     },
@@ -82,7 +89,7 @@ export default {
       console.log(rowData._id)
       this.actionEnterCourse(rowData)
       this.$router.push({
-        path: '/student/' + rowData._id + '/assignmentListForStudent'
+        path: '/student/' + rowData._id + '/assignmentList'
       })
     },
     onLoading () {
@@ -91,7 +98,7 @@ export default {
     onLoaded () {
       console.log('loaded! .. hide your spinner here')
     },
-    ...mapActions(['actionEnterCourse'])
+    ...mapActions(['actionEnterCourse', 'actionLeaveCourse'])
   }
 }
 </script>

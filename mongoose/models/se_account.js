@@ -49,7 +49,7 @@ let seAccountSchema = new Schema({
   },
   assignmentScore:{
     type:String,
-    default:'未繳交'
+    default:'未評分'
   }
 
 })

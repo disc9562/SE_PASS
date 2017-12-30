@@ -41,8 +41,6 @@ exports.addAssignment = function(req,res)
 }
 
 exports.getAssignmentByCourse = function(req, res){
-  console.log('page')  
-  console.log(req.query.page)
   let page = req.query.page
   let per_page = req.query.per_page
   let courseid = req.query.courseid
@@ -177,9 +175,12 @@ exports.updateAssignmentGrade = function(req,res){
 
 }
 
+
+
 exports.getAllStudentGradeByAssignmentId = function(req, res){
   let assignmentId = req.query.assignmentId
-  seAssignment.findOne({_id: assignmentId}).then((result)=>{
+  seAssignment.findOne({_id: assignmentId})
+  .then((result)=>{
     let grade = {
       '59':0,
       '69':0,
@@ -188,13 +189,15 @@ exports.getAllStudentGradeByAssignmentId = function(req, res){
       '99':0,
       '100':0
     }
+    // console.log(result.studentdetail)
     console.log('****************')
-    for(let student in result.studentdetail){
+    result.studentdetail.forEach((student)=>{
+      console.log(student)
       let score
       if(student.assignmentScore !== '未繳交')
         score = student.assignmentScore * 1
       else
-        continue
+        return
       if(score < 60)
         grade['59'] += 1
       else if (60 <= score && score <= 69){
@@ -205,13 +208,74 @@ exports.getAllStudentGradeByAssignmentId = function(req, res){
         grade['89'] += 1
       }else if (90 <= score && score <= 99){
         grade['99'] += 1
-      }else{
+      }else if (score === 100){
         grade['100'] += 1
       }
+    })
       res.json({'grade':grade})
-    }
-    console.log(result)
   }).catch((err)=>{
     res.json({error: err})
+  })
+}
+
+exports.getAllAssignmentDetailByStudent = function(req, res){
+  let page = req.query.page
+  let per_page = req.query.per_page
+  let courseid = req.query.courseid
+  let current_page = 1
+  let last_page = 1
+  let prev_page_url = null
+  let domain = "http://140.124.181.149:9090/api"
+  let vuetableFormat = {}
+  seAssignment.find({courseid:courseid},{
+    assignmentname:[],
+    deadline:[],
+    assignmentdescription:[],
+    studentdetail:{
+      $elemMatch: {
+        id: req.query.id}
+  }
+},
+{assignmentname:{}}
+)
+  .then((result)=>{
+    console.log(result)
+    if(result.length % 10 === 0 && result.length !== 0){
+      last_page = result.length / 10
+    }
+    else{
+        last_page = Math.round(result.length / 10) + 1
+    }                               
+    if(current_page > 1){
+        prev_page_url = domain + '?courseid=' + courseid + '&sort=&page=' + (current_page - 1) + '&per_page=' + per_page
+    }             
+    if(result.length / 10 >  0  && result.length % 10 > 0){
+      vuetableFormat.next_page_url = domain + '?courseid=' + courseid + '&sort=&page=' + (current_page + 1) + '&per_page=' + per_page    
+    }
+    else{
+      vuetableFormat.next_page_url = null
+    }
+    vuetableFormat.total = result.length
+    vuetableFormat.per_page = per_page
+    vuetableFormat.page = page    
+    vuetableFormat.current_page = current_page
+    vuetableFormat.last_page = last_page
+    vuetableFormat.prev_page_url = prev_page_url
+    vuetableFormat.from = 1 + 10 * (current_page - 1)
+    vuetableFormat.to = 10 * current_page
+    vuetableFormat.data = result.slice(vuetableFormat.from - 1 , vuetableFormat.to)
+    res.json(vuetableFormat)
+  }).catch((err)=>{
+    res.json({'error':err})
+  })
+}
+exports.updateAssignmentCommit = function(req, res){
+  seAssignment.update(
+    {
+      'studentdetail.id': req.body.studentId,'courseid':req.body.courseId,'assignmentname':req.body.assignmentName}, {'$set': {
+    'studentdetail.$.submitAssignment': '已繳交',
+    }})
+    .then((update)=>{
+    console.log(update)
   })
 }
