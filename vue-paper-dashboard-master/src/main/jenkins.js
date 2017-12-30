@@ -1,11 +1,10 @@
 import {Querystring} from 'request/lib/querystring.js'
 import axios from 'axios'
 import jenkinsApi from 'jenkins-api'
-import path from 'path'
 
 // let jenkins = jenkinsApi.init('http://wayne:wayne@192.168.99.100:8080')
 let jenkins = jenkinsApi.init('http://sepass:lab1321@140.124.181.81:8080')
-const jobPath = 'C:/Users/jay/seWorkSpace'
+const jobPath = 'C:\\Users\\jay\\seWorkSpace'
 Querystring.prototype.unescape = function (val) { return val }
 exports.createJob = function (courseId, courseName, homeworkName) {
   axios.get('http://localhost:9090/api/getStudentsList?courseId=' + courseId)
@@ -27,8 +26,7 @@ exports.createJob = function (courseId, courseName, homeworkName) {
 function initXML (jobPath, courseName, homeworkName, studentId) {
   let xml = `<project>
   <actions/>
-  <description>&#xd;
-</description>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
@@ -38,31 +36,19 @@ function initXML (jobPath, courseName, homeworkName, studentId) {
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <customWorkspace>${path.join(jobPath, courseName, homeworkName + '_' + studentId)}</customWorkspace>
+  <customWorkspace>${jobPath + '\\' + courseName + '\\' + homeworkName + '_' + studentId}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>start codeblocks /na /nd /ns --build ${homeworkName}_${studentId}.cbp --target=&quot;Release&quot;&#xd;
-&#xd;
-&#xd;
-</command>
+      <command>javac -sourcepath src -cp lib\\*;classes -d classes src\\unitTest\\UT_${homeworkName}.java</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>@ping 127.0.0.1 -n 5 -w 1000 &gt; nul&#xd;
-</command>
+      <command>@ping 127.0.0.1 -n 5 -w 1000 &gt; nul</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
-      <command>start &quot;&quot; &quot;${path.join('.', 'Release', homeworkName + '_' + studentId + '.exe')}&quot; --gtest_output=&quot;xml:result.xml&quot;&#xd;
-</command>
+      <command>java -cp lib\\*;classes org.junit.runner.JUnitCore unitTest.UT_${homeworkName}</command>
     </hudson.tasks.BatchFile>
   </builders>
-  <publishers>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.22.2">
-      <testResults>**/*.xml</testResults>
-      <keepLongStdio>true</keepLongStdio>
-      <healthScaleFactor>1.0</healthScaleFactor>
-      <allowEmptyResults>false</allowEmptyResults>
-    </hudson.tasks.junit.JUnitResultArchiver>
-  </publishers>
+  <publishers/>
   <buildWrappers/>
 </project>`
   return xml
