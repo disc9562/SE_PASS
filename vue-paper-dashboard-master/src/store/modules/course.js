@@ -1,6 +1,6 @@
 const state = {
   url: 'http://localhost:9090/api/getAssignmentByCourse?courseid=',
-  getStudentUrl: 'http://localhost:9090/api/getStudentsList?courseid=',
+  getStudentUrl: 'http://localhost:9090/api/getStudentsList?courseId=',
   courseId: undefined,
   courseName: undefined,
   studentAssignmentUrl: 'http://localhost:9090/api/getAllAssignmentDetailByStudent?courseid='
@@ -19,7 +19,7 @@ const mutations = {
     state.courseId = undefined
     state.courseName = undefined
     state.studentAssignmentUrl = 'http://localhost:9090/api/getAllAssignmentDetailByStudent?courseid='
-    state.getStudentUrl = 'http://localhost:9090/api/getStudentsList?courseid='
+    state.getStudentUrl = 'http://localhost:9090/api/getStudentsList?courseId='
   }
 }
 
