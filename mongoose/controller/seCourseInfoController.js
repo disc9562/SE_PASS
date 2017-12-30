@@ -74,9 +74,9 @@ exports.addStudentIntoCourse = function(req, res){
 }
 
 exports.getStudentsList = function (req, res){
-    let courseId = req.query.courseId
-    console.log('[cousrId]')
-    console.log(courseId)
+    console.log('req.query.courseid')
+    console.log(req.query)
+    let courseId = req.query.courseid
     let page = req.query.page
     let per_page = req.query.per_page
     let current_page = 1
@@ -89,7 +89,6 @@ exports.getStudentsList = function (req, res){
     }
     seCourseInfo.find({'courseId':courseId})
                 .then((result)=>{
-                    console.log(result)
                     if(result[0].students.length % 10 === 0 && result[0].students.length !== 0){
                         last_page = result[0].students.length / 10
                     }
@@ -113,3 +112,21 @@ exports.getStudentsList = function (req, res){
                     res.json({error:err})
                 })
 }
+
+exports.deleteCourseStudent = function(req,res){
+    console.log(req.body)
+    // seCourse.remove({coursename:req.body.coursename})
+    // .then((result)=>{
+    //   res.send(result)
+    // }).catch((err)=>{
+    //   res.json(err)
+    // })
+
+    seCourseInfo.update(
+        {'courseId':req.body.courseid}, {$pull: {
+        'students': {id:req.body.studentid}
+    }}).then((update)=>{
+      console.log(update)
+      res.send(update)
+    })
+  }
