@@ -21,15 +21,15 @@ pipeline:
     job: CD
     when:
       status: [ success ]
-  notify:
-    image: drillster/drone-email
-    host: smtp.mailgun.org
-    username: postmaster@drone.ci.io
-    password: a72ede7fe93e7ee5ea7598970ea1ab20
-    from: DroneCI@drone.io
-    recipients: [disc9562@gmail.com]
-    when:
-      status: [ success, failure ]
+  # notify:
+  #   image: drillster/drone-email
+  #   host: smtp.mailgun.org
+  #   username: postmaster@drone.ci.io
+  #   password: a72ede7fe93e7ee5ea7598970ea1ab20
+  #   from: DroneCI@drone.io
+  #   recipients: [disc9562@gmail.com]
+  #   when:
+  #     status: [ success, failure ]
 services:
   mongo:
     image: mongo:3.0
