@@ -39,6 +39,12 @@ function initXML (jobPath, courseName, homeworkName, studentId) {
   <customWorkspace>${jobPath + '\\' + courseName + '\\' + homeworkName + '_' + studentId}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
+      <command>copy ${jobPath + '\\' + courseName + '\\' + homeworkName + '_teacher' + '\\' + 'UT_' + homeworkName + '.java'} ${jobPath + '\\' + courseName + '\\' + homeworkName + '_' + studentId + '\\src\\unitTest\\'}</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>@ping 127.0.0.1 -n 5 -w 1000 &gt; nul</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
       <command>javac -sourcepath src -cp lib\\*;classes -d classes src\\unitTest\\UT_${homeworkName}.java</command>
     </hudson.tasks.BatchFile>
     <hudson.tasks.BatchFile>
