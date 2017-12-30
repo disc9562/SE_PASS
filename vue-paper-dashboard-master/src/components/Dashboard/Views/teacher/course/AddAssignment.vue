@@ -15,7 +15,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import jenkins from '../../../../../main/jenkins'
+// import jenkins from '../../../../../main/jenkins'
 let axios = require('axios')
 export default {
   data () {
@@ -40,11 +40,11 @@ export default {
         })
         return result
       })
-      .then((result) => {
-        jenkins.createJob(result.courseid
-                        , this.courseName
-                        , result.assignmentname)
-      })
+      // .then((result) => {
+      //   jenkins.createJob(result.courseid
+      //                   , this.courseName
+      //                   , result.assignmentname)
+      // })
       .catch((err) => {
         console.log(err)
       })

@@ -7,6 +7,7 @@ let SeAccount = require('./models/se_account')
 let SeCourse = require('./models/se_course')
 let SeCourseInfo = require('./models/se_courseInfo')
 let SeAssignment = require('./models/se_assignment')
+let seAssignment = require('./controller/seAssignmentController')
 
 const async = require('async');
 const rimraf = require('rimraf')
@@ -113,6 +114,7 @@ function uploadFileFromTeacher(req, res){
   })
 }
 function uploadFileFromStudent(req, res){
+  seAssignment.updateAssignmentCommit(req,res)
   if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace'))){
     fs.mkdirSync(path.join(os.homedir(),'seWorkSpace'))
   }
@@ -137,6 +139,7 @@ function uploadFileFromStudent(req, res){
       // })
     })
   })
+
 }
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

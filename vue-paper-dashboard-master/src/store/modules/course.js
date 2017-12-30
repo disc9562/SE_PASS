@@ -2,7 +2,8 @@ const state = {
   url: 'http://localhost:9090/api/getAssignmentByCourse?courseid=',
   getStudentUrl: 'http://localhost:9090/api/getStudentsList?courseid=',
   courseId: undefined,
-  courseName: undefined
+  courseName: undefined,
+  studentAssignmentUrl: 'http://localhost:9090/api/getAllAssignmentDetailByStudent?courseid='
 }
 
 const mutations = {
@@ -11,11 +12,13 @@ const mutations = {
     state.getStudentUrl = state.getStudentUrl + course._id
     state.courseId = course._id
     state.courseName = course.coursename
+    state.studentAssignmentUrl = state.studentAssignmentUrl + course._id
   },
   LEAVECOURSE (state) {
     state.url = 'http://localhost:9090/api/getAssignmentByCourse?courseid='
     state.courseId = undefined
     state.courseName = undefined
+    state.studentAssignmentUrl = 'http://localhost:9090/api/getAllAssignmentDetailByStudent?courseid='
     state.getStudentUrl = 'http://localhost:9090/api/getStudentsList?courseid='
   }
 }
@@ -33,6 +36,7 @@ const getters = {
   getCourseUrl: state => state.url,
   getCourseId: state => state.courseId,
   getCourseName: state => state.courseName,
+  getStudentAssignmentUrl: state => state.studentAssignmentUrl,
   getStudentUrl: state => state.getStudentUrl
 }
 
