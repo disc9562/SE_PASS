@@ -49,7 +49,6 @@ seCourse.find({'courseteacher':courseTeacher})
           vuetableFormat.from = 1 + 10 * (current_page - 1)
           vuetableFormat.to = 10 * current_page
           vuetableFormat.data = result.slice(vuetableFormat.from - 1 , vuetableFormat.to)
-          console.log(vuetableFormat)
           res.json(vuetableFormat)
         }).catch((err)=>{
           res.json({ error: err })

@@ -38,13 +38,14 @@ export default {
   components: {
     FileUpload
   },
-  props: ['assignmentName', 'courseName', 'studentId'],
+  props: ['assignmentName', 'courseName', 'studentId', 'courseId'],
   data () {
     return {
       data: {
         'assignmentName': this.assignmentName,
         'courseName': this.courseName,
-        'studentId': this.studentId
+        'studentId': this.studentId,
+        'courseId': this.courseId
       },
       files: []
     }

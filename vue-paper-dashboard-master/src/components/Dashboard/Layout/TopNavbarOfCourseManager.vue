@@ -8,47 +8,59 @@
           <span class="icon-bar bar2"></span>
           <span class="icon-bar bar3"></span>
         </button>
-        <a class="navbar-brand">{{routeName}}</a>
+        <a class="navbar-brand">{{courseName}}</a>
+      </div>
+       <div class="navbar-right-menu">
+        <ul class="nav navbar-nav navbar-right">
+          <li @click="back()" class="open">
+            <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
+              <i class="ti-panel"></i>
+              <p>返回課程列表</p>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
 </template>
 <script>
-  export default {
-    computed: {
-      routeName () {
-        const {name} = this.$route
-        return this.capitalizeFirstLetter(name)
-      }
+import {mapGetters} from 'vuex'
+export default {
+  computed: {
+    ...mapGetters({courseName: 'getCourseName'}),
+    routeName () {
+      const {name} = this.$route
+      return this.capitalizeFirstLetter(name)
+    }
+  },
+  data () {
+    return {
+      activeNotifications: false
+    }
+  },
+  methods: {
+    capitalizeFirstLetter (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
     },
-    data () {
-      return {
-        activeNotifications: false
-      }
+    toggleNotificationDropDown () {
+      this.activeNotifications = !this.activeNotifications
     },
-    methods: {
-      capitalizeFirstLetter (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1)
-      },
-      toggleNotificationDropDown () {
-        this.activeNotifications = !this.activeNotifications
-      },
-      closeDropDown () {
-        this.activeNotifications = false
-      },
-      toggleSidebar () {
-        this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
-      },
-      hideSidebar () {
-        this.$sidebar.displaySidebar(false)
-      },
-      setting () {
-        this.$router.push({
-          // path: '/setting'
-        })
-      }
+    closeDropDown () {
+      this.activeNotifications = false
+    },
+    toggleSidebar () {
+      this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
+    },
+    hideSidebar () {
+      this.$sidebar.displaySidebar(false)
+    },
+    back () {
+      this.$router.push({
+        path: '/teacher'
+      })
     }
   }
+}
 
 </script>
 <style>
