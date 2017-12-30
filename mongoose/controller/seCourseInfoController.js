@@ -17,7 +17,7 @@ exports.addStudentIntoCourse = function(req, res){
             })
         },
         updateCourseInfo:['findStudent', function(studentInfo, callback){
-            console.log(studentInfo)
+            // console.log(studentInfo)
             seCourseInfo.find({'courseId':courseId})
             .then((result)=>{
                 if(result.length === 0){
@@ -28,7 +28,7 @@ exports.addStudentIntoCourse = function(req, res){
                     studentInfo.findStudent.course.push(courseId)
                     seCourseInfo.insertMany(document)
                     .then((result)=>{
-					    console.log('new CourseInfo')
+					    // console.log('new CourseInfo')
                         callback(null,result)
                     }).catch((err)=>{
                         res.json({ error: err })
@@ -72,9 +72,7 @@ exports.addStudentIntoCourse = function(req, res){
 }
 
 exports.getStudentsList = function (req, res){
-    console.log('req.query.courseid')
-    console.log(req.query)
-    let courseId = req.query.courseid
+    let courseId = req.query.courseId
     let page = req.query.page
     let per_page = req.query.per_page
     let current_page = 1

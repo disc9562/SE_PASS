@@ -18,9 +18,7 @@ const os = require('os')
 const path = require('path')
 
 mongoose.Promise = global.Promise;
-if(process.env.NODE_ENV === 'CI'){
-  mongoose.connect('mongodb://172.19.0.2:27017/frame')
-}else{
+if(process.env.NODE_ENV !== 'test'){
   mongoose.connect('mongodb://localhost:27017/frame')  
 }
 

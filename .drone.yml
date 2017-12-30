@@ -12,7 +12,7 @@ pipeline:
       - ping mongo -c 5
       - cd mongoose
       - npm install
-      - npm run CItest
+      - npm run test
   notify:
     image: drillster/drone-email
     host: smtp.mailgun.org

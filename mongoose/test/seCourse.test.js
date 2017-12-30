@@ -19,7 +19,7 @@ describe('Testing API with a mocked backend /POST /api/courseTeacher',function()
         var seCourseMock = sinon.mock(seCourse)
 
         seCourseMock.expects('find')
-        .withArgs({'courseTeacher':'劉建宏'})
+        .withArgs({'courseteacher':'劉建宏'})
         .resolves([])
         
         chai.request(app)
