@@ -17,8 +17,9 @@
           extensions="gzip,7z,tar,xz,zip,rar"
           accept=".gzip,.7z,.tar,.xz,.zip,.rar"
           :size="1024 * 1024 * 1024"
+          ref="upload"
           v-model="files"
-          ref="upload">
+          >
           <i class="fa fa-plus"></i>
           選擇作業
         </file-upload>
@@ -49,6 +50,15 @@ export default {
       },
       files: []
     }
+  },
+  method: {
+    // inputFile (newFile, oldFile) {
+    //   if (newFile && oldFile) {
+    //     if (newFile.success !== oldFile.success) {
+    //       console.log('success', newFile.success, newFile)
+    //     }
+    //   }
+    // }
   }
 }
 </script>

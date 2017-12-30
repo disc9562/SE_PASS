@@ -26,22 +26,22 @@ export default {
         },
         {
           name: 'courseteacher',
-          title: '助教',
+          title: '授課老師',
           sortField: 'email'
         },
         {
           name: 'classtime',
-          title: '助教',
+          title: '上課時間',
           sortField: 'email'
         },
         {
           name: 'population',
-          title: '人數',
+          title: '人數限制',
           sortField: 'gender'
         },
         {
           name: 'coursedescription',
-          title: '人數',
+          title: '課程描述',
           sortField: 'gender'
         },
         '__slot:actions'
@@ -75,10 +75,13 @@ export default {
     }
   },
   mounted () {
-
+    this.init()
   },
   props: ['apiUrl'],
   methods: {
+    init () {
+      this.actionLeaveCourse()
+    },
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
     },
@@ -97,7 +100,7 @@ export default {
     onLoaded () {
       console.log('loaded! .. hide your spinner here')
     },
-    ...mapActions(['actionEnterCourse'])
+    ...mapActions(['actionEnterCourse', 'actionLeaveCourse'])
   },
   computed: {
     // ...mapGetters(['getUser'])
