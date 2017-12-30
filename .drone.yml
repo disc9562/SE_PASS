@@ -13,6 +13,14 @@ pipeline:
       - cd mongoose
       - npm install
       - npm run test
+  jenkins:
+    image: appleboy/drone-jenkins
+    url: http://140.124.181.81:8080
+    user: sepass
+    token: 48808d94c65b955187e379c9c3a25df1
+    job: CD
+    when:
+      status: [ success ]
   notify:
     image: drillster/drone-email
     host: smtp.mailgun.org
@@ -22,15 +30,6 @@ pipeline:
     recipients: [disc9562@gmail.com]
     when:
       status: [ success, failure ]
-  jenkins:
-    image: appleboy/drone-jenkins
-    url: http://140.124.181.81:8080
-    user: sepass
-    token: 48808d94c65b955187e379c9c3a25df1
-    job: CD
-    when:
-      status: [ success ]
-
 services:
   mongo:
     image: mongo:3.0
