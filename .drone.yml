@@ -16,8 +16,8 @@ pipeline:
   notify:
     image: drillster/drone-email
     host: smtp.mailgun.org
-    username: postmaster@sandbox6d8d2378612c45d88b81572a73aa7aa5.mailgun.org
-    password: 8f74e753a519325ff71f93b64b18d2c3
+    username: postmaster@drone.ci.io
+    password: a72ede7fe93e7ee5ea7598970ea1ab20
     from: DroneCI@drone.io
     recipients: [disc9562@gmail.com]
     when:
