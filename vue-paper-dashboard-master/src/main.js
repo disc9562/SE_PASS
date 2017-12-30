@@ -26,7 +26,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './assets/sass/paper-dashboard.scss'
 import 'es6-promise/auto'
 import VueUploadComponent from 'vue-upload-component'
-
+import 'vue-chartjs'
 // plugin setup
 Vue.use(VueRouter)
 Vue.component('vuetable', Vuetable)

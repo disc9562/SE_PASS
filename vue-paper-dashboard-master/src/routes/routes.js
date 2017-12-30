@@ -7,6 +7,7 @@ import DashboardLayoutOfAdminManager from '../components/Dashboard/Layout/Dashbo
 import DashboardLayoutOfChooseCourse from '../components/Dashboard/Layout/DashboardLayoutOfChooseCourse'
 import DashboardLayoutOfCourseManager from '../components/Dashboard/Layout/DashboardLayoutOfCourseManager.vue'
 import DashboardLayoutOfStudent from '../components/Dashboard/Layout/DashboardLayoutOfStudent'
+import DashboardLayoutOfStudentCourse from '../components/Dashboard/Layout/DashboardLayoutOfStudentCourse'
 
 // teacher/course
 import AssignmentList from 'src/components/Dashboard/Views/teacher/course/AssignmentList.vue'
@@ -15,8 +16,7 @@ import GradingAssignment from 'src/components/Dashboard/Views/teacher/course/Gra
 import AddAssignment from 'src/components/Dashboard/Views/teacher/course/AddAssignment'
 import Report from 'src/components/Dashboard/Views/teacher/course/report'
 // student
-import SearchGradeList from 'src/components/Dashboard/Views/student/SearchGradeList'
-import AssignmentListForStudent from 'src/components/Dashboard/Views/student/AssignmentListForStudent'
+import AssignmentListForStudent from 'src/components/Dashboard/Views/student/SearchGradeList'
 
 // teacher
 import CourseList from 'src/components/Dashboard/Views/teacher/CourseList.vue'
@@ -80,7 +80,7 @@ const routes = [
   },
   {
     path: '/student/:studentId/',
-    component: DashboardLayoutOfChooseCourse,
+    component: DashboardLayoutOfStudentCourse,
     redirect: 'student/:studentId/ChooseCourse',
     children: [
       {
@@ -93,17 +93,12 @@ const routes = [
   {
     path: '/student/:courseId',
     component: DashboardLayoutOfStudent,
-    redirect: '/student/:courseId/assignmentListForStudent',
+    redirect: '/student/:courseId/assignmentList',
     children: [
       {
-        path: 'assignmentListForStudent',
-        name: 'assignmentListForStudent',
+        path: 'assignmentList',
+        name: 'assignmentList',
         component: AssignmentListForStudent
-      },
-      {
-        path: 'searchGradeList',
-        name: 'searchGradeList',
-        component: SearchGradeList
       }
     ]
   },

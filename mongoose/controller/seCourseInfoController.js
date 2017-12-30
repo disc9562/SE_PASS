@@ -39,6 +39,7 @@ exports.addStudentIntoCourse = function(req, res){
                         if(student.id === studentId)
                             res.json({ error: 'student is already in the course' })
                     }
+                    console.log(result)
                     studentInfo.findStudent.course.push(courseId)
                     result[0].students.push(studentInfo.findStudent)
                     seCourseInfo.update({'_id':result[0]._id},result[0])
@@ -63,6 +64,7 @@ exports.addStudentIntoCourse = function(req, res){
 				coursePopulationOperation:['updateCourseInfo', function(update, callback){
 					seCourse.update({'courseId': courseId}, {$inc: { 'pupulation': 1 }})
 					.then((result)=>{
+                        console.log(update.updateCourseInfo)
 						res.send(update.updateCourseInfo)
 					}).catch((err)=>{
 						res.json({error:err})

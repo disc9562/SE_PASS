@@ -15,4 +15,7 @@ module.exports = function (app){
   
   app.route('/api/getAllStudentGradeByAssignmentId')
   .get(seAssignment.getAllStudentGradeByAssignmentId)
+
+  app.route('/api/getAllAssignmentDetailByStudent')
+  .get(seAssignment.getAllAssignmentDetailByStudent)
 }

@@ -8,7 +8,17 @@
           <span class="icon-bar bar2"></span>
           <span class="icon-bar bar3"></span>
         </button>
-        <a class="navbar-brand">{{userName}}老師，您好</a>
+        <a class="navbar-brand">{{courseName}}</a>
+      </div>
+       <div class="navbar-right-menu">
+        <ul class="nav navbar-nav navbar-right">
+          <li @click="back()" class="open">
+            <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
+              <i class="ti-panel"></i>
+              <p>返回課程列表</p>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
@@ -17,7 +27,7 @@
 import {mapGetters} from 'vuex'
 export default {
   computed: {
-    ...mapGetters({userName: 'getUser'}),
+    ...mapGetters({courseName: 'getCourseName'}),
     routeName () {
       const {name} = this.$route
       return this.capitalizeFirstLetter(name)
@@ -43,6 +53,12 @@ export default {
     },
     hideSidebar () {
       this.$sidebar.displaySidebar(false)
+    },
+    back () {
+      let pathSplit = this.$route.path.split('/')
+      this.$router.push({
+        path: '/student/' + pathSplit[2]
+      })
     }
   }
 }

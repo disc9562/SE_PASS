@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper">
-    <side-bar-of-student type="sidebar" :sidebar-links="$sidebarofstudent.sidebarLinksOfStudent">
+    <side-bar-of-course type="sidebar" :sidebar-links="$sidebarofcourse.sidebarLinksOfCourse">
 
-    </side-bar-of-student>
+    </side-bar-of-course>
     <notifications>
 
     </notifications>
     <div class="main-panel">
-      <top-navbar-of-student></top-navbar-of-student>
+      <top-navbar></top-navbar>
 
       <dashboard-content @click.native="toggleSidebar">
 
@@ -18,21 +18,22 @@
   </div>
 </template>
 <style lang="scss">
+
 </style>
 <script>
-  import TopNavbarOfStudent from './TopNavbarOfCourseStudent.vue'
+  import TopNavbar from './TopNavbarOfStudent.vue'
   import ContentFooter from './ContentFooter.vue'
   import DashboardContent from './Content.vue'
   export default {
     components: {
-      TopNavbarOfStudent,
+      TopNavbar,
       ContentFooter,
       DashboardContent
     },
     methods: {
       toggleSidebar () {
-        if (this.$sidebarofstudent.showSidebar) {
-          this.$sidebarofstudent.displaySidebar(false)
+        if (this.$sidebarofcourse.showSidebar) {
+          this.$sidebarofcourse.displaySidebar(false)
         }
       }
     }

@@ -1,13 +1,9 @@
 <template>
 <div class="card">
-       <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="apiUrl">
+       <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="url">
             <template slot="actions" scope="props">
                     <div class="table-button-container">
-
-
-                          <upload-for-student :assignmentName="props.rowData.assignmentname" :courseName="courseName" :studentId="studentId"></upload-for-student>
-                         <button class="btn btn-success btn-sm" @click="viewReport(props.rowData)">
-                         <span class="glyphicon glyphicon-stats"></span> 查看報表</button>
+                        <upload-for-student :assignmentName="props.rowData.assignmentname" :courseName="courseName" :studentId="studentId" :courseId="courseId"></upload-for-student>
                     </div>
             </template>
             <template slot="actions2" scope="props">
@@ -37,12 +33,27 @@ export default {
         },
         {
           name: 'deadline',
-          title: '<span class="orange fa fa-history"></span> 繳交期限',
-          sortField: 'deadline'
+          title: '<span class="orange glyphicon glyphicon-time"></span> 繳交期限',
+          sortField: 'assignmentdescription'
         },
         {
           name: 'assignmentdescription',
           title: '<span class="orange glyphicon glyphicon-time"></span> 作業描述',
+          sortField: 'assignmentdescription'
+        },
+        {
+          name: 'studentdetail.0.submitAssignment',
+          title: '<span class="orange glyphicon glyphicon-time"></span> 上傳狀態',
+          sortField: 'assignmentdescription'
+        },
+        {
+          name: 'studentdetail.0.assignmentDiscript',
+          title: '<span class="orange fa fa-history"></span> 作業評語',
+          sortField: 'deadline'
+        },
+        {
+          name: 'studentdetail.0.assignmentScore',
+          title: '<span class="orange glyphicon glyphicon-time"></span> 成績',
           sortField: 'assignmentdescription'
         },
         '__slot:actions',
@@ -77,9 +88,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({courseName: 'getCourseName', studentId: 'getId'})
+    ...mapGetters({courseName: 'getCourseName', studentId: 'getId', courseId: 'getCourseId'})
   },
-  props: ['apiUrl'],
+  mounted () {
+    console.log('apiUrl')
+    console.log(this.apiUrl)
+    this.url = this.apiUrl + '&id=' + this.studentId
+    console.log(this.url)
+  },
+  props: ['apiUrl', 'studentId', 'url'],
   methods: {
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
