@@ -12,7 +12,12 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-
+             <li @click="logout()" class="open">
+            <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
+              <i class="ti-shift-right"></i>
+              <p>登出</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -46,6 +51,11 @@
       },
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
+      },
+      logout () {
+        this.$router.push({
+          path: '/'
+        })
       }
     }
   }

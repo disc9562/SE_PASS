@@ -7,15 +7,10 @@ Suite Teardown    Close Browser
 
 *** Test Cases ***
 AdminAddStrudentToCourse
-    Create One account Account And Verify It    teacher    teacher1
-    Create One account Account And Verify It    student    student1
-    Create One account Account And Verify It    student    student2
-    Create One Course And Verify It    MyClass    teacher1    星期三 17:00~18:00    60    MyClass
-    Choose Course    MyClass    student1    student2
-    Delete Student    student1    student2
-    Delete Teacher    teacher1
-    Delete Course    MyClass
-
-*** Keywords ***
-
-
+    Create One account Account And Verify It    teacher    t1
+    Create One account Account And Verify It    student    s1
+    Create One account Account And Verify It    student    s2
+    Create One Course And Verify It    POSD    t1    星期三 17:00~18:00    60    POSD
+    Choose Course    POSD    s1    s2
+    Delete All Account
+    Delete All Class

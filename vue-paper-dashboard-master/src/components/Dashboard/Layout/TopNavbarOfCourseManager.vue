@@ -14,8 +14,14 @@
         <ul class="nav navbar-nav navbar-right">
           <li @click="back()" class="open">
             <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
-              <i class="ti-panel"></i>
+              <i class="ti-view-list"></i>
               <p>返回課程列表</p>
+            </a>
+          </li>
+          <li @click="logout()" class="open">
+            <a href="#" class="dropdown-toggle btn-magnify" data-toggle="dropdown">
+              <i class="ti-shift-right"></i>
+              <p>登出</p>
             </a>
           </li>
         </ul>
@@ -57,6 +63,11 @@ export default {
     back () {
       this.$router.push({
         path: '/teacher'
+      })
+    },
+    logout () {
+      this.$router.push({
+        path: '/'
       })
     }
   }
