@@ -15,4 +15,3 @@ Admin Create Account And Verify It
     Verify Account List Student    student1    student2
     Verify Account List Teacher    teacher1    teacher2
     Delete All Account
-    Delete All Class

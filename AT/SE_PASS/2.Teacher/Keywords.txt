@@ -39,6 +39,28 @@ Add An Assignment
 
 Verify Assignment
     [Arguments]    @{assignments}
-    Click Element    xpath://*[contains(text(),'作業列表')]
+    Click Element    xpath://*[contains(text(),'作業區')]
     :FOR    ${assignment}    IN    @{assignments}
     \    Page Should Contain Element    xpath://*[text()='${assignment}']
+
+It Should Display Correctly
+    [Arguments]    ${student}    @{gradeDetails}
+    :FOR    ${gradeDetail}    IN    @{gradeDetails}
+    \    Page Should Contain Element    xpath://*[contains(text(),'${student}')]/../*[contains(text(),'${gradeDetail}')]   
+
+Grading One Student
+    [Arguments]    ${hw1}    ${student}    @{gradeDetail}
+    Click Button    xpath://*[contains(text(),'hw1')]/../*[contains(@class, 'vuetable-slot')]/descendant::button[contains(text(),'作業批改')]
+    Click Button    xpath://*[contains(text(),'${student}')]/../*[contains(@class, 'vuetable-slot')]/descendant::button[contains(text(),'打成績')]
+    Input Text    xpath://*[@id='score']    @{gradeDetail}[0]
+    Input Text    xpath://*[@id='description']    @{gradeDetail}[1]
+    Click Button    xpath://button[text()='儲存']
+
+Delete All Assignment
+    Click Element    xpath://*[contains(text(),'作業區')]
+    Wait Until Element Is Visible     xpath://tr//*[contains(text(),'作業名稱')]
+    @{assignments}=    Get WebElements    xpath://*[@class='vuetable-body']//tr[contains(@render,'true')]
+    Log    ${assignments.__len__()}
+    :FOR    ${index}    ${assignment}    IN ENUMERATE    @{assignments}
+    \    Wait Until Element Is Visible    xpath://*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button
+    \    Click Button    //*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button[contains(@class,'btn btn-danger btn-sm')]

@@ -1,6 +1,7 @@
 let mongoose = require('mongoose'),
 seCourse = mongoose.model('SeCourse'),
-seAccount = mongoose.model('SeAccount')
+seAccount = mongoose.model('SeAccount'),
+seCourseInfo = mongoose.model('SeCourseInfo')
 exports.create = function(req,res){
   let document = {
     'coursename' : req.body.coursename,
@@ -137,9 +138,15 @@ exports.getAllCourse = function(req,res){
 
 
 exports.deleteCourse = function(req,res){
+  console.log(req)
   seCourse.remove({coursename:req.body.coursename})
   .then((result)=>{
-    res.send(result)
+    seCourseInfo.remove({courseId:req.body._id})
+    .then((result)=>{
+      res.send(result)
+    }).catch((err)=>{
+      res.json(err)
+    })
   }).catch((err)=>{
     res.json(err)
   })

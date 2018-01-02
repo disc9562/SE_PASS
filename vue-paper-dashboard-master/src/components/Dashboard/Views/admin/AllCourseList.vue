@@ -103,7 +103,8 @@ export default {
     },
     deleteCourse (rowData) {
       axios.post('http://localhost:9090/api/deleteCourse', {
-        coursename: rowData.coursename
+        coursename: rowData.coursename,
+        _id: rowData._id
       })
         .then((response) => {
           location.reload()

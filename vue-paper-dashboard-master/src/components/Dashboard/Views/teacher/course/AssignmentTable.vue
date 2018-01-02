@@ -25,6 +25,7 @@
         </div>
 </template>
 <script>
+import axios from 'axios'
 import uploadFile from '../../uploadFile.vue'
 import {mapGetters, mapActions} from 'vuex'
 export default {
@@ -95,7 +96,14 @@ export default {
       this.$refs.vuetable.changePage(page)
     },
     deleteRow (rowData) {
-      alert('You clicked delete on' + JSON.stringify(rowData))
+      axios.post('http://localhost:9090/api/deleteAssignment', {
+        _id: rowData._id
+      })
+        .then((response) => {
+          this.$refs.vuetable.refresh()
+        }).catch((err) => {
+          console.log(err)
+        })
     },
     onLoading () {
       console.log('loading... show your spinner here')
