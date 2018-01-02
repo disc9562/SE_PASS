@@ -35,7 +35,9 @@
 </template>
 <script>
 import FileUpload from 'vue-upload-component'
-import jenkins from '../../../main/jenkins'
+import axios from 'axios'
+let template
+let amount = 0
 export default {
   components: {
     FileUpload
@@ -52,11 +54,40 @@ export default {
       files: []
     }
   },
+  mounted () {
+    template = this
+  },
+  methods: {
+    getLastBuildInfo: function (jobName, queueId) {
+      axios.get('http://localhost:9090/getjenkinsJobInfo', {params: {'jobName': jobName, queueId: queueId}})
+          .then(function (response) {
+            console.log(response)
+            if (response.data.statusCode === 404 && amount < 10) {
+              console.log(amount)
+              amount++
+              template.sleep(3000)
+              template.getLastBuildInfo(jobName, queueId)
+            } else {
+              amount = 0
+              console.log(`break: ${JSON.stringify(response.data.body, null, 2)}`)
+            }
+          })
+    },
+    sleep: function (sleepTime) {
+      for (var start = +new Date(); +new Date() - start <= sleepTime;) {}
+    }
+  },
   watch: {
     files: function (val) {
       if (val[0].success) {
         let jobName = this.courseName + '_' + this.assignmentName + '_' + this.studentId
-        jenkins.buildJob(jobName)
+        axios.post('http://localhost:9090/jenkinsBuild', {'jobName': jobName})
+        .then(function (response) {
+          template.getLastBuildInfo(jobName, response.data.result.queueId)
+        })
+        .catch(function (err) {
+          console.log(err)
+        })
       }
     }
   }

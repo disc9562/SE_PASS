@@ -8,7 +8,11 @@ let SeCourse = require('./models/se_course')
 let SeCourseInfo = require('./models/se_courseInfo')
 let SeAssignment = require('./models/se_assignment')
 let seAssignment = require('./controller/seAssignmentController')
+let jenkinsApi = require('jenkins-api')
+let {Querystring} = require('request/lib/querystring.js')
+Querystring.prototype.unescape = function (val) { return val }
 
+const jenkins = jenkinsApi.init('http://sepass:lab1321@140.124.181.81:8080')
 const async = require('async');
 const rimraf = require('rimraf')
 const fs = require('fs')
@@ -87,6 +91,25 @@ app.get('/download', function(req, res){
   }) 
 })
 
+app.post('/jenkinsBuild',function(req, res){
+  console.log('jenkinsBuild')
+  let jobName = req.body.jobName
+  jenkins.build(jobName,function(err, data){
+    if(err){
+      res.json({'err':err})
+    }
+    res.json({'result':data})
+  })
+})
+
+app.get('/getjenkinsJobInfo',function(req, res){
+  let jobName = req.query.jobName
+  let queueId = req.query.queueId
+
+  jenkins.console_output(jobName, queueId,function (err, data) {
+    res.send(data)
+  })
+})
 function uploadFileFromTeacher(req, res){
   if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace'))){
     fs.mkdirSync(path.join(os.homedir(),'seWorkSpace'))

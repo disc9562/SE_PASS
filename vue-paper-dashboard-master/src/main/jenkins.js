@@ -62,12 +62,36 @@ function initXML (jobPath, courseName, homeworkName, studentId) {
 }
 
 exports.buildJob = function (jobName) {
-  jenkins.build(jobName, function (err, data) {
-    if (err) { return console.log(err) }
-    return console.log(data)
+  return new Promise(function (resolve, reject) {
+    jenkins.build(jobName, function (err, data) {
+      console.log(`[data] ${data}`)
+      if (err) {
+        reject(err)
+      } else {
+        resolve(data)
+      }
+    })
   })
+
+  // .then((result) => {
+  //   console.log(result)
+  //   // return getJobNumber(jobName)
+  // })
+  // .then((jobNumber) => {
+  //   console.log(jobNumber)
+  // })
+  // .catch((err) => {
+  //   console.log(err)
+  // })
 }
 
+// function getJobNumber (jobName) {
+//   jenkins.last_build_info(jobName, function (err, data) {
+//     if (err) { return Promise.reject(err) } else {
+//       return Promise.resolve(data)
+//     }
+//   })
+// }
 // 建構job
 // fs.readFile(path.resolve(__dirname, './jenkinsConfig/CppConfig.xml'), 'utf-8', function (err, result) {
 //   if (err) { console.error(new Error('路徑有錯')) } else {
