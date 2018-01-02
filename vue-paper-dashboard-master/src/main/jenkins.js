@@ -6,6 +6,7 @@ import jenkinsApi from 'jenkins-api'
 let jenkins = jenkinsApi.init('http://sepass:lab1321@140.124.181.81:8080')
 const jobPath = 'C:\\Users\\jay\\seWorkSpace'
 Querystring.prototype.unescape = function (val) { return val }
+
 exports.createJob = function (courseId, courseName, homeworkName) {
   axios.get('http://localhost:9090/api/getStudentsList?courseId=' + courseId)
   .then((result) => {
@@ -58,6 +59,13 @@ function initXML (jobPath, courseName, homeworkName, studentId) {
   <buildWrappers/>
 </project>`
   return xml
+}
+
+exports.buildJob = function (jobName) {
+  jenkins.build(jobName, function (err, data) {
+    if (err) { return console.log(err) }
+    return console.log(data)
+  })
 }
 
 // 建構job
