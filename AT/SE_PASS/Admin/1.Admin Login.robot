@@ -5,4 +5,5 @@ Suite Teardown    Close Browser
 
 *** Test Cases ***
 Admin Login     
-    Open Browser And Login As admin
+    Open Chrom Browser
+    Login As admin

@@ -7,18 +7,22 @@ ${browser}    chrome
 ${dcTrackURL}    http://localhost:1234/
 ${admin_password}    1234
 &{admin}    name=admin    password=${admin_password}
-&{student}    name=student1    password=${admin_password}
-&{teacher}    name=teacher1    password=${admin_password}
+&{student}    name=s1    password=${admin_password}
+&{teacher}    name=t1    password=${admin_password}
 &{windowSize}    width=1920    height=1080
 ${userNameField}    xpath://input[@id='username']
 ${passwordField}    xpath://input[@id='password']
 ${loginButton}    xpath://button[@id='login-submit']
 
 *** Keywords ***
-Open Browser And Login As ${role}
+Open Chrom Browser
     Open Browser    ${dcTrackURL}    ${browser}
     Set Window Size    ${windowSize.width}    ${windowSize.height}
+    
+Login As ${role}
     Input Text    ${userNameField}    ${${role}.name}
     Input Password    ${passwordField}    ${${role}.password}
     Click Button    ${loginButton}
 
+Logout
+    Click Element    xpath://*[contains(text(),'登出')]

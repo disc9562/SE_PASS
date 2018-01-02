@@ -20,3 +20,25 @@ User Assignment Should Contains
     Page Should Contain Element    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]/../*[contains(text(), '@{ExpectedItems}[2]')]
     Page Should Contain Element    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]/../*[contains(text(), '@{ExpectedItems}[3]')]
     Page Should Contain Element    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]/../*[contains(text(), '@{ExpectedItems}[4]')]
+
+Verify Stundent Should Added By AssignmentDetail
+    [Arguments]    @{students}
+    Click Button    xpath://*[contains(text(),'hw1')]/../*[contains(@class, 'vuetable-slot')]/descendant::button[contains(text(),'作業批改')]
+    :FOR    ${student}    IN    @{students}
+    \    Page Should Contain Element    xpath://*[text()='${student}']
+
+Add An Assignment
+    [Arguments]    @{homeworkDetails}
+    Log Many    @{homeworkDetails}
+    Click Element    xpath://*[contains(text(),'新增作業')]
+    Input Text    xpath://*[contains(@id,'assignmentName')]    @{homeworkDetails}[0]
+    Input Text    xpath://*[contains(@id,'assignmentDescription')]    @{homeworkDetails}[1]
+    Click Button    xpath://div[@class='content']//*[contains(text(),'新增作業')]
+    :FOR    ${homeworkDetail}    IN    @{homeworkDetails}
+    \    Page Should Contain Element    xpath://*[text()='${homeworkDetail}']
+
+Verify Assignment
+    [Arguments]    @{assignments}
+    Click Element    xpath://*[contains(text(),'作業列表')]
+    :FOR    ${assignment}    IN    @{assignments}
+    \    Page Should Contain Element    xpath://*[text()='${assignment}']
