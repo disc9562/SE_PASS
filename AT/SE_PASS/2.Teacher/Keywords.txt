@@ -64,3 +64,5 @@ Delete All Assignment
     :FOR    ${index}    ${assignment}    IN ENUMERATE    @{assignments}
     \    Wait Until Element Is Visible    xpath://*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button
     \    Click Button    //*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button[contains(@class,'btn btn-danger btn-sm')]
+    \    @{assignments}=    Get WebElements    xpath://*[@class='vuetable-body']//tr[contains(@render,'true')]
+    \    Run Keyword If    @{assignments.__len__()}==0    Exit For Loop

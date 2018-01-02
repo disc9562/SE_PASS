@@ -102,6 +102,8 @@ Delete All Account
     \    Click Element    xpath://*[contains(@href,'#teacher')]
     \    Wait Until Element Is Visible    //*[@id='teacher']//*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button
     \    Click Button    //*[@id='teacher']//*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button
+    \    @{teachers}=    Get WebElements    //*[@id='teacher']//tr[contains(@render,'true')]
+    \    Run Keyword If    ${teachers.__len__()}==0    Exit For Loop     
     Wait Until Element Is Visible     xpath://*[contains(@href,'#student')]
     Click Element    xpath://*[contains(@href,'#student')]
     Wait Until Element Is Visible     xpath://tr//*[contains(text(),'ID')]
@@ -110,14 +112,19 @@ Delete All Account
     \    Click Element    xpath://*[contains(@href,'#student')]
     \    Wait Until Element Is Visible    //*[@id='student']//*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button
     \    Click Button    //*[@id='student']//*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button
+    \    @{students}=    Get WebElements    //*[@id='student']//tr[contains(@render,'true')]
+    \    Run Keyword If    ${students.__len__()}==0    Exit For Loop       
 
 Delete All Class
     Click Element    xpath://*[contains(text(),'課程列表')]
     Wait Until Element Is Visible     xpath://tr//*[contains(text(),'課程名稱')]
     @{courses}=    Get WebElements    xpath://*[@class='vuetable-body']//tr[contains(@render,'true')]
     :FOR    ${index}    ${course}    IN ENUMERATE    @{courses}
-    \    Wait Until Element Is Visible    xpath://*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button[contains(@class,'btn btn-danger btn-sm')]
-    \    Click Button    xpath://*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button[contains(@class,'btn btn-danger btn-sm')]
+    \    Click Button    xpath://*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button[contains(@class,'btn btn-danger btn-sm')]    
+    \    @{courses}=    Get WebElements    xpath://*[@class='vuetable-body']//tr[contains(@render,'true')]
+    \    Run Keyword If    ${courses.__len__()}==0    Exit For Loop
+    \    Sleep    0.5s    
+    
 Click CourseDetail And Verify It
     [Arguments]    ${course}    @{students}
     Click Element    xpath://*[contains(text(),'課程列表')]

@@ -2,8 +2,8 @@
 Library    Selenium2Library    implicit_wait=1s
 Resource    ../Keywords.txt
 Resource    ./Keywords.txt
-Resource    ../Admin/Keywords.txt
-Resource    ../Teacher/Keywords.txt
+Resource    ../1.Admin/Keywords.txt
+Resource    ../2.Teacher/Keywords.txt
 Suite Setup    Open Chrom Browser
 Suite Teardown    Close Browser
 

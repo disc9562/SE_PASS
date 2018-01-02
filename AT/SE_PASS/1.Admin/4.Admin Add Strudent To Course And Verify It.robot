@@ -7,7 +7,7 @@ Suite Setup    Open Chrom Browser
 Suite Teardown    Close Browser
 
 *** Test Cases ***
-Admin Create Course And Verify It
+Admin Add Student To Course And Verify It
     Login As admin
     Create One Account    teacher    t1
     Create One Account    student    s1

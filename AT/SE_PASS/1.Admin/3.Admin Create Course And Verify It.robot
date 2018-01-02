@@ -6,7 +6,7 @@ Suite Setup     Open Chrom Browser
 Suite Teardown    Close Browser
 
 *** Test Cases ***
-Admin Add Strudent To Course And Verify It
+Admin Add Student To Course And Verify It
     Login As admin
     Create One Account    teacher    teacher1
     Create One Course    SE    teacher1    星期三 17:00~18:00    60    SE
