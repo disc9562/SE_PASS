@@ -35,6 +35,7 @@
 </template>
 <script>
 import FileUpload from 'vue-upload-component'
+import jenkins from '../../../main/jenkins'
 export default {
   components: {
     FileUpload
@@ -51,14 +52,13 @@ export default {
       files: []
     }
   },
-  method: {
-    // inputFile (newFile, oldFile) {
-    //   if (newFile && oldFile) {
-    //     if (newFile.success !== oldFile.success) {
-    //       console.log('success', newFile.success, newFile)
-    //     }
-    //   }
-    // }
+  watch: {
+    files: function (val) {
+      if (val[0].success) {
+        let jobName = this.courseName + '_' + this.assignmentName + '_' + this.studentId
+        jenkins.buildJob(jobName)
+      }
+    }
   }
 }
 </script>
