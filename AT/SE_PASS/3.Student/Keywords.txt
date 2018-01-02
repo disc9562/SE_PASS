@@ -1,0 +1,9 @@
+*** Setting ***
+Library    Selenium2Library    implicit_wait=1s
+
+*** Keywords ***
+Verify Student Assignment
+    [Arguments]    ${className}    @{homeworks}
+    Page Should Contain Element    xpath://*[@class='navbar-header']//*[contains(text(),'POSD')]
+    :FOR       ${homework}    IN    @{homeworks}
+    \    Page Should Contain Element    xpath://*[text()='${homework}']

@@ -1,0 +1,66 @@
+*** Setting ***
+Library    Selenium2Library    implicit_wait=1s
+
+*** Keywords ***
+User Course Should Contains
+    [Arguments]    @{ExpectedItems}
+    Wait Until Element Is Visible   xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]
+    Page Should Contain Element    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]/../*[contains(text(), '@{ExpectedItems}[1]')]
+    Page Should Contain Element    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]/../*[contains(text(), '@{ExpectedItems}[2]')]
+    Page Should Contain Element    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]/../*[contains(text(), '@{ExpectedItems}[3]')]
+    Page Should Contain Element    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]/../*[contains(text(), '@{ExpectedItems}[4]')]
+
+User Enter The ${CourseName}
+    Wait Until Element Is Visible   xpath://tr/td[contains(text(), '${CourseName}')]
+    Click Button    xpath://tr/td[contains(text(), '${CourseName}')]/../*[contains(@class, 'vuetable-slot')]/descendant::button[contains(text(),'進入課程')]
+    
+User Assignment Should Contains
+    [Arguments]    @{ExpectedItems}
+    Wait Until Element Is Visible    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]
+    Page Should Contain Element    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]/../*[contains(text(), '@{ExpectedItems}[2]')]
+    Page Should Contain Element    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]/../*[contains(text(), '@{ExpectedItems}[3]')]
+    Page Should Contain Element    xpath://tr/td[contains(text(), '@{ExpectedItems}[0]')]/../*[contains(text(), '@{ExpectedItems}[4]')]
+
+Verify Stundent Should Added By AssignmentDetail
+    [Arguments]    @{students}
+    Click Button    xpath://*[contains(text(),'hw1')]/../*[contains(@class, 'vuetable-slot')]/descendant::button[contains(text(),'作業批改')]
+    :FOR    ${student}    IN    @{students}
+    \    Page Should Contain Element    xpath://*[text()='${student}']
+
+Add An Assignment
+    [Arguments]    @{homeworkDetails}
+    Log Many    @{homeworkDetails}
+    Click Element    xpath://*[contains(text(),'新增作業')]
+    Input Text    xpath://*[contains(@id,'assignmentName')]    @{homeworkDetails}[0]
+    Input Text    xpath://*[contains(@id,'assignmentDescription')]    @{homeworkDetails}[1]
+    Click Button    xpath://div[@class='content']//*[contains(text(),'新增作業')]
+    :FOR    ${homeworkDetail}    IN    @{homeworkDetails}
+    \    Page Should Contain Element    xpath://*[text()='${homeworkDetail}']
+
+Verify Assignment
+    [Arguments]    @{assignments}
+    Click Element    xpath://*[contains(text(),'作業區')]
+    :FOR    ${assignment}    IN    @{assignments}
+    \    Page Should Contain Element    xpath://*[text()='${assignment}']
+
+It Should Display Correctly
+    [Arguments]    ${student}    @{gradeDetails}
+    :FOR    ${gradeDetail}    IN    @{gradeDetails}
+    \    Page Should Contain Element    xpath://*[contains(text(),'${student}')]/../*[contains(text(),'${gradeDetail}')]   
+
+Grading One Student
+    [Arguments]    ${hw1}    ${student}    @{gradeDetail}
+    Click Button    xpath://*[contains(text(),'hw1')]/../*[contains(@class, 'vuetable-slot')]/descendant::button[contains(text(),'作業批改')]
+    Click Button    xpath://*[contains(text(),'${student}')]/../*[contains(@class, 'vuetable-slot')]/descendant::button[contains(text(),'打成績')]
+    Input Text    xpath://*[@id='score']    @{gradeDetail}[0]
+    Input Text    xpath://*[@id='description']    @{gradeDetail}[1]
+    Click Button    xpath://button[text()='儲存']
+
+Delete All Assignment
+    Click Element    xpath://*[contains(text(),'作業區')]
+    Wait Until Element Is Visible     xpath://tr//*[contains(text(),'作業名稱')]
+    @{assignments}=    Get WebElements    xpath://*[@class='vuetable-body']//tr[contains(@render,'true')]
+    Log    ${assignments.__len__()}
+    :FOR    ${index}    ${assignment}    IN ENUMERATE    @{assignments}
+    \    Wait Until Element Is Visible    xpath://*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button
+    \    Click Button    //*[contains(@item-index,'0')]/td[contains(@class,'vuetable-slot')]//button[contains(@class,'btn btn-danger btn-sm')]

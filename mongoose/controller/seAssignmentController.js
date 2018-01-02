@@ -279,3 +279,14 @@ exports.updateAssignmentCommit = function(req, res){
     console.log(update)
   })
 }
+
+
+exports.deleteAssignment = function(req, res){
+  console.log(req)
+  seAssignment.remove({_id:req.body._id})
+  .then((result)=>{
+    res.send(result)
+  }).catch((err)=>{
+    res.json(err)
+  })
+}

@@ -18,4 +18,8 @@ module.exports = function (app){
 
   app.route('/api/getAllAssignmentDetailByStudent')
   .get(seAssignment.getAllAssignmentDetailByStudent)
+
+  app.route('/api/deleteAssignment')
+  .post(seAssignment.deleteAssignment)
+  
 }

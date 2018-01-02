@@ -11,7 +11,7 @@
     <textarea class="form-control" id="assignmentDescription" v-model="assignmentDescription" rows="3"></textarea>
   </div>
   <button type="submit" class="btn btn-primary">新增作業</button>
-</form>  
+</form>
 </template>
 
 <script>
@@ -26,9 +26,9 @@ let axios = require('axios')
 export default {
   data () {
     return {
-      assignmentName: undefined,
-      deadline: undefined,
-      assignmentDescription: undefined
+      assignmentName: '',
+      deadline: '2018-01-03',
+      assignmentDescription: ''
     }
   },
   methods: {
