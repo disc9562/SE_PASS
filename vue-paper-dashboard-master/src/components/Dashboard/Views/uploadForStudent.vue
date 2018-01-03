@@ -68,12 +68,16 @@ export default {
               template.sleep(3000)
               template.getLastBuildInfo(jobName, queueId)
             } else {
+              console.log(JSON.stringify(response, null, 2))
+              template.sleep(3000)
               amount = 0
-              console.log(`break: ${JSON.stringify(response.data.body, null, 2)}`)
+              let report = `<h2><a target="_blank" href="//140.124.181.81:8080/job/${jobName}/${queueId}/cucumber-html-reports/overview-features.html">報表</a></h2>`
+              console.log(`${report}`)
               swal({
                 type: 'success',
                 title: '完成批改',
-                text: `http://140.124.181.81:8080/job/${jobName}/${queueId}/cucumber-html-reports/overview-features.html`,
+                html: report,
+                // text: ``,
                 showConfirmButton: true
               })
             }
@@ -89,8 +93,8 @@ export default {
         let jobName = this.courseName + '_' + this.assignmentName + '_' + this.studentId
         axios.post('http://140.124.181.81:9090/jenkinsBuild', {'jobName': jobName})
         .then(function (response) {
-          let queueId = parseInt(response.data.result.queueId) - 1
-          template.getLastBuildInfo(jobName, queueId)
+          let number = response.data.result.number
+          template.getLastBuildInfo(jobName, number)
         })
         .catch(function (err) {
           console.log(err)

@@ -113,7 +113,13 @@ app.post('/jenkinsBuild',function(req, res){
     if(err){
       res.json({'err':err})
     }
-    res.json({'result':data})
+    jenkins.last_build_info(jobName,function(err, data1){
+      if(err){
+        res.json({'err':err})
+      }
+      data.number = data1.number + 1
+      res.json({'result':data})
+    })
   })
 })
 

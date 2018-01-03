@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper">
     <side-bar-of-student type="sidebar" :sidebar-links="$sidebarofstudent.sidebarLinksOfStudent">
-
     </side-bar-of-student>
     <notifications>
 

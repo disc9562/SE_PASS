@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper">
     <side-bar-of-assignment type="sidebar" :sidebar-links="$sidebarofassignment.sidebarLinksOfAssignment">
-
     </side-bar-of-assignment>
     <notifications>
 

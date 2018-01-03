@@ -6,7 +6,7 @@ const SidebarStore = {
     {
       name: 'Course',
       icon: 'ti-view-list-alt',
-      path: '/teacher/Course'
+      path: ''
     }
   ],
   displaySidebar (value) {
