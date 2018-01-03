@@ -1,5 +1,5 @@
 const state = {
-  url: 'http://localhost:9090/api/getStudentListByAssignment?assignmentName=',
+  url: 'http://140.124.181.81:9090/api/getStudentListByAssignment?assignmentName=',
   assignmentName: undefined,
   courseId: undefined,
   assigntmentId: undefined
@@ -12,7 +12,7 @@ const mutations = {
     state.url = state.url + data.assignmentname + '&courseId=' + data.courseid
   },
   INITASSIGNMENTURL (state) {
-    state.url = 'http://localhost:9090/api/getStudentListByAssignment?assignmentName='
+    state.url = 'http://140.124.181.81:9090/api/getStudentListByAssignment?assignmentName='
     state.assignmentName = undefined
     state.courseId = undefined
   },

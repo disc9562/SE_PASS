@@ -59,7 +59,7 @@ export default{
           path: '/account'
         })
       } else {
-        axios.post('http://localhost:9090/api/login', {
+        axios.post('http://140.124.181.81:9090/api/login', {
           id: this.account,
           password: this.password
         }).then((result) => {

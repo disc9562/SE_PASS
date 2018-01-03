@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" api-url="http://localhost:9090/api/getAllCourse">
+          <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" api-url="http://140.124.181.81:9090/api/getAllCourse">
             <template slot="actions" scope="props">
                       <div class="table-button-container">
                         <button class="btn btn-success btn-sm" @click="courseInfo(props.rowData)">
@@ -102,7 +102,7 @@ export default {
       })
     },
     deleteCourse (rowData) {
-      axios.post('http://localhost:9090/api/deleteCourse', {
+      axios.post('http://140.124.181.81:9090/api/deleteCourse', {
         coursename: rowData.coursename,
         _id: rowData._id
       })

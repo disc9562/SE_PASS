@@ -10,9 +10,9 @@ const state = {
 const mutations = {
   LOGIN (state, data) {
     if (data.role[0] === 'teacher') {
-      state.url = 'http://localhost:9090/api/getCourseByTeacher?courseTeacher=' + data.username
+      state.url = 'http://140.124.181.81:9090/api/getCourseByTeacher?courseTeacher=' + data.username
     } else if (data.role[0] === 'student') {
-      state.url = 'http://localhost:9090/api/getCourseByStudent?studentId=' + data.id
+      state.url = 'http://140.124.181.81:9090/api/getCourseByStudent?studentId=' + data.id
     }
     state.isLogin = true
     state.role = data.role[0]

@@ -17,6 +17,7 @@
     "chartist": "^0.10.1",
     "jenkins-api": "^0.3.1",
     "jquery": "^3.2.1",
+    "sweetalert2": "^7.3.1",
     "vue": "^2.3.0",
     "vue-chartjs": "^3.0.2",
     "vue-clickaway": "^2.1.0",

@@ -33,7 +33,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://localhost:9090/api/getAccountListByRole?role=teacher')
+    axios.get('http://140.124.181.81:9090/api/getAccountListByRole?role=teacher')
     .then((result) => {
       console.log(result.data.data)
       result.data.data.forEach(teacher => {
@@ -54,7 +54,7 @@ export default {
       this.population = ''
     },
     addCourse () {
-      axios.post('http://localhost:9090/api/addCourseSE', {
+      axios.post('http://140.124.181.81:9090/api/addCourseSE', {
         coursename: this.coursename,
         courseteacher: this.selectTeacher,
         classtime: this.classtime,

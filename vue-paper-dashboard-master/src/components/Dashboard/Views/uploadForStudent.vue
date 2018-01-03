@@ -12,7 +12,7 @@
     </ul>
         <file-upload
           class="btn btn-primary btn-sm"
-          post-action="http://localhost:9090/uploadByStudent"
+          post-action="http://140.124.181.81:9090/uploadByStudent"
           :data="data"
           extensions="gzip,7z,tar,xz,zip,rar"
           accept=".gzip,.7z,.tar,.xz,.zip,.rar"
@@ -36,6 +36,7 @@
 <script>
 import FileUpload from 'vue-upload-component'
 import axios from 'axios'
+import swal from 'sweetalert2'
 let template
 let amount = 0
 export default {
@@ -59,9 +60,8 @@ export default {
   },
   methods: {
     getLastBuildInfo: function (jobName, queueId) {
-      axios.get('http://localhost:9090/getjenkinsJobInfo', {params: {'jobName': jobName, queueId: queueId}})
+      axios.get('http://140.124.181.81:9090/getjenkinsJobInfo', {params: {'jobName': jobName, 'queueId': queueId}})
           .then(function (response) {
-            console.log(response)
             if (response.data.statusCode === 404 && amount < 10) {
               console.log(amount)
               amount++
@@ -70,6 +70,12 @@ export default {
             } else {
               amount = 0
               console.log(`break: ${JSON.stringify(response.data.body, null, 2)}`)
+              swal({
+                type: 'success',
+                title: '完成批改',
+                text: `http://140.124.181.81:8080/job/${jobName}/${queueId}/cucumber-html-reports/overview-features.html`,
+                showConfirmButton: true
+              })
             }
           })
     },
@@ -81,9 +87,10 @@ export default {
     files: function (val) {
       if (val[0].success) {
         let jobName = this.courseName + '_' + this.assignmentName + '_' + this.studentId
-        axios.post('http://localhost:9090/jenkinsBuild', {'jobName': jobName})
+        axios.post('http://140.124.181.81:9090/jenkinsBuild', {'jobName': jobName})
         .then(function (response) {
-          template.getLastBuildInfo(jobName, response.data.result.queueId)
+          let queueId = parseInt(response.data.result.queueId) - 1
+          template.getLastBuildInfo(jobName, queueId)
         })
         .catch(function (err) {
           console.log(err)

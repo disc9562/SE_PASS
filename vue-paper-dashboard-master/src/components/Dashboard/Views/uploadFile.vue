@@ -12,7 +12,7 @@
     </ul>
         <file-upload
           class="btn btn-primary btn-sm"
-          post-action="http://localhost:9090/uploadByTeacher"
+          post-action="http://140.124.181.81:9090/uploadByTeacher"
           :data="data"
           extensions="gzip,7z,tar,xz,zip,rar"
           accept=".gzip,.7z,.tar,.xz,.zip,.rar"

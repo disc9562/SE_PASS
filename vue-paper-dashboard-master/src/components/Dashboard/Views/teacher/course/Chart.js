@@ -26,7 +26,7 @@ export default {
   },
   mounted () {
     console.log(this.$route.params.assignmentId)
-    axios.get('http://localhost:9090/api/getAllStudentGradeByAssignmentId', { params: {
+    axios.get('http://140.124.181.81:9090/api/getAllStudentGradeByAssignmentId', { params: {
       assignmentId: this.$route.params.assignmentId
     }}).then((result) => {
       let grade = result.data.grade

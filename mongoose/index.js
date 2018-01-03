@@ -91,8 +91,23 @@ app.get('/download', function(req, res){
   }) 
 })
 
+app.post('/createJenkinsJob',function(req, res){
+  const jobPath = 'C:\\Users\\jay\\seWorkSpace'
+  let courseName = req.body.courseName
+  let assignmentName = req.body.assignmentName
+  let studentId = req.body.studentId
+  jenkins.create_job(`${courseName}_${assignmentName}_${studentId}`
+  , initXML(jobPath, courseName, assignmentName, studentId)
+  , function (err, data) {
+    if (err) {
+      res.json({'err':err})
+    } else {
+      res.json({'result':data})
+    }
+  })
+})
+
 app.post('/jenkinsBuild',function(req, res){
-  console.log('jenkinsBuild')
   let jobName = req.body.jobName
   jenkins.build(jobName,function(err, data){
     if(err){
@@ -110,6 +125,58 @@ app.get('/getjenkinsJobInfo',function(req, res){
     res.send(data)
   })
 })
+
+function initXML (jobPath, courseName, homeworkName, studentId) {
+  let xml = `<project>
+<keepDependencies>false</keepDependencies>
+<properties/>
+<scm class="hudson.scm.NullSCM"/>
+<canRoam>false</canRoam>
+<disabled>false</disabled>
+<blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+<blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+<triggers/>
+<concurrentBuild>false</concurrentBuild>
+<customWorkspace>${jobPath + '\\' + courseName + '\\' + homeworkName + '_' + studentId}</customWorkspace>
+<builders>
+<hudson.tasks.BatchFile>
+  <command>rmdir /s/q ${jobPath + '\\' + courseName + '\\' + homeworkName + '_' + studentId + '\\src\\test'}</command>
+</hudson.tasks.BatchFile>
+<hudson.tasks.BatchFile>
+  <command>xcopy ${jobPath + '\\' + courseName + '\\' + homeworkName + '_teacher'} ${jobPath + '\\' + courseName + '\\' + homeworkName + '_' + studentId + '\\src\\'} /E</command>
+</hudson.tasks.BatchFile>
+<hudson.tasks.Maven>
+  <targets>test</targets>
+  <mavenName>maven</mavenName>
+  <usePrivateRepository>false</usePrivateRepository>
+  <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+  <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+  <injectBuildVariables>false</injectBuildVariables>
+</hudson.tasks.Maven>
+</builders>
+<publishers>
+<net.masterthought.jenkins.CucumberReportPublisher plugin="cucumber-reports@3.13.0">
+  <fileIncludePattern>**/*.json</fileIncludePattern>
+  <fileExcludePattern></fileExcludePattern>
+  <jsonReportDirectory></jsonReportDirectory>
+  <failedStepsNumber>0</failedStepsNumber>
+  <skippedStepsNumber>0</skippedStepsNumber>
+  <pendingStepsNumber>0</pendingStepsNumber>
+  <undefinedStepsNumber>0</undefinedStepsNumber>
+  <failedScenariosNumber>0</failedScenariosNumber>
+  <failedFeaturesNumber>0</failedFeaturesNumber>
+  <trendsLimit>0</trendsLimit>
+  <parallelTesting>false</parallelTesting>
+  <sortingMethod>ALPHABETICAL</sortingMethod>
+  <classifications class="empty-list"/>
+  <classificationsFilePattern></classificationsFilePattern>
+</net.masterthought.jenkins.CucumberReportPublisher>
+</publishers>
+<buildWrappers/>
+</project>`
+  return xml
+}
+
 function uploadFileFromTeacher(req, res){
   if(!fs.existsSync(path.join(os.homedir(),'seWorkSpace'))){
     fs.mkdirSync(path.join(os.homedir(),'seWorkSpace'))

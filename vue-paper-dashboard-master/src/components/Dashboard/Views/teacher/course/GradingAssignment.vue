@@ -29,7 +29,7 @@ export default {
       })
     },
     grading () {
-      axios.post('http://localhost:9090/api/updateAssignmentGrade', {
+      axios.post('http://140.124.181.81:9090/api/updateAssignmentGrade', {
         studentId: this.studentId,
         score: this.score,
         description: this.description,

@@ -8,7 +8,7 @@ const jobPath = 'C:\\Users\\jay\\seWorkSpace'
 Querystring.prototype.unescape = function (val) { return val }
 
 exports.createJob = function (courseId, courseName, homeworkName) {
-  axios.get('http://localhost:9090/api/getStudentsList?courseId=' + courseId)
+  axios.get('http://140.124.181.81:9090/api/getStudentsList?courseId=' + courseId)
   .then((result) => {
     let studentList = result.data.data
     studentList.forEach(student => {

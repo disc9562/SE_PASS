@@ -76,7 +76,7 @@ export default {
     }
   },
   mounted () {
-    this.downloadUrl = 'http://localhost:9090/download' + '?id=' + this.id + '&assignmentName=' + this.assignment + '&courseName=' + this.courseNameBefore
+    this.downloadUrl = 'http://140.124.181.81:9090/download' + '?id=' + this.id + '&assignmentName=' + this.assignment + '&courseName=' + this.courseNameBefore
     console.log(this.downloadUrl)
   },
   computed: {
@@ -97,7 +97,7 @@ export default {
       })
     },
     bindStudentId (rowData) {
-      this.downloadUrl = 'http://localhost:9090/download' + '?id=' + rowData.id + '&assignmentName=' + this.assignment + '&courseName=' + this.courseNameBefore
+      this.downloadUrl = 'http://140.124.181.81:9090/download' + '?id=' + rowData.id + '&assignmentName=' + this.assignment + '&courseName=' + this.courseNameBefore
       document.getElementById('downloadFile').href = this.downloadUrl
       document.getElementById('downloadFile').click()
       console.log(document.getElementById('downloadFile').href)

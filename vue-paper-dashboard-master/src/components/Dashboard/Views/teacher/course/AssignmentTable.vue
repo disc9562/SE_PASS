@@ -96,7 +96,7 @@ export default {
       this.$refs.vuetable.changePage(page)
     },
     deleteRow (rowData) {
-      axios.post('http://localhost:9090/api/deleteAssignment', {
+      axios.post('http://140.124.181.81:9090/api/deleteAssignment', {
         _id: rowData._id
       })
         .then((response) => {

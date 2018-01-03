@@ -25,6 +25,8 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css'
 import './assets/sass/paper-dashboard.scss'
 import 'es6-promise/auto'
+import 'sweetalert2/dist/sweetalert2.min.js'
+import 'sweetalert2/dist/sweetalert2.css'
 import VueUploadComponent from 'vue-upload-component'
 import 'vue-chartjs'
 // plugin setup

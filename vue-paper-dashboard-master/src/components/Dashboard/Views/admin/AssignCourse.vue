@@ -47,7 +47,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://localhost:9090/api/getAllCourse')
+    axios.get('http://140.124.181.81:9090/api/getAllCourse')
     .then((result) => {
       result.data.data.forEach(course => {
         this.courselist.push(course)
@@ -56,7 +56,7 @@ export default {
     .catch((err) => {
       console.log(err)
     })
-    axios.get('http://localhost:9090/api/getAccountListByRole?role=student')
+    axios.get('http://140.124.181.81:9090/api/getAccountListByRole?role=student')
      .then((result) => {
        result.data.data.forEach(student => {
          this.studentlist.push(student)
@@ -73,7 +73,7 @@ export default {
       })
     },
     submit () {
-      axios.post('http://localhost:9090/api/addStudentIntoCourse', {
+      axios.post('http://140.124.181.81:9090/api/addStudentIntoCourse', {
         courseId: this.choosedcourse[0],
         studentId: this.choosedstudentlist[0]
       }).then((result) => {

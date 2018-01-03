@@ -7,7 +7,7 @@
     <div class="tab-content">
       <div id="teacher" class="tab-pane fade in active">
         <div class="card">
-           <vuetable ref="vuetableForTeacher" :fields="fields"  pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForTeacher" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://localhost:9090/api/getAccountListByRole?role=teacher">
+           <vuetable ref="vuetableForTeacher" :fields="fields"  pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForTeacher" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.81:9090/api/getAccountListByRole?role=teacher">
               <template slot="actions" scope="props">
                 <div class="table-button-container">
                   <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
@@ -20,7 +20,7 @@
       </div>
       <div id="student" class="tab-pane fade ">
         <div class="card">
-         <vuetable ref="vuetableForStudent" :fields="fieldsOfStudent" pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForStudent" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://localhost:9090/api/getAccountListByRole?role=student">
+         <vuetable ref="vuetableForStudent" :fields="fieldsOfStudent" pagination-path="" :css="css.table" :per-page="10" @vuetable:pagination-data="onPaginationDataForStudent" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded"  api-url="http://140.124.181.81:9090/api/getAccountListByRole?role=student">
               <template slot="actions" scope="props">
                 <div class="table-button-container">
                   <button class="btn btn-danger btn-sm" @click="deleteRow(props.rowData)">
@@ -112,7 +112,7 @@
         this.$refs.vuetableForStudent.changePage(page)
       },
       deleteRow (rowData) {
-        axios.post('http://localhost:9090/api/deleteAccount', {
+        axios.post('http://140.124.181.81:9090/api/deleteAccount', {
           id: rowData.id
         })
         .then((response) => {
@@ -120,7 +120,7 @@
         }).catch((err) => {
           console.log(err)
         })
-        // axios.delete('http://localhost:9090/api/deleteAccount/' + rowData.id)
+        // axios.delete('http://140.124.181.81:9090/api/deleteAccount/' + rowData.id)
         // .then(function (response) {
         //   console.log(response)
         // }).catch((err) => {

@@ -1,9 +1,9 @@
 const state = {
-  url: 'http://localhost:9090/api/getAssignmentByCourse?courseid=',
-  getStudentUrl: 'http://localhost:9090/api/getStudentsList?courseId=',
+  url: 'http://140.124.181.81:9090/api/getAssignmentByCourse?courseid=',
+  getStudentUrl: 'http://140.124.181.81:9090/api/getStudentsList?courseId=',
   courseId: undefined,
   courseName: undefined,
-  studentAssignmentUrl: 'http://localhost:9090/api/getAllAssignmentDetailByStudent?courseid='
+  studentAssignmentUrl: 'http://140.124.181.81:9090/api/getAllAssignmentDetailByStudent?courseid='
 }
 
 const mutations = {
@@ -15,11 +15,11 @@ const mutations = {
     state.studentAssignmentUrl = state.studentAssignmentUrl + course._id
   },
   LEAVECOURSE (state) {
-    state.url = 'http://localhost:9090/api/getAssignmentByCourse?courseid='
+    state.url = 'http://140.124.181.81:9090/api/getAssignmentByCourse?courseid='
     state.courseId = undefined
     state.courseName = undefined
-    state.studentAssignmentUrl = 'http://localhost:9090/api/getAllAssignmentDetailByStudent?courseid='
-    state.getStudentUrl = 'http://localhost:9090/api/getStudentsList?courseId='
+    state.studentAssignmentUrl = 'http://140.124.181.81:9090/api/getAllAssignmentDetailByStudent?courseid='
+    state.getStudentUrl = 'http://140.124.181.81:9090/api/getStudentsList?courseId='
   }
 }
 

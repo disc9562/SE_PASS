@@ -94,7 +94,7 @@ export default {
         alert('密碼不一致')
         return
       }
-      axios.post('http://localhost:9090/api/signupSE', {
+      axios.post('http://140.124.181.81:9090/api/signupSE', {
         id: this.accountId,
         username: this.userName,
         password: this.password,

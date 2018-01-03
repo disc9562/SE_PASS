@@ -24,7 +24,8 @@
     "extends": "standard",
     "globals": {
         "$":true,
-        "jQuery":true
+        "jQuery":true,
+        "swal": true
     },
     // required to lint *.vue files
     "plugins": [

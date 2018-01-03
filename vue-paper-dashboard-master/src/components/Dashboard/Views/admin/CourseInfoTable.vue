@@ -75,7 +75,7 @@ export default {
       this.$refs.vuetable.changePage(page)
     },
     deleteStudent (rowData) {
-      axios.post('http://localhost:9090/api/deleteCourseStudent', {
+      axios.post('http://140.124.181.81:9090/api/deleteCourseStudent', {
         courseid: this.getCourseId,
         studentid: rowData.id
       })
