@@ -60,24 +60,23 @@ export default {
   },
   methods: {
     getLastBuildInfo: function (jobName, queueId) {
-      axios.get('http://140.124.181.81:9090/getjenkinsJobInfo', {params: {'jobName': jobName, 'queueId': queueId}})
+      axios.get('http://140.124.181.81:9090/getjenkinsJobInfo', {params: {queueId: queueId}})
           .then(function (response) {
-            if (response.data.statusCode === 404 && amount < 10) {
+            if (response.data.result.why !== null && amount < 10) {
+              console.log(`${response.data.result.why}`)
               console.log(amount)
               amount++
               template.sleep(3000)
               template.getLastBuildInfo(jobName, queueId)
             } else {
-              console.log(JSON.stringify(response, null, 2))
-              template.sleep(3000)
+              console.log(`${response.data.result.why}`)
               amount = 0
-              let report = `<h2><a target="_blank" href="//140.124.181.81:8080/job/${jobName}/${queueId}/cucumber-html-reports/overview-features.html">報表</a></h2>`
-              console.log(`${report}`)
+              let number = response.data.result.executable.number
+              let report = `<h2><a target="_blank" href="//140.124.181.81:8080/job/${jobName}/${number}/cucumber-html-reports/overview-features.html">報表</a></h2>`
               swal({
                 type: 'success',
                 title: '完成批改',
                 html: report,
-                // text: ``,
                 showConfirmButton: true
               })
             }
@@ -93,8 +92,8 @@ export default {
         let jobName = this.courseName + '_' + this.assignmentName + '_' + this.studentId
         axios.post('http://140.124.181.81:9090/jenkinsBuild', {'jobName': jobName})
         .then(function (response) {
-          let number = response.data.result.number
-          template.getLastBuildInfo(jobName, number)
+          let queueId = response.data.result.queueId
+          template.getLastBuildInfo(jobName, queueId)
         })
         .catch(function (err) {
           console.log(err)

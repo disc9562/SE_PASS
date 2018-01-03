@@ -113,22 +113,17 @@ app.post('/jenkinsBuild',function(req, res){
     if(err){
       res.json({'err':err})
     }
-    jenkins.last_build_info(jobName,function(err, data1){
-      if(err){
-        res.json({'err':err})
-      }
-      data.number = data1.number + 1
-      res.json({'result':data})
-    })
+    res.json({'result':data})
   })
 })
 
 app.get('/getjenkinsJobInfo',function(req, res){
-  let jobName = req.query.jobName
   let queueId = req.query.queueId
-
-  jenkins.console_output(jobName, queueId,function (err, data) {
-    res.send(data)
+  jenkins.queue_item(queueId,function(err,data){
+    if (err){
+      res.json({'err':err})
+    }
+    res.json({'result':data})
   })
 })
 
