@@ -22,7 +22,7 @@ export default {
   data () {
     return {
       assignmentName: '',
-      deadline: '2018-01-03',
+      deadline: '2018-01-14',
       assignmentDescription: ''
     }
   },

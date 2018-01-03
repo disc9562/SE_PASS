@@ -63,13 +63,12 @@ export default {
       axios.get('http://140.124.181.81:9090/getjenkinsJobInfo', {params: {queueId: queueId}})
           .then(function (response) {
             if (response.data.result.why !== null && amount < 10) {
-              console.log(`${response.data.result.why}`)
               console.log(amount)
               amount++
               template.sleep(3000)
               template.getLastBuildInfo(jobName, queueId)
             } else {
-              console.log(`${response.data.result.why}`)
+              template.sleep(5000)
               amount = 0
               let number = response.data.result.executable.number
               let report = `<h2><a target="_blank" href="//140.124.181.81:8080/job/${jobName}/${number}/cucumber-html-reports/overview-features.html">報表</a></h2>`
