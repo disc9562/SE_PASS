@@ -3,11 +3,14 @@
   <vuetable ref="vuetable" pagination-path="" :fields="fields" :sort-order="sortOrder" :css="css.table" :per-page="5" @vuetable:pagination-data="onPaginationData" @vuetable:loading="onLoading" @vuetable:loaded="onLoaded" :api-url="apiUrl">
     <template slot="actions" scope="props">
       <div class="table-button-container">
+        <button class="btn btn-danger btn-sm"  @click="assignmentReport(props.rowData)">
+          <span class="glyphicon glyphicon-pencil"></span>查看作業執行結果</button>&nbsp;&nbsp;
         <button class="btn btn-primary btn-sm"  @click="bindStudentId(props.rowData)">
           <span class="glyphicon glyphicon-pencil"></span>下載作業</button>&nbsp;&nbsp;
         <button class="btn btn-success btn-sm" @click="correctAssignment(props.rowData)">
           <span class="glyphicon glyphicon-pencil"></span> 打成績</button>&nbsp;&nbsp;
           <a id='downloadFile' :href="downloadUrl" download></a>
+          <a id='getAssignmentReport' target="_blank"></a>
       </div>
       </template>
   </vuetable>
@@ -17,6 +20,7 @@
 <script>
 import uploadFile from '../../uploadFile.vue'
 import {mapGetters, mapActions} from 'vuex'
+import axios from 'axios'
 export default {
   components: {
     uploadFile
@@ -101,6 +105,20 @@ export default {
       document.getElementById('downloadFile').href = this.downloadUrl
       document.getElementById('downloadFile').click()
       console.log(document.getElementById('downloadFile').href)
+    },
+    assignmentReport (rowData) {
+      let jobName = this.courseNameBefore + '_' + this.assignment + '_' + rowData.id
+      let number
+      let report
+      axios.get('http://140.124.181.81:9090/getAssignmentReport', {params: {jobName: jobName}})
+          .then(function (response) {
+            number = response.data.result.number
+            report = `http://140.124.181.81:8080/job/${jobName}/${number}/cucumber-html-reports/overview-features.html`
+          })
+          .then(function () {
+            document.getElementById('getAssignmentReport').href = report
+            document.getElementById('getAssignmentReport').click()
+          })
     },
     onLoading () {
       console.log('loading... show your spinner here')

@@ -65,10 +65,10 @@ export default {
             if (response.data.result.why !== null && amount < 10) {
               console.log(amount)
               amount++
-              template.sleep(3000)
+              template.sleep(4000)
               template.getLastBuildInfo(jobName, queueId)
             } else {
-              template.sleep(5000)
+              template.sleep(6000)
               amount = 0
               let number = response.data.result.executable.number
               let report = `<h2><a target="_blank" href="//140.124.181.81:8080/job/${jobName}/${number}/cucumber-html-reports/overview-features.html">報表</a></h2>`

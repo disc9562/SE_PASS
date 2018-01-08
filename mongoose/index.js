@@ -127,6 +127,16 @@ app.get('/getjenkinsJobInfo',function(req, res){
   })
 })
 
+app.get('/getAssignmentReport',function(req,res){
+  let jobName = req.query.jobName
+  jenkins.last_build_info(jobName,function(err,data){
+    if (err){
+      res.json({'err':err})
+    }
+    res.json({'result':data})
+  })
+})
+
 function initXML (jobPath, courseName, homeworkName, studentId) {
   let xml = `<project>
 <keepDependencies>false</keepDependencies>
